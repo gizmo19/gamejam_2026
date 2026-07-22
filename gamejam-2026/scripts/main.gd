@@ -30,19 +30,14 @@ func _provide_table(npc: Npc) -> void:
 		var notation := _node_to_notation(table.name)
 		print("NPC sits: %s(%d,%d)" % [notation.side, notation.i, notation.j])
 		var seat := table.global_position + Vector3(-0.5, 0, -1)
-		npc.go_to_table(table, seat)
+		var corridor := Vector3(0.0, seat.y, seat.z)
+		npc.go_to_table(table, [corridor, seat])
 		_print_matrix()
 		return
 
 func _node_to_notation(node_name: String) -> Dictionary:
 	var p := node_name.split("_")
-	var node_side := p[0]
-	var i := int(p[1])
-	var node_j := int(p[2])
-	if node_side == "R":
-		return {"side": "R", "i": i, "j": 3 - node_j}
-	else:
-		return {"side": "L", "i": i, "j": node_j}
+	return {"side": p[0], "i": int(p[1]), "j": int(p[2])}
 
 func _print_matrix() -> void:
 	var state := {}

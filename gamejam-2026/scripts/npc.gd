@@ -19,12 +19,12 @@ func setup(bar_pos: Vector3) -> void:
 	state = State.WALKING_TO_BAR
 	mover.move_to(bar_pos)
 
-func go_to_table(table: Table, seat_pos: Vector3) -> void:
+func go_to_table(table: Table, waypoints: Array[Vector3]) -> void:
 	target_table = table
 	state = State.WALKING_TO_TABLE
 	collision_layer = 2
 	collision_mask = 1
-	mover.move_to(seat_pos)
+	mover.move_along(waypoints)
 
 func _ready() -> void:
 	mover.navigation_finished.connect(_on_arrived)
@@ -59,7 +59,7 @@ func _on_arrived() -> void:
 func _on_order_taken() -> void:
 	if state == State.WAITING_AT_BAR:
 		order_given.emit()
-		state_timer.start(3.0)
+		state_timer.start(1.0)
 
 func _on_timer_timeout() -> void:
 	if state == State.WAITING_AT_BAR:
