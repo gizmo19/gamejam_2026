@@ -3,6 +3,7 @@ extends Area3D
 
 signal interaction_requested
 
+var enabled: bool = false
 var _player_inside: bool = false
 
 func _ready() -> void:
@@ -18,7 +19,8 @@ func _on_body_exited(body: Node3D) -> void:
 		_player_inside = false
 
 func _unhandled_input(event: InputEvent) -> void:
-	if _player_inside \
+	if enabled \
+			and _player_inside \
 			and event is InputEventKey \
 			and event.keycode == KEY_E \
 			and event.pressed \

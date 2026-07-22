@@ -21,6 +21,7 @@ func _spawn_npc() -> void:
 	add_child(npc)
 	npc.global_position = npc_spawn_point.global_position
 	npc.needs_table.connect(_provide_table)
+	npc.patience_expired.connect(_on_patience_expired)
 	npc.order_given.connect(func(): print("Order collected!"))
 	_bar_queue.append(npc)
 	npc.setup(bar.global_position)
@@ -44,6 +45,25 @@ func _bar_queue_pos(idx: int) -> Vector3:
 func _reposition_bar_queue() -> void:
 	for i in _bar_queue.size():
 		_bar_queue[i].update_bar_position(_bar_queue_pos(i))
+		_bar_queue[i].set_interactable(i == 0)
+
+func _on_patience_expired(npc: Npc) -> void:
+	if _bar_queue.has(npc):
+		_bar_queue.erase(npc)
+		_reposition_bar_queue()
+		_print_bar_queue()
+	var exit_pos := npc_spawn_point.global_position
+	var waypoints: Array[Vector3] = []
+	if npc.target_table:
+		npc.target_table.is_occupied = false
+		npc.target_table = null
+		_print_matrix()
+		var x_sign: float = sign(npc.global_position.x)
+		waypoints.append(Vector3(x_sign * 0.8, exit_pos.y, npc.global_position.z))
+		waypoints.append(exit_pos)
+	else:
+		waypoints.append(exit_pos)
+	npc.leave(waypoints)
 
 func _provide_table(npc: Npc) -> void:
 	_bar_queue.erase(npc)
