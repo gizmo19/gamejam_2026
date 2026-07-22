@@ -2,6 +2,7 @@ class_name Npc
 extends CharacterBody3D
 
 enum State { WALKING_TO_BAR, WAITING_AT_BAR, WALKING_TO_TABLE, SEATED }
+enum Order { CHICKEN, SOUP, BEER }
 
 const GRAVITY: float = 9.8
 
@@ -13,11 +14,25 @@ signal order_given
 signal needs_table(npc: Npc)
 
 var state: State
+var order: Order
 var target_table: Table
+
+func order_label() -> String:
+	match order:
+		Order.CHICKEN: return "Chicken"
+		Order.SOUP: return "Soup"
+		Order.BEER: return "Beer"
+	return "?"
 
 func setup(bar_pos: Vector3) -> void:
 	state = State.WALKING_TO_BAR
 	mover.move_to(bar_pos)
+
+func update_bar_position(new_pos: Vector3) -> void:
+	if state == State.WALKING_TO_BAR or state == State.WAITING_AT_BAR:
+		if state == State.WAITING_AT_BAR:
+			state = State.WALKING_TO_BAR
+		mover.move_to(new_pos)
 
 func go_to_table(table: Table, waypoints: Array[Vector3]) -> void:
 	target_table = table
@@ -27,6 +42,7 @@ func go_to_table(table: Table, waypoints: Array[Vector3]) -> void:
 	mover.move_along(waypoints)
 
 func _ready() -> void:
+	order = [Order.CHICKEN, Order.SOUP, Order.BEER].pick_random()
 	mover.navigation_finished.connect(_on_arrived)
 	interaction.interaction_requested.connect(_on_order_taken)
 	state_timer.timeout.connect(_on_timer_timeout)
