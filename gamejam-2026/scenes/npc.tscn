@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://w8mr15tsufqn"]
+
+[ext_resource type="Script" uid="uid://14fl4ajd4eul" path="res://scripts/npc.gd" id="1_npc"]
+[ext_resource type="Script" uid="uid://d3ncv0yfyl5sc" path="res://scripts/npc_mover.gd" id="2_mover"]
+[ext_resource type="Script" uid="uid://bgbtgjvxhownt" path="res://scripts/npc_interaction.gd" id="3_interaction"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_body"]
+radius = 0.35
+height = 1.7
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_1"]
+radius = 0.35
+height = 1.7
+
+[sub_resource type="StandardMaterial3D" id="Mat_npc"]
+albedo_color = Color(1, 0.5, 0.1, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_interaction"]
+radius = 1.5
+
+[node name="NPC" type="CharacterBody3D" unique_id=1635033205]
+script = ExtResource("1_npc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1071423630]
+shape = SubResource("CapsuleShape3D_body")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1554773894]
+mesh = SubResource("CapsuleMesh_1")
+surface_material_override/0 = SubResource("Mat_npc")
+
+[node name="Mover" type="Node" parent="." unique_id=1021602217]
+script = ExtResource("2_mover")
+
+[node name="Interaction" type="Area3D" parent="." unique_id=1966221771]
+script = ExtResource("3_interaction")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interaction" unique_id=518893757]
+shape = SubResource("SphereShape3D_interaction")
+
+[node name="StateTimer" type="Timer" parent="." unique_id=1820150517]
+one_shot = true

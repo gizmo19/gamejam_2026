@@ -1,0 +1,90 @@
+[gd_scene format=3 uid="uid://bhyac52sbr1a0"]
+
+[ext_resource type="PackedScene" path="res://scenes/player.tscn" id="1_player"]
+[ext_resource type="PackedScene" uid="uid://bvbgof22am11a" path="res://scenes/table.tscn" id="2_table"]
+[ext_resource type="Script" uid="uid://6j5q506akplv" path="res://scripts/main.gd" id="3_main_script"]
+[ext_resource type="PackedScene" path="res://scenes/bar.tscn" id="4_bar"]
+
+[sub_resource type="Environment" id="Env_1"]
+background_mode = 1
+background_color = Color(0.1, 0.15, 0.3, 1)
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 0.8
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ground"]
+size = Vector3(15, 0.5, 15)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ground"]
+size = Vector3(15, 0.5, 15)
+
+[sub_resource type="StandardMaterial3D" id="Mat_ground"]
+albedo_color = Color(0.45, 0.45, 0.45, 1)
+
+[node name="Main" type="Node3D" unique_id=231097996]
+script = ExtResource("3_main_script")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=825138542]
+environment = SubResource("Env_1")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1791518035]
+transform = Transform3D(0.8658247, -0.43326417, 0.25025928, 0, 0.500171, 0.8659266, -0.50034744, -0.74974066, 0.4330604, 0, 0, 0)
+light_energy = 1.2
+shadow_enabled = true
+
+[node name="Ground" type="StaticBody3D" parent="." unique_id=1087412437]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground" unique_id=73430206]
+shape = SubResource("BoxShape3D_ground")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground" unique_id=2066148590]
+mesh = SubResource("BoxMesh_ground")
+surface_material_override/0 = SubResource("Mat_ground")
+
+[node name="Tables" type="Node3D" parent="." unique_id=1958920198]
+
+[node name="R_3_2" parent="Tables" unique_id=906569279 instance=ExtResource("2_table")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0.375, 0)
+
+[node name="R_2_2" parent="Tables" unique_id=1445727533 instance=ExtResource("2_table")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0.375, 2)
+
+[node name="R_1_2" parent="Tables" unique_id=2054884828 instance=ExtResource("2_table")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0.375, 4)
+
+[node name="R_3_1" parent="Tables" unique_id=1614854171 instance=ExtResource("2_table")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.375, 0)
+
+[node name="R_2_1" parent="Tables" unique_id=1110221332 instance=ExtResource("2_table")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.375, 2)
+
+[node name="R_1_1" parent="Tables" unique_id=1817397619 instance=ExtResource("2_table")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.375, 4)
+
+[node name="L_1_1" parent="Tables" unique_id=783966446 instance=ExtResource("2_table")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0.375, 4)
+
+[node name="L_1_2" parent="Tables" unique_id=897503427 instance=ExtResource("2_table")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.375, 4)
+
+[node name="L_2_1" parent="Tables" unique_id=1974082925 instance=ExtResource("2_table")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0.375, 2)
+
+[node name="L_2_2" parent="Tables" unique_id=1473424883 instance=ExtResource("2_table")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.375, 2)
+
+[node name="L_3_1" parent="Tables" unique_id=1594565941 instance=ExtResource("2_table")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0.375, 0)
+
+[node name="L_3_2" parent="Tables" unique_id=165881820 instance=ExtResource("2_table")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.375, 0)
+
+[node name="Bar" parent="." unique_id=1826808953 instance=ExtResource("4_bar")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -3)
+
+[node name="NpcSpawnPoint" type="Marker3D" parent="." unique_id=184544230]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 5)
+
+[node name="Player" parent="." unique_id=1254698664 instance=ExtResource("1_player")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 5)
