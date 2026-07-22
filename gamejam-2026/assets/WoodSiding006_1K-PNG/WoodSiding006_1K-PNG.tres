@@ -1,0 +1,19 @@
+[gd_resource type="StandardMaterial3D" load_steps=6 format=3 uid="acg_ko29asi0"]
+
+[ext_resource type="Texture2D" uid="uid://acg_03nzfis2" id="Color" path="./WoodSiding006_1K-PNG_Color.png"]
+[ext_resource type="Texture2D" uid="uid://acg_6jhqsdw3" id="AmbientOcclusion" path="./WoodSiding006_1K-PNG_AmbientOcclusion.png"]
+[ext_resource type="Texture2D" uid="uid://acg_pjcz4kyv" id="Displacement" path="./WoodSiding006_1K-PNG_Displacement.png"]
+[ext_resource type="Texture2D" uid="uid://acg_2i1fb6dq" id="Roughness" path="./WoodSiding006_1K-PNG_Roughness.png"]
+[ext_resource type="Texture2D" uid="uid://acg_vz601tga" id="NormalGL" path="./WoodSiding006_1K-PNG_NormalGL.png"]
+[resource]
+albedo_texture = ExtResource("Color")
+ao_enabled = true
+ao_texture = ExtResource("AmbientOcclusion")
+ao_texture_channel = 4
+roughness_texture = ExtResource("Roughness")
+roughness_texture_channel = 4
+normal_texture = ExtResource("NormalGL")
+normal_enabled = true
+heightmap_texture = ExtResource("Displacement")
+heightmap_scale = 1.0
+heightmap_enabled = true
