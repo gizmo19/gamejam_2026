@@ -39,3 +39,11 @@ shape = SubResource("SphereShape3D_interaction")
 
 [node name="StateTimer" type="Timer" parent="." unique_id=1820150517]
 one_shot = true
+
+[node name="CountdownLabel" type="Label3D" parent="." unique_id=234567891]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
+pixel_size = 0.01
+billboard = 1
+font_size = 32
+outline_size = 8
+visible = false
