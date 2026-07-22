@@ -1,19 +1,21 @@
-[gd_resource type="StandardMaterial3D" load_steps=6 format=3 uid="acg_49ljqzai"]
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cjbxmy0e36bwn"]
 
-[ext_resource type="Texture2D" uid="uid://acg_ux8sizob" id="Color" path="./WoodFloor035_1K-JPG_Color.jpg"]
-[ext_resource type="Texture2D" uid="uid://acg_tmx24vzp" id="AmbientOcclusion" path="./WoodFloor035_1K-JPG_AmbientOcclusion.jpg"]
-[ext_resource type="Texture2D" uid="uid://acg_x7jqyv84" id="Displacement" path="./WoodFloor035_1K-JPG_Displacement.jpg"]
-[ext_resource type="Texture2D" uid="uid://acg_yhkug30o" id="Roughness" path="./WoodFloor035_1K-JPG_Roughness.jpg"]
-[ext_resource type="Texture2D" uid="uid://acg_whnx76y4" id="NormalGL" path="./WoodFloor035_1K-JPG_NormalGL.jpg"]
+[ext_resource type="Texture2D" uid="uid://djjsdsf1rvpsc" path="res://assets/WoodFloor035_1K-JPG/WoodFloor035_1K-JPG_AmbientOcclusion.jpg" id="AmbientOcclusion"]
+[ext_resource type="Texture2D" uid="uid://cy5tpc83wqre4" path="res://assets/WoodFloor035_1K-JPG/WoodFloor035_1K-JPG_Color.jpg" id="Color"]
+[ext_resource type="Texture2D" uid="uid://cad7bkhdcqnvw" path="res://assets/WoodFloor035_1K-JPG/WoodFloor035_1K-JPG_Displacement.jpg" id="Displacement"]
+[ext_resource type="Texture2D" uid="uid://yjnyxocw8ehe" path="res://assets/WoodFloor035_1K-JPG/WoodFloor035_1K-JPG_NormalGL.jpg" id="NormalGL"]
+[ext_resource type="Texture2D" uid="uid://bsv1yni4x1qwg" path="res://assets/WoodFloor035_1K-JPG/WoodFloor035_1K-JPG_Roughness.jpg" id="Roughness"]
+
 [resource]
 albedo_texture = ExtResource("Color")
+roughness_texture = ExtResource("Roughness")
+roughness_texture_channel = 4
+normal_enabled = true
+normal_texture = ExtResource("NormalGL")
 ao_enabled = true
 ao_texture = ExtResource("AmbientOcclusion")
 ao_texture_channel = 4
-roughness_texture = ExtResource("Roughness")
-roughness_texture_channel = 4
-normal_texture = ExtResource("NormalGL")
-normal_enabled = true
-heightmap_texture = ExtResource("Displacement")
 heightmap_scale = 1.0
-heightmap_enabled = true
+heightmap_texture = ExtResource("Displacement")
+uv1_scale = Vector3(11.995, 11.995, 11.995)
+texture_filter = 0

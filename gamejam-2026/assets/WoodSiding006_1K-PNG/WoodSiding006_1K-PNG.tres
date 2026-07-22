@@ -1,19 +1,20 @@
-[gd_resource type="StandardMaterial3D" load_steps=6 format=3 uid="acg_ko29asi0"]
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dgjpr1r37k0pd"]
 
-[ext_resource type="Texture2D" uid="uid://acg_03nzfis2" id="Color" path="./WoodSiding006_1K-PNG_Color.png"]
-[ext_resource type="Texture2D" uid="uid://acg_6jhqsdw3" id="AmbientOcclusion" path="./WoodSiding006_1K-PNG_AmbientOcclusion.png"]
-[ext_resource type="Texture2D" uid="uid://acg_pjcz4kyv" id="Displacement" path="./WoodSiding006_1K-PNG_Displacement.png"]
-[ext_resource type="Texture2D" uid="uid://acg_2i1fb6dq" id="Roughness" path="./WoodSiding006_1K-PNG_Roughness.png"]
-[ext_resource type="Texture2D" uid="uid://acg_vz601tga" id="NormalGL" path="./WoodSiding006_1K-PNG_NormalGL.png"]
+[ext_resource type="Texture2D" uid="uid://bxy14g2d8bj4a" path="res://assets/WoodSiding006_1K-PNG/WoodSiding006_1K-PNG_AmbientOcclusion.png" id="AmbientOcclusion"]
+[ext_resource type="Texture2D" uid="uid://dwu4y6xt8pd7p" path="res://assets/WoodSiding006_1K-PNG/WoodSiding006_1K-PNG_Color.png" id="Color"]
+[ext_resource type="Texture2D" uid="uid://cyr7ncevqta2c" path="res://assets/WoodSiding006_1K-PNG/WoodSiding006_1K-PNG_Displacement.png" id="Displacement"]
+[ext_resource type="Texture2D" uid="uid://c57r4uqb8rw23" path="res://assets/WoodSiding006_1K-PNG/WoodSiding006_1K-PNG_NormalGL.png" id="NormalGL"]
+[ext_resource type="Texture2D" uid="uid://bkoy8u1cp3sth" path="res://assets/WoodSiding006_1K-PNG/WoodSiding006_1K-PNG_Roughness.png" id="Roughness"]
+
 [resource]
 albedo_texture = ExtResource("Color")
+roughness_texture = ExtResource("Roughness")
+roughness_texture_channel = 4
+normal_enabled = true
+normal_texture = ExtResource("NormalGL")
 ao_enabled = true
 ao_texture = ExtResource("AmbientOcclusion")
 ao_texture_channel = 4
-roughness_texture = ExtResource("Roughness")
-roughness_texture_channel = 4
-normal_texture = ExtResource("NormalGL")
-normal_enabled = true
-heightmap_texture = ExtResource("Displacement")
-heightmap_scale = 1.0
 heightmap_enabled = true
+heightmap_scale = 1.0
+heightmap_texture = ExtResource("Displacement")
