@@ -75,8 +75,10 @@ func _process(delta: float) -> void:
 				_time_left = maxf(_time_left - delta, 0.0)
 				if _time_left == 0.0:
 					patience_expired.emit(self)
-			countdown_label.text = "%s\n%d" % [order_label(), ceili(_time_left)]
-			countdown_label.visible = true
+				countdown_label.text = "%s\n%d" % [order_label(), ceili(_time_left)]
+				countdown_label.visible = true
+			else:
+				countdown_label.visible = false
 		_:
 			countdown_label.visible = false
 
@@ -113,7 +115,16 @@ func _on_order_taken() -> void:
 	if state == State.WAITING_AT_BAR:
 		order_given.emit()
 		state_timer.start(1.0)
+	elif state == State.SEATED:
+		var player: Node = get_tree().get_first_node_in_group("player")
+		if player == null or player.held_item != int(order):
+			return
+		player.clear_held_item()
+		_time_left = -1.0
+		state_timer.start(2.0)
 
 func _on_timer_timeout() -> void:
 	if state == State.WAITING_AT_BAR:
 		needs_table.emit(self)
+	elif state == State.SEATED:
+		patience_expired.emit(self)

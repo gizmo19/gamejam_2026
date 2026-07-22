@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bvbgof22am11a" path="res://scenes/table.tscn" id="2_table"]
 [ext_resource type="Script" uid="uid://6j5q506akplv" path="res://scripts/main.gd" id="3_main_script"]
 [ext_resource type="PackedScene" path="res://scenes/bar.tscn" id="4_bar"]
+[ext_resource type="PackedScene" path="res://scenes/item.tscn" id="5_item"]
 
 [sub_resource type="Environment" id="Env_1"]
 background_mode = 1
@@ -88,3 +89,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 5)
 
 [node name="Player" parent="." unique_id=1254698664 instance=ExtResource("1_player")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 5)
+
+[node name="ItemChicken" parent="." unique_id=132182069 instance=ExtResource("5_item")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0.2, -6)
+item_type = 0
+
+[node name="ItemSoup" parent="." unique_id=837574312 instance=ExtResource("5_item")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0.2, -6)
+
+[node name="ItemBeer" parent="." unique_id=335206539 instance=ExtResource("5_item")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.2, -6)
+item_type = 2

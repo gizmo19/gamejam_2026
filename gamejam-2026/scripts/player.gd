@@ -8,9 +8,32 @@ const MOUSE_SENSITIVITY: float = 0.002
 @onready var camera: Camera3D = $Camera3D
 
 var pitch: float = 0.0
+var held_item: int = -1
+
+var _held_label: Label
 
 func _ready() -> void:
+	add_to_group("player")
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	_setup_hud()
+
+func _setup_hud() -> void:
+	var canvas := CanvasLayer.new()
+	add_child(canvas)
+	_held_label = Label.new()
+	_held_label.set_anchors_preset(Control.PRESET_BOTTOM_WIDE)
+	_held_label.offset_top = -60
+	_held_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_held_label.add_theme_font_size_override("font_size", 24)
+	canvas.add_child(_held_label)
+
+func pick_up(type: int) -> void:
+	held_item = type
+	_held_label.text = "Holding: " + Item.NAMES[type]
+
+func clear_held_item() -> void:
+	held_item = -1
+	_held_label.text = ""
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
