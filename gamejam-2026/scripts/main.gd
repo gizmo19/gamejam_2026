@@ -11,10 +11,7 @@ func _ready() -> void:
 	_bar_queue.setup(bar)
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventKey \
-			and event.keycode == KEY_G \
-			and event.pressed \
-			and not event.echo:
+	if event.is_action_pressed("SpawnNpc"):
 		_spawn_npc()
 
 func _spawn_npc() -> void:

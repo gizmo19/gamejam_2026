@@ -21,8 +21,5 @@ func _on_body_exited(body: Node3D) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if enabled \
 			and _player_inside \
-			and event is InputEventKey \
-			and event.keycode == KEY_E \
-			and event.pressed \
-			and not event.echo:
+			and event.is_action_pressed("Interaction"):
 		interaction_requested.emit()
