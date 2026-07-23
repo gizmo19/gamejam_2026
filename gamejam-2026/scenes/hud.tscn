@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cbcl51spn6ple"]
 
 [ext_resource type="Script" uid="uid://c8k4nm5u4owta" path="res://scripts/hud.gd" id="1_ahhtf"]
+[ext_resource type="Texture2D" uid="uid://b2ibtyxlmo0f6" path="res://assets/sprites/hud/pointer.png" id="2_oo0fn"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ahhtf"]
 bg_color = Color(0.15553045, 0.20647529, 0.3091691, 1)
@@ -8,20 +9,53 @@ bg_color = Color(0.15553045, 0.20647529, 0.3091691, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oo0fn"]
 bg_color = Color(0.21690094, 0.4505924, 0.82868224, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5ysmq"]
+bg_color = Color(0.17, 0.13033333, 0.051000003, 1)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6fi6k"]
+bg_color = Color(0.13280001, 0.83, 0.44654003, 1)
+shadow_color = Color(0.37764, 0.54, 0.31860003, 0.5176471)
+shadow_size = 11
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ysmq"]
+atlas = ExtResource("2_oo0fn")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6fi6k"]
+atlas = ExtResource("2_oo0fn")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uo2fv"]
+atlas = ExtResource("2_oo0fn")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_047uy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ysmq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6fi6k")
+}],
+"loop": true,
+"name": &"interaction",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uo2fv")
+}],
+"loop": true,
+"name": &"pointer",
+"speed": 5.0
+}]
+
 [node name="HUD" type="CanvasLayer" unique_id=1542318261]
 script = ExtResource("1_ahhtf")
 
-[node name="HeldLabel" type="Label" parent="." unique_id=132033843]
-visible = false
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -60.0
-theme_override_font_sizes/font_size = 24
-horizontal_alignment = 1
-
-[node name="Crosshair" type="ColorRect" parent="." unique_id=1059536782]
+[node name="CrosshairPoint" type="ColorRect" parent="." unique_id=1059536782]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -35,22 +69,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(1, 1, 1, 0.85)
-
-[node name="ProgressBar" type="ProgressBar" parent="." unique_id=563776073]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -62.0
-offset_top = 25.0
-offset_right = 65.0
-offset_bottom = 42.0
-grow_horizontal = 2
-grow_vertical = 2
-max_value = 1.0
-step = 0.001
-show_percentage = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1259697395]
 anchors_preset = 15
@@ -115,3 +133,41 @@ value = 79.1
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 1.25
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=563776073]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -62.0
+offset_top = 54.0
+offset_right = 65.0
+offset_bottom = 71.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_5ysmq")
+theme_override_styles/fill = SubResource("StyleBoxFlat_6fi6k")
+max_value = 1.0
+step = 0.001
+value = 0.55
+show_percentage = false
+
+[node name="PointerAnchor" type="Control" parent="." unique_id=1993823263]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Pointer" type="AnimatedSprite2D" parent="PointerAnchor" unique_id=238371239]
+unique_name_in_owner = true
+position = Vector2(25, 14)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_047uy")
+animation = &"pointer"
+frame_progress = 0.39857092

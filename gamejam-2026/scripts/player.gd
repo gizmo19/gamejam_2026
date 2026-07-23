@@ -14,7 +14,7 @@ const MAX_STAMINA: float = 100.0
 
 var pitch: float = 0.0
 var held_item: int = -1
-var stamina: float = MAX_STAMINA
+var stamina: float = 60.0
 
 var _focused_pickup: PickupArea = null
 var _focused_target: Node = null
@@ -95,7 +95,8 @@ func _update_interact_focus() -> void:
 				new_action = candidate.get_look_action(self)
 				if new_action:
 					new_target = candidate
-			if candidate is PickupArea:
+			# Only focus pickups when they offer a real action (e.g. hands free).
+			if candidate is PickupArea and new_action:
 				new_pickup = candidate as PickupArea
 
 	if new_pickup != _focused_pickup:
@@ -111,6 +112,8 @@ func _update_interact_focus() -> void:
 	_focused_action = new_action
 	if target_changed or action_availability_changed:
 		_reset_action_progress()
+
+	hud.set_interact_hover(_focused_action != null or _focused_pickup != null)
 
 func _resolve_interact_candidate(collider: Object) -> Node:
 	var node := collider as Node
@@ -134,6 +137,10 @@ func _update_action_progress(delta: float) -> void:
 
 func spend_stamina(amount: float) -> void:
 	stamina = clampf(stamina - amount, 0.0, MAX_STAMINA)
+	_sync_stamina_hud()
+
+func restore_stamina(amount: float) -> void:
+	stamina = clampf(stamina + amount, 0.0, MAX_STAMINA)
 	_sync_stamina_hud()
 
 func _sync_stamina_hud() -> void:

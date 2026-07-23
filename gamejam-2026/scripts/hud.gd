@@ -3,10 +3,12 @@ extends CanvasLayer
 @onready var _progress_bar: ProgressBar = $ProgressBar
 @onready var _game_scores: RichTextLabel = %GameScores
 @onready var _stamina_bar: ProgressBar = %StaminaBar
+@onready var _pointer: AnimatedSprite2D = %Pointer
 
 func _ready() -> void:
 	_progress_bar.value = 0.0
 	_progress_bar.visible = false
+	_pointer.play("pointer")
 	ScoreState.changed.connect(_refresh_scores)
 	ScoreState.phase_changed.connect(_on_phase_changed)
 	ScoreState.day_changed.connect(_on_day_changed)
@@ -17,6 +19,11 @@ func _process(_delta: float) -> void:
 
 func set_stamina(value: float) -> void:
 	_stamina_bar.value = value
+
+func set_interact_hover(hovering: bool) -> void:
+	var anim := &"interaction" if hovering else &"pointer"
+	if _pointer.animation != anim:
+		_pointer.play(anim)
 
 func set_action_progress(value: float) -> void:
 	if value < 0.0:
