@@ -1,18 +1,18 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://cg4lyib5lwu0b"]
 
 [ext_resource type="PackedScene" uid="uid://dnfeckinxfln0" path="res://assets/models/architecture/bar.blend" id="1_bar_model"]
 [ext_resource type="Script" uid="uid://wgmsyyp6uwhh" path="res://scripts/bar_queue.gd" id="2_bar_queue"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1"]
-size = Vector3(10, 2.5, 2.0)
+size = Vector3(10, 2.5, 2)
 
-[node name="Bar" type="StaticBody3D"]
+[node name="Bar" type="StaticBody3D" unique_id=1788768614]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=290047022]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.7, 0, 1.25, 0.3706355)
 shape = SubResource("BoxShape3D_1")
 
-[node name="Model" parent="." instance=ExtResource("1_bar_model")]
+[node name="Model" parent="." unique_id=1465901870 instance=ExtResource("1_bar_model")]
 
-[node name="BarQueue" type="Node" parent="."]
+[node name="BarQueue" type="Node" parent="." unique_id=1752456753]
 script = ExtResource("2_bar_queue")

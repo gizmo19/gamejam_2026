@@ -3,10 +3,10 @@
 [ext_resource type="PackedScene" uid="uid://ccpldcwmoeiua" path="res://scenes/player.tscn" id="1_player"]
 [ext_resource type="PackedScene" uid="uid://bvbgof22am11a" path="res://scenes/table.tscn" id="2_table"]
 [ext_resource type="Script" uid="uid://6j5q506akplv" path="res://scripts/main.gd" id="3_main_script"]
-[ext_resource type="PackedScene" path="res://scenes/bar.tscn" id="4_bar"]
-[ext_resource type="Script" path="res://scripts/npc_spawn_manager.gd" id="9_npc_spawn"]
+[ext_resource type="PackedScene" uid="uid://cg4lyib5lwu0b" path="res://scenes/bar.tscn" id="4_bar"]
+[ext_resource type="Script" uid="uid://dj184uc8v2ioi" path="res://scripts/npc_spawn_manager.gd" id="9_npc_spawn"]
 [ext_resource type="PackedScene" path="res://scenes/kitchen.tscn" id="20_kitchen"]
-[ext_resource type="PackedScene" path="res://scenes/architecture.tscn" id="21_architecture"]
+[ext_resource type="PackedScene" uid="uid://be2ftevuw33p" path="res://scenes/architecture.tscn" id="21_architecture"]
 
 [sub_resource type="Environment" id="Env_1"]
 background_mode = 1
@@ -77,6 +77,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 8)
 [node name="Player" parent="." unique_id=1254698664 instance=ExtResource("1_player")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 8)
 
-[node name="Kitchen" parent="." instance=ExtResource("20_kitchen")]
+[node name="Kitchen" parent="." unique_id=1801145263 instance=ExtResource("20_kitchen")]
 
-[node name="Architecture" parent="." instance=ExtResource("21_architecture")]
+[node name="Architecture" parent="." unique_id=1426112326 instance=ExtResource("21_architecture")]

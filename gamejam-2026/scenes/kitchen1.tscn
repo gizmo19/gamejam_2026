@@ -3,12 +3,16 @@
 [ext_resource type="PackedScene" uid="uid://bbsqx1e2e0scn" path="res://assets/models/architecture/kitchen1.glb" id="1_kitchen1_model"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1"]
-size = Vector3(2.0, 2.5, 1.0)
+size = Vector3(2, 2.5, 1)
 
 [node name="Kitchen1" type="StaticBody3D" unique_id=740000001]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=740000002]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
+transform = Transform3D(3, 0, 0, 0, 0.5, 0, 0, 0, 1, 2.6250262, 0.636804, 1.7903163)
+shape = SubResource("BoxShape3D_1")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="." unique_id=630085285]
+transform = Transform3D(-6.556708e-08, 0, 1, 0, 0.5, 0, -1.5, 0, -4.371139e-08, 0.37739205, 0.636804, 0.46474123)
 shape = SubResource("BoxShape3D_1")
 
 [node name="Model" parent="." unique_id=740000003 instance=ExtResource("1_kitchen1_model")]
