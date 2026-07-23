@@ -12,9 +12,9 @@ script = ExtResource("1_pickup")
 collision_layer = 8
 collision_mask = 0
 monitoring = false
-monitorable = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area" unique_id=1598965949]
 shape = SubResource("SphereShape3D_pe1k0")
 
 [node name="Item" parent="." unique_id=680897371 instance=ExtResource("2_item")]
+empty = false

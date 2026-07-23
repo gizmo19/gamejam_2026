@@ -11,7 +11,7 @@ const NAMES: Array[String] = ["Chicken", "Soup", "Beer"]
 		item_type = value
 		_update_visual()
 
-@export var empty: bool = true:
+@export var empty: bool = false:
 	set(value):
 		empty = value
 		_update_visual()

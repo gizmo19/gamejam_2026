@@ -30,3 +30,4 @@ visible = false
 
 [node name="Item" parent="PickedUpItem" unique_id=2009337387 instance=ExtResource("3_qhqgy")]
 transform = Transform3D(0.23934755, -0.068198375, 0.023701152, 0.061373096, 0.2354078, 0.057589278, -0.03802772, -0.049316943, 0.24211928, 0.1525774, 0.4267707, -0.22057916)
+empty = false
