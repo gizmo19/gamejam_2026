@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://br50bn7opcl0x"]
+
+[ext_resource type="Script" uid="uid://bqe0133myiktf" path="res://scripts/pickup_area.gd" id="1_pickup"]
+[ext_resource type="PackedScene" uid="uid://ccyua5tywv6ni" path="res://scenes/item.tscn" id="2_item"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_pe1k0"]
+
+[node name="PickupArea" type="Node3D" unique_id=783714688]
+script = ExtResource("1_pickup")
+
+[node name="Area" type="Area3D" parent="." unique_id=1774272059]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area" unique_id=1598965949]
+shape = SubResource("SphereShape3D_pe1k0")
+
+[node name="Item" parent="." unique_id=680897371 instance=ExtResource("2_item")]

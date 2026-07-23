@@ -21,10 +21,11 @@ func _spawn_npc() -> void:
 	add_child(npc)
 	npc.global_position = npc_spawn_point.global_position
 	npc.needs_table.connect(_provide_table)
-	npc.patience_expired.connect(_on_patience_expired)
+	npc.timer_expired.connect(_on_timer_expired)
 	npc.order_given.connect(func(): print("Order collected!"))
+	npc.queue_slot_reached.connect(_on_queue_slot_reached)
 	_bar_queue.append(npc)
-	npc.setup(bar.global_position)
+	npc.setup(_bar_queue_pos(_bar_queue.size() - 1))
 	_reposition_bar_queue()
 	_print_bar_queue()
 
@@ -38,24 +39,36 @@ func _print_bar_queue() -> void:
 	print("Bar queue: ", " | ".join(entries))
 
 func _bar_queue_pos(idx: int) -> Vector3:
-	var base := bar.global_position
-	var offset_x := (idx - (_bar_queue.size() - 1) * 0.5) * BAR_QUEUE_SPACING
-	return Vector3(base.x + offset_x, base.y, base.z)
+	# bar at z=-3, spawn at z=+5 → queue grows toward +Z
+	return bar.global_position + Vector3(0, 0, idx * BAR_QUEUE_SPACING)
 
 func _reposition_bar_queue() -> void:
 	for i in _bar_queue.size():
-		_bar_queue[i].update_bar_position(_bar_queue_pos(i))
-		_bar_queue[i].set_interactable(i == 0)
+		var npc := _bar_queue[i]
+		npc.update_bar_position(_bar_queue_pos(i))
+		npc.set_interactable(i == 0 and npc.state == Npc.State.WAITING_AT_BAR)
 
-func _on_patience_expired(npc: Npc) -> void:
+func _on_queue_slot_reached(npc: Npc) -> void:
+	if _bar_queue.is_empty() or not _bar_queue.has(npc):
+		return
+	if _bar_queue[0] == npc:
+		npc.begin_ordering()
+	else:
+		npc.wait_in_queue()
+
+# Timer expires when waited for too long at the bar, or done eating
+func _on_timer_expired(npc: Npc) -> void:
 	if _bar_queue.has(npc):
 		_bar_queue.erase(npc)
 		_reposition_bar_queue()
 		_print_bar_queue()
+
 	var exit_pos := npc_spawn_point.global_position
 	var waypoints: Array[Vector3] = []
+
 	if npc.target_table:
 		npc.target_table.is_occupied = false
+		npc.target_table.dirty()
 		npc.target_table = null
 		_print_matrix()
 		var x_sign: float = sign(npc.global_position.x)
@@ -63,6 +76,7 @@ func _on_patience_expired(npc: Npc) -> void:
 		waypoints.append(exit_pos)
 	else:
 		waypoints.append(exit_pos)
+	
 	npc.leave(waypoints)
 
 func _provide_table(npc: Npc) -> void:

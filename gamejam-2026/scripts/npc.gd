@@ -1,8 +1,8 @@
 class_name Npc
 extends CharacterBody3D
 
-enum State { WALKING_TO_BAR, WAITING_AT_BAR, WALKING_TO_TABLE, SEATED, LEAVING }
-enum Order { CHICKEN, SOUP, BEER }
+enum State {WALKING_TO_BAR, WAITING_IN_QUEUE, WAITING_AT_BAR, WALKING_TO_TABLE, SEATED, LEAVING}
+enum Order {CHICKEN, SOUP, BEER}
 
 const GRAVITY: float = 9.8
 const BAR_WAIT_TIME: float = 20.0
@@ -12,12 +12,14 @@ const TABLE_WAIT_TIME: float = 45.0
 @onready var interaction: NpcInteraction = $Interaction
 @onready var state_timer: Timer = $StateTimer
 @onready var countdown_label: Label3D = $CountdownLabel
+@onready var state_label: Label3D = $StateLabel
 
 var _time_left: float = 0.0
 
 signal order_given
 signal needs_table(npc: Npc)
-signal patience_expired(npc: Npc)
+signal timer_expired(npc: Npc)
+signal queue_slot_reached(npc: Npc)
 
 var state: State
 var order: Order
@@ -30,26 +32,44 @@ func order_label() -> String:
 		Order.BEER: return "Beer"
 	return "?"
 
+func set_state(new_state: State) -> void:
+	state = new_state
+	state_label.text = State.find_key(new_state)
+
 func setup(bar_pos: Vector3) -> void:
-	state = State.WALKING_TO_BAR
+	set_state(State.WALKING_TO_BAR)
 	mover.move_to(bar_pos)
 
 func update_bar_position(new_pos: Vector3) -> void:
-	if state == State.WALKING_TO_BAR:
-		mover.move_to(new_pos)
+	if state != State.WALKING_TO_BAR and state != State.WAITING_IN_QUEUE:
+		return
+	var offset := new_pos - global_position
+	offset.y = 0.0
+	if state == State.WAITING_IN_QUEUE and offset.length() < NpcMover.ARRIVE_DIST:
+		return
+	set_state(State.WALKING_TO_BAR)
+	mover.move_to(new_pos)
+
+func begin_ordering() -> void:
+	set_state(State.WAITING_AT_BAR)
+	_time_left = BAR_WAIT_TIME
+	set_interactable(true)
+
+func wait_in_queue() -> void:
+	set_state(State.WAITING_IN_QUEUE)
+	_time_left = 0.0
+	set_interactable(false)
 
 func set_interactable(value: bool) -> void:
 	interaction.enabled = value
 
 func leave(waypoints: Array[Vector3]) -> void:
-	state = State.LEAVING
+	set_state(State.LEAVING)
 	mover.move_along(waypoints)
 
 func go_to_table(table: Table, waypoints: Array[Vector3]) -> void:
 	target_table = table
-	state = State.WALKING_TO_TABLE
-	collision_layer = 2
-	collision_mask = 1
+	set_state(State.WALKING_TO_TABLE)
 	mover.move_along(waypoints)
 
 func _ready() -> void:
@@ -64,7 +84,7 @@ func _process(delta: float) -> void:
 			if _time_left > 0.0:
 				_time_left = maxf(_time_left - delta, 0.0)
 				if _time_left == 0.0:
-					patience_expired.emit(self)
+					timer_expired.emit(self)
 			if interaction.enabled:
 				countdown_label.text = "%s\n%d" % [order_label(), ceili(_time_left)]
 			else:
@@ -74,7 +94,7 @@ func _process(delta: float) -> void:
 			if _time_left > 0.0:
 				_time_left = maxf(_time_left - delta, 0.0)
 				if _time_left == 0.0:
-					patience_expired.emit(self)
+					timer_expired.emit(self)
 				countdown_label.text = "%s\n%d" % [order_label(), ceili(_time_left)]
 				countdown_label.visible = true
 			else:
@@ -101,10 +121,9 @@ func _physics_process(delta: float) -> void:
 
 func _on_arrived() -> void:
 	if state == State.WALKING_TO_BAR:
-		state = State.WAITING_AT_BAR
-		_time_left = BAR_WAIT_TIME
+		queue_slot_reached.emit(self)
 	elif state == State.WALKING_TO_TABLE:
-		state = State.SEATED
+		set_state(State.SEATED)
 		_time_left = TABLE_WAIT_TIME
 		if target_table:
 			target_table.is_occupied = true
@@ -127,4 +146,4 @@ func _on_timer_timeout() -> void:
 	if state == State.WAITING_AT_BAR:
 		needs_table.emit(self)
 	elif state == State.SEATED:
-		patience_expired.emit(self)
+		timer_expired.emit(self)

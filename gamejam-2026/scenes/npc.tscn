@@ -19,6 +19,8 @@ albedo_color = Color(1, 0.5, 0.1, 1)
 radius = 1.5
 
 [node name="NPC" type="CharacterBody3D" unique_id=1635033205]
+collision_layer = 4
+collision_mask = 1
 script = ExtResource("1_npc")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1071423630]
@@ -32,6 +34,8 @@ surface_material_override/0 = SubResource("Mat_npc")
 script = ExtResource("2_mover")
 
 [node name="Interaction" type="Area3D" parent="." unique_id=1966221771]
+collision_layer = 0
+collision_mask = 2
 script = ExtResource("3_interaction")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Interaction" unique_id=518893757]
@@ -42,8 +46,19 @@ one_shot = true
 
 [node name="CountdownLabel" type="Label3D" parent="." unique_id=234567891]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
+visible = false
 pixel_size = 0.01
 billboard = 1
-font_size = 32
+texture_filter = 0
+text = "Countdown Label"
 outline_size = 8
-visible = false
+
+[node name="StateLabel" type="Label3D" parent="." unique_id=711044438]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9540577, 0)
+pixel_size = 0.01
+billboard = 1
+texture_filter = 0
+modulate = Color(0.53, 0.8668333, 1, 1)
+text = "State Label"
+font_size = 16
+outline_size = 6
