@@ -3,12 +3,20 @@
 [ext_resource type="PackedScene" uid="uid://b3vqoq3i386al" path="res://assets/models/architecture/fireplace_kitchen.glb" id="1_fireplace_model"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1"]
-size = Vector3(2.0, 2.5, 1.0)
+size = Vector3(2, 2.5, 1)
 
 [node name="FireplaceKitchen" type="StaticBody3D" unique_id=730000001]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=730000002]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
+transform = Transform3D(2.5, 0, 0, 0, 1, 0, 0, 0, 2, 0.32267702, 1.25, 0.021715999)
+shape = SubResource("BoxShape3D_1")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="." unique_id=139327136]
+transform = Transform3D(-8.742278e-08, 0, 2, 0, 1, 0, -2, 0, -8.742278e-08, -2.268894, 1.25, 1.6986377)
+shape = SubResource("BoxShape3D_1")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="." unique_id=896121042]
+transform = Transform3D(-4.371139e-08, 0, 1.5, 0, 0.5, 0, -1, 0, -6.556708e-08, -0.5622469, 0.70553756, 1.7579377)
 shape = SubResource("BoxShape3D_1")
 
 [node name="Model" parent="." unique_id=730000003 instance=ExtResource("1_fireplace_model")]
