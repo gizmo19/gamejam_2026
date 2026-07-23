@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://uooow8x62aij"]
+
+[node name="FireLight" type="OmniLight3D"]
+light_color = Color(1.0, 0.55, 0.2, 1)
+light_energy = 2.5
+shadow_enabled = false
+omni_range = 14.0
+omni_attenuation = 1.2

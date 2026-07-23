@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://co23jhed1x81r"]
+
+[ext_resource type="PackedScene" uid="uid://bnseg527gi5vr" path="res://assets/models/architecture/chandelier.glb" id="1_chandelier_model"]
+[ext_resource type="PackedScene" uid="uid://uooow8x62aij" path="res://scenes/fire_light.tscn" id="2_fire_light"]
+
+[node name="Chandelier" type="Node3D" unique_id=1952517559]
+
+[node name="Model" parent="." unique_id=1476359151 instance=ExtResource("1_chandelier_model")]
+
+[node name="FireLight" parent="." unique_id=634224518 instance=ExtResource("2_fire_light")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.799218, 1.4515493, 0.36609474)
+light_energy = 3.5
+
+[node name="FireLight2" parent="." unique_id=644120473 instance=ExtResource("2_fire_light")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5793942, 1.4377799, -0.91175294)
+light_energy = 3.5
+
+[node name="FireLight3" parent="." unique_id=993604340 instance=ExtResource("2_fire_light")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.026012808, 1.5919894, -1.9251122)
+light_energy = 3.5
+
+[node name="FireLight4" parent="." unique_id=764471319 instance=ExtResource("2_fire_light")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6755178, 1.4435939, 0.7777249)
+light_energy = 3.5
+
+[node name="FireLight5" parent="." unique_id=791223862 instance=ExtResource("2_fire_light")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.23528154, 1.3313273, 1.7895381)
+light_energy = 3.5

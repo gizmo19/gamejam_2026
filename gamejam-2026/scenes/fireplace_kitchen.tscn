@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dxfp3kpr8gagf"]
 
 [ext_resource type="PackedScene" uid="uid://b3vqoq3i386al" path="res://assets/models/architecture/fireplace_kitchen.glb" id="1_fireplace_model"]
+[ext_resource type="PackedScene" uid="uid://uooow8x62aij" path="res://scenes/fire_light.tscn" id="2_fire_light"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1"]
 size = Vector3(2, 2.5, 1)
@@ -20,3 +21,6 @@ transform = Transform3D(-4.371139e-08, 0, 1.5, 0, 0.5, 0, -1, 0, -6.556708e-08, 
 shape = SubResource("BoxShape3D_1")
 
 [node name="Model" parent="." unique_id=730000003 instance=ExtResource("1_fireplace_model")]
+
+[node name="FireLight" parent="." unique_id=730000004 instance=ExtResource("2_fire_light")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 0.8, 1.0)

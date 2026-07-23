@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://rm3qm5hjqa3f" path="res://assets/models/architecture/shelf.glb" id="11_shelf"]
 [ext_resource type="PackedScene" uid="uid://b1ftir4604cio" path="res://assets/models/architecture/stairs.glb" id="12_stairs"]
 [ext_resource type="PackedScene" uid="uid://darchbarl2026" path="res://assets/models/architecture/barrel.glb" id="13_barrel_arch"]
+[ext_resource type="PackedScene" uid="uid://co23jhed1x81r" path="res://scenes/chandelier.tscn" id="15_chandelier"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ground"]
 size = Vector3(22.35199, 0.5, 24.818909)
@@ -36,11 +37,7 @@ size = Vector3(20, 0.5, 24)
 height = 6.742676
 radius = 0.55
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_shelf"]
-size = Vector3(2, 2, 0.5)
-
-[sub_resource type="CylinderShape3D" id="CylShape_barrel_arch"]
-height = 1.2
+[sub_resource type="BoxShape3D" id="BoxShape3D_uvkd1"]
 
 [node name="Architecture" type="Node3D" unique_id=1426112326]
 
@@ -427,20 +424,33 @@ shape = SubResource("CylShape_pillar")
 [node name="Shelf" type="StaticBody3D" parent="Props" unique_id=867327788]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 2)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Props/Shelf" unique_id=1924339080]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("BoxShape3D_shelf")
-
 [node name="Model" parent="Props/Shelf" unique_id=348435233 instance=ExtResource("11_shelf")]
+transform = Transform3D(1, 0, 0, 0, 0.3, 0, 0, 0, 0.5, -1.1185017, 2.8196075, -5.993375)
 
 [node name="Barrel" type="StaticBody3D" parent="Props" unique_id=2145188455]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 2)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Props/Barrel" unique_id=1184826062]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
-shape = SubResource("CylShape_barrel_arch")
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 4, -0.12894154, 0.69978774, -8.932688)
+shape = SubResource("BoxShape3D_uvkd1")
 
 [node name="Model" parent="Props/Barrel" unique_id=1952011509 instance=ExtResource("13_barrel_arch")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 1.262322, -0.26058507, -10.08803)
+
+[node name="Model2" parent="Props/Barrel" unique_id=535008043 instance=ExtResource("13_barrel_arch")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 1.0987153, -0.26058507, -8.794186)
+
+[node name="Model3" parent="Props/Barrel" unique_id=270347751 instance=ExtResource("13_barrel_arch")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 1.370049, -0.26058507, -7.4468145)
+
+[node name="Model4" parent="Props/Barrel" unique_id=2018774732 instance=ExtResource("13_barrel_arch")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 1.370049, 0.8868569, -8.154935)
+
+[node name="Model5" parent="Props/Barrel" unique_id=1856387327 instance=ExtResource("13_barrel_arch")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 1.370049, 0.9888967, -9.533353)
+
+[node name="Chandelier" parent="Props" unique_id=1219482424 instance=ExtResource("15_chandelier")]
+transform = Transform3D(0.8, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2842734, 3.5)
 
 [node name="Stairs" type="StaticBody3D" parent="Props" unique_id=691376490]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -6)
