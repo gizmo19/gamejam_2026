@@ -41,7 +41,7 @@ func _on_patience_expired(npc: Npc) -> void:
 
 	if npc.target_table:
 		npc.target_table.is_occupied = false
-		npc.target_table.dirty()
+		npc.target_table.set_dirty(true)
 		npc.target_table = null
 		_print_matrix()
 		var x_sign: float = sign(npc.global_position.x)
@@ -61,24 +61,32 @@ func _on_serve_requested(npc: Npc) -> void:
 
 func _provide_table(npc: Npc) -> void:
 	_bar_queue.erase(npc)
+
+	var available: Array[Table] = []
 	for node in tables.get_children():
 		var table := node as Table
-		if table == null or table.is_occupied:
+		if table == null or table.is_occupied or table.is_dirty:
 			continue
-		table.is_occupied = true
-		var notation := _node_to_notation(table.name)
-		print("NPC sits: %s(%d,%d) [%s]" % [notation.side, notation.i, notation.j, npc.order_label()])
-		var x_sign: float = sign(table.global_position.x)
-		var seat: Vector3 = table.global_position + Vector3(x_sign * 0.5, 0, -1)
-		var alley_x: float = x_sign * 1.5
-		var y: float = seat.y
-		npc.go_to_table(table, [
-			Vector3(alley_x, y, -3.0),
-			Vector3(alley_x, y, seat.z),
-			seat,
-		])
-		_print_matrix()
+		available.append(table)
+
+	if available.is_empty():
 		return
+
+	var table: Table = available.pick_random()
+	table.is_occupied = true
+	var notation := _node_to_notation(table.name)
+	print("NPC sits: %s(%d,%d) [%s]" % [notation.side, notation.i, notation.j, npc.order_label()])
+	var x_sign: float = sign(table.global_position.x)
+	var seat: Vector3 = table.global_position + Vector3(x_sign * 0.5, 0, -1)
+	var alley_x: float = x_sign * 1.5
+	var y: float = seat.y
+
+	npc.go_to_table(table, [
+		Vector3(alley_x, y, -3.0),
+		Vector3(alley_x, y, seat.z),
+		seat,
+	])
+	_print_matrix()
 
 func _node_to_notation(node_name: String) -> Dictionary:
 	var p := node_name.split("_")

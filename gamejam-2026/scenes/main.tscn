@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" path="res://scenes/player.tscn" id="1_player"]
 [ext_resource type="PackedScene" uid="uid://bvbgof22am11a" path="res://scenes/table.tscn" id="2_table"]
-[ext_resource type="Material" path="res://assets/WoodFloor035_1K-JPG/WoodFloor035_1K-JPG.tres" id="2_tipki"]
+[ext_resource type="Material" uid="uid://cjbxmy0e36bwn" path="res://assets/WoodFloor035_1K-JPG/WoodFloor035_1K-JPG.tres" id="2_tipki"]
 [ext_resource type="Script" uid="uid://6j5q506akplv" path="res://scripts/main.gd" id="3_main_script"]
 [ext_resource type="PackedScene" path="res://scenes/bar.tscn" id="4_bar"]
 [ext_resource type="Material" uid="uid://dgjpr1r37k0pd" path="res://assets/WoodSiding006_1K-PNG/WoodSiding006_1K-PNG.tres" id="6_85g3d"]
@@ -93,6 +93,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 1)
 
 [node name="L_3_2" parent="Tables" unique_id=165881820 instance=ExtResource("2_table")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 1)
+is_dirty = true
 
 [node name="Bar" parent="." unique_id=1826808953 instance=ExtResource("4_bar")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -2)
@@ -329,30 +330,31 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.871, 0)
 shape = SubResource("BoxShape3D_eb6dy")
 
 [node name="KitchenWall_L" type="StaticBody3D" parent="Architecture/Collisions/Walls" unique_id=570000001]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -6)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -8.542923)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Architecture/Collisions/Walls/KitchenWall_L" unique_id=570000002]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.371338, 0)
 shape = SubResource("BoxShape3D_kwall")
 
 [node name="KitchenWall_C" type="StaticBody3D" parent="Architecture/Collisions/Walls" unique_id=570000003]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8.542923)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Architecture/Collisions/Walls/KitchenWall_C" unique_id=570000004]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.371338, 0)
 shape = SubResource("BoxShape3D_kwall")
 
 [node name="KitchenWall_R" type="StaticBody3D" parent="Architecture/Collisions/Walls" unique_id=570000005]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, -6)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, -8.542923)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Architecture/Collisions/Walls/KitchenWall_R" unique_id=570000006]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.371338, 0)
 shape = SubResource("BoxShape3D_kwall")
 
 [node name="CeilingBody" type="StaticBody3D" parent="Architecture/Collisions" unique_id=570000007]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Architecture/Collisions/CeilingBody" unique_id=570000008]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.1991453, 0)
 shape = SubResource("BoxShape3D_ceiling_col")
 
 [node name="Pillars" type="Node3D" parent="Architecture/Collisions" unique_id=580000000]

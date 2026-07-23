@@ -7,6 +7,7 @@ const MOUSE_SENSITIVITY: float = 0.002
 const LOOK_SENSITIVITY: float = 2.5
 
 @onready var camera: Camera3D = $Camera3D
+@onready var hud: CanvasLayer = $HUD
 @onready var _held_label: Label = $HUD/HeldLabel
 @onready var interact_ray: RayCast3D = $Camera3D/InteractRay
 
@@ -14,6 +15,9 @@ var pitch: float = 0.0
 var held_item: int = -1
 
 var _focused_pickup: PickupArea = null
+var _focused_target: Node = null
+var _focused_action: LookAction = null
+var _action_progress: float = 0.0
 
 func _ready() -> void:
 	add_to_group("player")
@@ -66,19 +70,59 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 	_update_interact_focus()
+	_update_action_progress(delta)
 
 func _update_interact_focus() -> void:
-	var new_focus: PickupArea = null
+	var new_pickup: PickupArea = null
+	var new_target: Node = null
+	var new_action: LookAction = null
+
 	if interact_ray.is_colliding():
-		var collider := interact_ray.get_collider()
-		if collider:
-			var parent: Node = collider.get_parent()
-			if parent is PickupArea:
-				new_focus = parent as PickupArea
-	if new_focus == _focused_pickup:
-		return
-	if _focused_pickup:
-		_focused_pickup.set_focused(false)
-	_focused_pickup = new_focus
-	if _focused_pickup:
-		_focused_pickup.set_focused(true)
+		var collider: Object = interact_ray.get_collider()
+		var candidate: Node = _resolve_interact_candidate(collider)
+		if candidate:
+			if candidate.has_method("get_look_action"):
+				new_action = candidate.get_look_action(self)
+				if new_action:
+					new_target = candidate
+			if candidate is PickupArea:
+				new_pickup = candidate as PickupArea
+
+	if new_pickup != _focused_pickup:
+		if _focused_pickup:
+			_focused_pickup.set_focused(false)
+		_focused_pickup = new_pickup
+		if _focused_pickup:
+			_focused_pickup.set_focused(true)
+
+	var target_changed := new_target != _focused_target
+	var action_availability_changed := (new_action == null) != (_focused_action == null)
+	_focused_target = new_target
+	_focused_action = new_action
+	if target_changed or action_availability_changed:
+		_reset_action_progress()
+
+func _resolve_interact_candidate(collider: Object) -> Node:
+	if collider is Node and (collider as Node).has_method("get_look_action"):
+		return collider as Node
+	if collider is Node:
+		var parent: Node = (collider as Node).get_parent()
+		if parent:
+			if parent.has_method("get_look_action") or parent is PickupArea:
+				return parent
+	return null
+
+func _update_action_progress(delta: float) -> void:
+	if _focused_action and Input.is_action_pressed("Interaction"):
+		_action_progress = minf(_action_progress + delta / _focused_action.duration, 1.0)
+		hud.set_action_progress(_action_progress)
+		if _action_progress >= 1.0:
+			var action := _focused_action
+			_reset_action_progress()
+			action.on_complete.call()
+	elif _action_progress > 0.0:
+		_reset_action_progress()
+
+func _reset_action_progress() -> void:
+	_action_progress = 0.0
+	hud.set_action_progress(-1.0)

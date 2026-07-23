@@ -4,13 +4,32 @@
 [ext_resource type="PackedScene" uid="uid://m1sslxbmamf0" path="res://assets/wood_furniture/old_wooden_dinner_table.glb" id="2_table_model"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1"]
-size = Vector3(1.2, 0.75, 0.6)
+size = Vector3(1.4623047, 0.6378174, 0.6)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eotx8"]
+emission_enabled = true
+emission = Color(0.77, 0, 0, 1)
+emission_energy_multiplier = 3.9
+
+[sub_resource type="SphereMesh" id="SphereMesh_x8522"]
+material = SubResource("StandardMaterial3D_eotx8")
+radius = 0.435
+height = 0.455
+radial_segments = 12
+rings = 6
+is_hemisphere = true
 
 [node name="Table" type="StaticBody3D" unique_id=31679182]
 script = ExtResource("1_table_script")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=672326473]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.13115233, 0.34581056, 0)
 shape = SubResource("BoxShape3D_1")
 
 [node name="Model" parent="." unique_id=853636885 instance=ExtResource("2_table_model")]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+
+[node name="DebugMeshDirty" type="MeshInstance3D" parent="." unique_id=868292488]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010372758, 0.6560756, -0.074355304)
+visible = false
+mesh = SubResource("SphereMesh_x8522")

@@ -1,34 +1,25 @@
+@tool
 class_name Table
 extends StaticBody3D
 
-const CLEAN_COLOR := Color(0.55, 0.35, 0.15, 1)
-const DIRTY_COLOR := Color.RED
+const CLEAN_DURATION: float = 1.5
 
 var is_occupied: bool = false
-var is_dirty: bool = false
+@export var is_dirty: bool = false
 
-var table_mesh: MeshInstance3D
+@onready var dirt_marker: MeshInstance3D = $DebugMeshDirty
 
 func _ready() -> void:
-	table_mesh = find_child("*", true, false) as MeshInstance3D
-	if table_mesh:
-		var mat := table_mesh.get_surface_override_material(0)
-		if mat:
-			table_mesh.set_surface_override_material(0, mat.duplicate())
+	dirt_marker.visible = false
+	if is_dirty: set_dirty(true)
 
-func dirty() -> void:
-	is_dirty = true
-	_set_table_color(DIRTY_COLOR)
+func set_dirty(value: bool) -> void:
+	is_dirty = value
+	dirt_marker.visible = value
 
-func clean() -> void:
-	is_dirty = false
-	_set_table_color(CLEAN_COLOR)
-
-func _set_table_color(color: Color) -> void:
-	if table_mesh == null:
-		return
-	var mat := table_mesh.get_surface_override_material(0) as StandardMaterial3D
-	if mat == null:
-		mat = StandardMaterial3D.new()
-		table_mesh.set_surface_override_material(0, mat)
-	mat.albedo_color = color
+func get_look_action(_player: Node) -> LookAction:
+	if not is_dirty:
+		return null
+	return LookAction.create(CLEAN_DURATION, func() -> void:
+		set_dirty(false)
+	)
