@@ -3,13 +3,11 @@ extends Node3D
 const NPC_SCENE: PackedScene = preload("res://scenes/npc.tscn")
 
 @onready var tables: Node3D = $Tables
-@onready var bar: StaticBody3D = $Bar
 @onready var npc_spawn_point: Marker3D = $NpcSpawnPoint
-@onready var _bar_queue: BarQueue = $BarQueue
+@onready var _bar_queue: BarQueue = $Bar/BarQueue
 @onready var _npc_spawn_manager: NpcSpawnManager = $NpcSpawnManager
 
 func _ready() -> void:
-	_bar_queue.setup(bar)
 	_npc_spawn_manager.setup(_bar_queue)
 	_npc_spawn_manager.spawn_requested.connect(_spawn_npc)
 
