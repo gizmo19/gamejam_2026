@@ -18,7 +18,7 @@ var _time_left: float = 0.0
 
 signal order_given
 signal needs_table(npc: Npc)
-signal timer_expired(npc: Npc)
+signal patience_expired(npc: Npc)
 signal queue_slot_reached(npc: Npc)
 signal serve_requested(npc: Npc)
 
@@ -85,7 +85,7 @@ func _process(delta: float) -> void:
 			if _time_left > 0.0:
 				_time_left = maxf(_time_left - delta, 0.0)
 				if _time_left == 0.0:
-					timer_expired.emit(self)
+					patience_expired.emit(self)
 			if interaction.enabled:
 				countdown_label.text = "%s\n%d" % [order_label(), ceili(_time_left)]
 			else:
@@ -95,7 +95,7 @@ func _process(delta: float) -> void:
 			if _time_left > 0.0:
 				_time_left = maxf(_time_left - delta, 0.0)
 				if _time_left == 0.0:
-					timer_expired.emit(self)
+					patience_expired.emit(self)
 				countdown_label.text = "%s\n%d" % [order_label(), ceili(_time_left)]
 				countdown_label.visible = true
 			else:
@@ -146,4 +146,4 @@ func _on_timer_timeout() -> void:
 	if state == State.WAITING_AT_BAR:
 		needs_table.emit(self)
 	elif state == State.SEATED:
-		timer_expired.emit(self)
+		patience_expired.emit(self)
