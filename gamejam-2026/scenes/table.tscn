@@ -1,15 +1,10 @@
 [gd_scene format=3 uid="uid://bvbgof22am11a"]
 
 [ext_resource type="Script" uid="uid://d4e3x14e24mhu" path="res://scripts/table.gd" id="1_table_script"]
+[ext_resource type="PackedScene" uid="uid://m1sslxbmamf0" path="res://assets/wood_furniture/old_wooden_dinner_table.glb" id="2_table_model"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1"]
 size = Vector3(1.2, 0.75, 0.6)
-
-[sub_resource type="BoxMesh" id="BoxMesh_1"]
-size = Vector3(1.2, 0.75, 0.6)
-
-[sub_resource type="StandardMaterial3D" id="Mat_1"]
-albedo_color = Color(0.55, 0.35, 0.15, 1)
 
 [node name="Table" type="StaticBody3D" unique_id=31679182]
 script = ExtResource("1_table_script")
@@ -17,6 +12,5 @@ script = ExtResource("1_table_script")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=672326473]
 shape = SubResource("BoxShape3D_1")
 
-[node name="TableMesh" type="MeshInstance3D" parent="." unique_id=854105039]
-mesh = SubResource("BoxMesh_1")
-surface_material_override/0 = SubResource("Mat_1")
+[node name="Model" parent="." unique_id=853636885 instance=ExtResource("2_table_model")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)

@@ -20,6 +20,7 @@ signal order_given
 signal needs_table(npc: Npc)
 signal timer_expired(npc: Npc)
 signal queue_slot_reached(npc: Npc)
+signal serve_requested(npc: Npc)
 
 var state: State
 var order: Order
@@ -130,17 +131,16 @@ func _on_arrived() -> void:
 	elif state == State.LEAVING:
 		queue_free()
 
+func accept_delivery() -> void:
+	_time_left = -1.0
+	state_timer.start(2.0)
+
 func _on_order_taken() -> void:
 	if state == State.WAITING_AT_BAR:
 		order_given.emit()
 		state_timer.start(1.0)
 	elif state == State.SEATED:
-		var player: Node = get_tree().get_first_node_in_group("player")
-		if player == null or player.held_item != int(order):
-			return
-		player.clear_held_item()
-		_time_left = -1.0
-		state_timer.start(2.0)
+		serve_requested.emit(self)
 
 func _on_timer_timeout() -> void:
 	if state == State.WAITING_AT_BAR:

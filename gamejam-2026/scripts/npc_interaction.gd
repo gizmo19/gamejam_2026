@@ -11,11 +11,11 @@ func _ready() -> void:
 	body_exited.connect(_on_body_exited)
 
 func _on_body_entered(body: Node3D) -> void:
-	if body.name == "Player":
+	if body.is_in_group("player"):
 		_player_inside = true
 
 func _on_body_exited(body: Node3D) -> void:
-	if body.name == "Player":
+	if body.is_in_group("player"):
 		_player_inside = false
 
 func _unhandled_input(event: InputEvent) -> void:
