@@ -10,7 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://6geq7p62jfd2" path="res://scenes/entrance.tscn" id="7_jkv2x"]
 [ext_resource type="ArrayMesh" uid="uid://be770oc4htylf" path="res://assets/models/architecture/Wall_Window.obj" id="8_choun"]
 [ext_resource type="ArrayMesh" uid="uid://bivga8hktyiy6" path="res://assets/models/architecture/Pillar.obj" id="8_ya4ey"]
-[ext_resource type="Script" path="res://scripts/bar_queue.gd" id="9_bar_queue"]
+[ext_resource type="Script" uid="uid://wgmsyyp6uwhh" path="res://scripts/bar_queue.gd" id="9_bar_queue"]
+[ext_resource type="Script" path="res://scripts/npc_spawn_manager.gd" id="9_npc_spawn"]
 [ext_resource type="PackedScene" uid="uid://4ef8ndei8nkg" path="res://assets/wood_furniture/ceiling.glb" id="10_ceiling"]
 [ext_resource type="PackedScene" uid="uid://dn83uo3ueni6q" path="res://assets/wood_furniture/beam_part1.glb" id="11_beam1"]
 [ext_resource type="PackedScene" uid="uid://br50bn7opcl0x" path="res://scenes/pickup_area.tscn" id="11_ya4ey"]
@@ -47,6 +48,9 @@ script = ExtResource("3_main_script")
 
 [node name="BarQueue" type="Node" parent="." unique_id=400000001]
 script = ExtResource("9_bar_queue")
+
+[node name="NpcSpawnManager" type="Node" parent="." unique_id=400000002]
+script = ExtResource("9_npc_spawn")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=825138542]
 environment = SubResource("Env_1")

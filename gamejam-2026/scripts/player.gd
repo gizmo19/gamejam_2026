@@ -6,11 +6,8 @@ const GRAVITY: float = 9.8
 const MOUSE_SENSITIVITY: float = 0.002
 const LOOK_SENSITIVITY: float = 2.5
 const MAX_STAMINA: float = 100.0
-const ACTION_STAMINA_COST: float = 5.0
-
 @onready var camera: Camera3D = $Camera3D
 @onready var hud: CanvasLayer = $HUD
-# @onready var _held_label: Label = $HUD/HeldLabel
 @onready var interact_ray: RayCast3D = $Camera3D/InteractRay
 @onready var _held_item_container: Node3D = $PickedUpItem
 @onready var _held_item_visual: Item = $PickedUpItem/Item
@@ -32,13 +29,11 @@ func _ready() -> void:
 
 func pick_up(type: int) -> void:
 	held_item = type
-	# _held_label.text = "Holding: " + Item.NAMES[type]
 	_held_item_visual.item_type = type as Item.Type
 	_held_item_container.visible = true
 
 func clear_held_item() -> void:
 	held_item = -1
-	# _held_label.text = ""
 	_held_item_container.visible = false
 
 func _input(event: InputEvent) -> void:
@@ -133,7 +128,7 @@ func _update_action_progress(delta: float) -> void:
 			var action := _focused_action
 			_reset_action_progress()
 			action.on_complete.call()
-			spend_stamina(ACTION_STAMINA_COST)
+			spend_stamina(action.stamina_cost)
 	elif _action_progress > 0.0:
 		_reset_action_progress()
 

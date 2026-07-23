@@ -4,7 +4,7 @@ enum Phase {MORNING, NOON, NIGHT}
 
 const PHASE_DURATIONS: Dictionary = {
 	Phase.MORNING: - 1.0,
-	Phase.NOON: 120.0,
+	Phase.NOON: 60.0,
 	Phase.NIGHT: - 1.0, # endless for now
 }
 

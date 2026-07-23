@@ -14,7 +14,7 @@ func get_look_action(_player: Node) -> LookAction:
 		return null
 	return LookAction.create(OPEN_DURATION, func() -> void:
 		ScoreState.open_for_business()
-	)
+	, 0.0)
 
 func _on_phase_changed(_phase: ScoreState.Phase) -> void:
 	_refresh_sign()

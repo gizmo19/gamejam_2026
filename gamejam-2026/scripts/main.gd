@@ -6,9 +6,12 @@ const NPC_SCENE: PackedScene = preload("res://scenes/npc.tscn")
 @onready var bar: StaticBody3D = $Bar
 @onready var npc_spawn_point: Marker3D = $NpcSpawnPoint
 @onready var _bar_queue: BarQueue = $BarQueue
+@onready var _npc_spawn_manager: NpcSpawnManager = $NpcSpawnManager
 
 func _ready() -> void:
 	_bar_queue.setup(bar)
+	_npc_spawn_manager.setup(_bar_queue)
+	_npc_spawn_manager.spawn_requested.connect(_spawn_npc)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("SpawnNpc"):
@@ -20,7 +23,6 @@ func _spawn_npc() -> void:
 	npc.global_position = npc_spawn_point.global_position
 	npc.needs_table.connect(_provide_table)
 	npc.patience_expired.connect(_on_patience_expired)
-	npc.serve_requested.connect(_on_serve_requested)
 	npc.order_given.connect(func(): print("Order collected!"))
 	npc.queue_slot_reached.connect(_on_queue_slot_reached)
 	npc.setup(_bar_queue.slot_position(_bar_queue.size()))
@@ -47,6 +49,7 @@ func _on_patience_expired(npc: Npc) -> void:
 
 	if npc.target_table:
 		npc.target_table.is_occupied = false
+		npc.target_table.clear_customer()
 		npc.target_table.set_dirty(true)
 		ScoreState.record_table_left_dirty()
 		npc.target_table = null
@@ -58,14 +61,6 @@ func _on_patience_expired(npc: Npc) -> void:
 		waypoints.append(exit_pos)
 
 	npc.leave(waypoints)
-
-func _on_serve_requested(npc: Npc) -> void:
-	var player: Node = get_tree().get_first_node_in_group("player")
-	if player == null or player.held_item != int(npc.order):
-		return
-	player.clear_held_item()
-	npc.accept_delivery()
-	ScoreState.record_served()
 
 func _provide_table(npc: Npc) -> void:
 	_bar_queue.erase(npc)

@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d4e3x14e24mhu" path="res://scripts/table.gd" id="1_table_script"]
 [ext_resource type="PackedScene" uid="uid://bts27dhfqgvgt" path="res://assets/wood_furniture/table.glb" id="2_table_model"]
+[ext_resource type="PackedScene" uid="uid://ccyua5tywv6ni" path="res://scenes/item.tscn" id="3_item"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1"]
 size = Vector3(1.4623047, 0.6378174, 0.6)
@@ -33,3 +34,8 @@ transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010372758, 0.6560756, -0.074355304)
 visible = false
 mesh = SubResource("SphereMesh_x8522")
+
+[node name="PlacedItem" parent="." unique_id=1726623179 instance=ExtResource("3_item")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.62, 0)
+visible = false
+item_type = 0

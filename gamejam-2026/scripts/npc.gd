@@ -20,7 +20,6 @@ signal order_given
 signal needs_table(npc: Npc)
 signal patience_expired(npc: Npc)
 signal queue_slot_reached(npc: Npc)
-signal serve_requested(npc: Npc)
 
 var state: State
 var order: Order
@@ -71,6 +70,7 @@ func leave(waypoints: Array[Vector3]) -> void:
 
 func go_to_table(table: Table, waypoints: Array[Vector3]) -> void:
 	target_table = table
+	set_interactable(false)
 	set_state(State.WALKING_TO_TABLE)
 	mover.move_along(waypoints)
 
@@ -129,6 +129,7 @@ func _on_arrived() -> void:
 		_time_left = TABLE_WAIT_TIME
 		if target_table:
 			target_table.is_occupied = true
+			target_table.assign_customer(self)
 	elif state == State.LEAVING:
 		queue_free()
 
@@ -140,9 +141,8 @@ func accept_delivery() -> void:
 func _on_order_taken() -> void:
 	if state == State.WAITING_AT_BAR:
 		order_given.emit()
+		set_interactable(false)
 		state_timer.start(1.0)
-	elif state == State.SEATED:
-		serve_requested.emit(self)
 
 func _on_timer_timeout() -> void:
 	if state == State.WAITING_AT_BAR:
