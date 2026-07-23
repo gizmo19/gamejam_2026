@@ -48,6 +48,7 @@ func _on_patience_expired(npc: Npc) -> void:
 	if npc.target_table:
 		npc.target_table.is_occupied = false
 		npc.target_table.set_dirty(true)
+		ScoreState.record_table_left_dirty()
 		npc.target_table = null
 		_print_matrix()
 		var x_sign: float = sign(npc.global_position.x)

@@ -5,16 +5,19 @@ const SPRINT_SPEED: float = 8.0
 const GRAVITY: float = 9.8
 const MOUSE_SENSITIVITY: float = 0.002
 const LOOK_SENSITIVITY: float = 2.5
+const MAX_STAMINA: float = 100.0
+const ACTION_STAMINA_COST: float = 5.0
 
 @onready var camera: Camera3D = $Camera3D
 @onready var hud: CanvasLayer = $HUD
 # @onready var _held_label: Label = $HUD/HeldLabel
 @onready var interact_ray: RayCast3D = $Camera3D/InteractRay
-@onready var picked_up_item: Node3D = $PickedUpItem
+@onready var _held_item_container: Node3D = $PickedUpItem
 @onready var _held_item_visual: Item = $PickedUpItem/Item
 
 var pitch: float = 0.0
 var held_item: int = -1
+var stamina: float = MAX_STAMINA
 
 var _focused_pickup: PickupArea = null
 var _focused_target: Node = null
@@ -24,18 +27,19 @@ var _action_progress: float = 0.0
 func _ready() -> void:
 	add_to_group("player")
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	picked_up_item.visible = false
+	_held_item_container.visible = false
+	_sync_stamina_hud()
 
 func pick_up(type: int) -> void:
 	held_item = type
 	# _held_label.text = "Holding: " + Item.NAMES[type]
 	_held_item_visual.item_type = type as Item.Type
-	picked_up_item.visible = true
+	_held_item_container.visible = true
 
 func clear_held_item() -> void:
 	held_item = -1
 	# _held_label.text = ""
-	picked_up_item.visible = false
+	_held_item_container.visible = false
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
@@ -44,13 +48,22 @@ func _input(event: InputEvent) -> void:
 		pitch = clamp(pitch, -1.4, 1.4)
 		camera.rotation.x = pitch
 
-	if Input.is_action_pressed("Escape"):
+	if event.is_action_pressed("Escape"):
 		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		else:
 			get_tree().quit()
 
 func _physics_process(delta: float) -> void:
+	_update_movement(delta)
+
+	move_and_slide()
+
+	_update_item_interaction()
+	_update_interact_focus()
+	_update_action_progress(delta)
+
+func _update_movement(delta: float) -> void:
 	if not is_on_floor():
 		velocity.y -= GRAVITY * delta
 
@@ -69,9 +82,10 @@ func _physics_process(delta: float) -> void:
 	velocity.x = direction.x * speed
 	velocity.z = direction.z * speed
 
-	move_and_slide()
-	_update_interact_focus()
-	_update_action_progress(delta)
+func _update_item_interaction() -> void:
+	if held_item != -1:
+		if Input.is_action_just_pressed("DropItem"):
+			clear_held_item()
 
 func _update_interact_focus() -> void:
 	var new_pickup: PickupArea = null
@@ -104,13 +118,11 @@ func _update_interact_focus() -> void:
 		_reset_action_progress()
 
 func _resolve_interact_candidate(collider: Object) -> Node:
-	if collider is Node and (collider as Node).has_method("get_look_action"):
-		return collider as Node
-	if collider is Node:
-		var parent: Node = (collider as Node).get_parent()
-		if parent:
-			if parent.has_method("get_look_action") or parent is PickupArea:
-				return parent
+	var node := collider as Node
+	while node:
+		if node.has_method("get_look_action") or node is PickupArea:
+			return node
+		node = node.get_parent()
 	return null
 
 func _update_action_progress(delta: float) -> void:
@@ -121,8 +133,16 @@ func _update_action_progress(delta: float) -> void:
 			var action := _focused_action
 			_reset_action_progress()
 			action.on_complete.call()
+			spend_stamina(ACTION_STAMINA_COST)
 	elif _action_progress > 0.0:
 		_reset_action_progress()
+
+func spend_stamina(amount: float) -> void:
+	stamina = clampf(stamina - amount, 0.0, MAX_STAMINA)
+	_sync_stamina_hud()
+
+func _sync_stamina_hud() -> void:
+	hud.set_stamina(stamina)
 
 func _reset_action_progress() -> void:
 	_action_progress = 0.0

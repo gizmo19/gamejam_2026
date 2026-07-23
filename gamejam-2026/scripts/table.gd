@@ -22,4 +22,5 @@ func get_look_action(_player: Node) -> LookAction:
 		return null
 	return LookAction.create(CLEAN_DURATION, func() -> void:
 		set_dirty(false)
+		ScoreState.record_table_cleaned()
 	)

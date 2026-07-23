@@ -1,12 +1,13 @@
 [gd_scene format=3 uid="uid://bhyac52sbr1a0"]
 
-[ext_resource type="PackedScene" path="res://scenes/player.tscn" id="1_player"]
+[ext_resource type="PackedScene" uid="uid://ccpldcwmoeiua" path="res://scenes/player.tscn" id="1_player"]
 [ext_resource type="PackedScene" uid="uid://bvbgof22am11a" path="res://scenes/table.tscn" id="2_table"]
 [ext_resource type="Material" uid="uid://cjbxmy0e36bwn" path="res://assets/WoodFloor035_1K-JPG/WoodFloor035_1K-JPG.tres" id="2_tipki"]
 [ext_resource type="Script" uid="uid://6j5q506akplv" path="res://scripts/main.gd" id="3_main_script"]
 [ext_resource type="PackedScene" path="res://scenes/bar.tscn" id="4_bar"]
 [ext_resource type="Material" uid="uid://dgjpr1r37k0pd" path="res://assets/WoodSiding006_1K-PNG/WoodSiding006_1K-PNG.tres" id="6_85g3d"]
 [ext_resource type="ArrayMesh" uid="uid://pwwxy5rcqj6b" path="res://assets/models/architecture/Wall.obj" id="7_choun"]
+[ext_resource type="PackedScene" uid="uid://6geq7p62jfd2" path="res://scenes/entrance.tscn" id="7_jkv2x"]
 [ext_resource type="ArrayMesh" uid="uid://be770oc4htylf" path="res://assets/models/architecture/Wall_Window.obj" id="8_choun"]
 [ext_resource type="ArrayMesh" uid="uid://bivga8hktyiy6" path="res://assets/models/architecture/Pillar.obj" id="8_ya4ey"]
 [ext_resource type="Script" uid="uid://wgmsyyp6uwhh" path="res://scripts/bar_queue.gd" id="9_bar_queue"]
@@ -30,7 +31,7 @@ size = Vector3(20, 0.5, 20)
 size = Vector3(22.35199, 0.5, 24.818909)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_eb6dy"]
-size = Vector3(0.3, 6.742676, 20.248322)
+size = Vector3(1.0030273, 6.742676, 20.248322)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kwall"]
 size = Vector3(5.7, 6.742676, 0.5)
@@ -118,6 +119,9 @@ transform = Transform3D(0.46235228, 0, -0.88669634, 0, 1, 0, 0.88669634, 0, 0.46
 item_type = 2
 
 [node name="Architecture" type="Node3D" parent="." unique_id=1134794364]
+
+[node name="Entrance" parent="Architecture" unique_id=776505309 instance=ExtResource("7_jkv2x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9.486)
 
 [node name="Decorative" type="Node3D" parent="Architecture" unique_id=436815116]
 
@@ -290,7 +294,6 @@ transform = Transform3D(-0.9967789, -0.08019893, -8.742278e-08, -0.08019893, 0.9
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.8, 3, 9.033724)
 
 [node name="Collisions" type="Node3D" parent="Architecture" unique_id=161192107]
-visible = false
 
 [node name="Ground" type="StaticBody3D" parent="Architecture/Collisions" unique_id=1087412437]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
@@ -319,7 +322,7 @@ shape = SubResource("BoxShape3D_eb6dy")
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.64229393, 0, 10.89504)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Architecture/Collisions/Walls/StaticBody3D3" unique_id=1462085703]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.871, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35151386, 2.871, 0)
 shape = SubResource("BoxShape3D_eb6dy")
 
 [node name="StaticBody3D4" type="StaticBody3D" parent="Architecture/Collisions/Walls" unique_id=1266436776]

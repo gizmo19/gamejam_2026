@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://6geq7p62jfd2"]
+
+[ext_resource type="Script" uid="uid://cc0ekogfv5gkc" path="res://scripts/entrance.gd" id="1_kwwjj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a8y0u"]
+albedo_color = Color(0.12075, 0.42, 0.105, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_jkv2x"]
+material = SubResource("StandardMaterial3D_a8y0u")
+size = Vector3(3.245, 3.775, 1.015)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jbj1t"]
+size = Vector3(3.2575684, 3.7580566, 1)
+
+[node name="Entrance" type="Node3D" unique_id=683576434]
+script = ExtResource("1_kwwjj")
+
+[node name="Entrance" type="MeshInstance3D" parent="." unique_id=776505309]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8940105, 0)
+mesh = SubResource("BoxMesh_jkv2x")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Entrance" unique_id=1155779791]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Entrance/StaticBody3D" unique_id=1740617645]
+shape = SubResource("BoxShape3D_jbj1t")
+debug_color = Color(0.03500005, 0.7, 0, 1)
+
+[node name="LabelClosed" type="Label3D" parent="Entrance" unique_id=37627269]
+unique_name_in_owner = true
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, -0.60131836)
+visible = false
+pixel_size = 0.01
+double_sided = false
+texture_filter = 0
+modulate = Color(0.79, 0.61304003, 0.28440002, 1)
+outline_modulate = Color(0.14, 0.13468, 0.060200002, 1)
+text = "CLOSED"
+
+[node name="LabelOpened" type="Label3D" parent="Entrance" unique_id=1214301757]
+unique_name_in_owner = true
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, -0.60131836)
+pixel_size = 0.01
+double_sided = false
+texture_filter = 0
+modulate = Color(0.5169766, 0.67190266, 0.73174536, 1)
+outline_modulate = Color(0.081402175, 0.13900521, 0.17077625, 1)
+text = "OPENED"
