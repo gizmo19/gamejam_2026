@@ -1,13 +1,14 @@
 extends Node3D
 
 const NPC_SCENE: PackedScene = preload("res://scenes/npc.tscn")
-const BAR_QUEUE_SPACING: float = 0.8
 
 @onready var tables: Node3D = $Tables
 @onready var bar: StaticBody3D = $Bar
 @onready var npc_spawn_point: Marker3D = $NpcSpawnPoint
+@onready var _bar_queue: BarQueue = $BarQueue
 
-var _bar_queue: Array[Npc] = []
+func _ready() -> void:
+	_bar_queue.setup(bar)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey \
@@ -22,6 +23,7 @@ func _spawn_npc() -> void:
 	npc.global_position = npc_spawn_point.global_position
 	npc.needs_table.connect(_provide_table)
 	npc.timer_expired.connect(_on_timer_expired)
+	npc.serve_requested.connect(_on_serve_requested)
 	npc.order_given.connect(func(): print("Order collected!"))
 	npc.queue_slot_reached.connect(_on_queue_slot_reached)
 	_bar_queue.append(npc)
@@ -35,34 +37,32 @@ func _print_bar_queue() -> void:
 		return
 	var entries: PackedStringArray = []
 	for i in _bar_queue.size():
-		entries.append("[%d] %s" % [i, _bar_queue[i].order_label()])
+		entries.append("[%d] %s" % [i, _bar_queue.get_npc(i).order_label()])
 	print("Bar queue: ", " | ".join(entries))
 
 func _bar_queue_pos(idx: int) -> Vector3:
 	# bar at z=-3, spawn at z=+5 → queue grows toward +Z
-	return bar.global_position + Vector3(0, 0, idx * BAR_QUEUE_SPACING)
+	return bar.global_position + Vector3(0, 0, idx * BarQueue.BAR_QUEUE_SPACING)
 
 func _reposition_bar_queue() -> void:
 	for i in _bar_queue.size():
-		var npc := _bar_queue[i]
+		var npc: Npc = _bar_queue.get_npc(i)
 		npc.update_bar_position(_bar_queue_pos(i))
 		npc.set_interactable(i == 0 and npc.state == Npc.State.WAITING_AT_BAR)
 
 func _on_queue_slot_reached(npc: Npc) -> void:
 	if _bar_queue.is_empty() or not _bar_queue.has(npc):
 		return
-	if _bar_queue[0] == npc:
+	if _bar_queue.get_npc(0) == npc:
 		npc.begin_ordering()
 	else:
 		npc.wait_in_queue()
 
-# Timer expires when waited for too long at the bar, or done eating
 func _on_timer_expired(npc: Npc) -> void:
 	if _bar_queue.has(npc):
 		_bar_queue.erase(npc)
 		_reposition_bar_queue()
 		_print_bar_queue()
-
 	var exit_pos := npc_spawn_point.global_position
 	var waypoints: Array[Vector3] = []
 
@@ -72,17 +72,22 @@ func _on_timer_expired(npc: Npc) -> void:
 		npc.target_table = null
 		_print_matrix()
 		var x_sign: float = sign(npc.global_position.x)
-		waypoints.append(Vector3(x_sign * 0.8, exit_pos.y, npc.global_position.z))
+		waypoints.append(Vector3(x_sign * 1.5, exit_pos.y, npc.global_position.z))
 		waypoints.append(exit_pos)
 	else:
 		waypoints.append(exit_pos)
 	
 	npc.leave(waypoints)
 
+func _on_serve_requested(npc: Npc) -> void:
+	var player: Node = get_tree().get_first_node_in_group("player")
+	if player == null or player.held_item != int(npc.order):
+		return
+	player.clear_held_item()
+	npc.accept_delivery()
+
 func _provide_table(npc: Npc) -> void:
 	_bar_queue.erase(npc)
-	_reposition_bar_queue()
-	_print_bar_queue()
 	for node in tables.get_children():
 		var table := node as Table
 		if table == null or table.is_occupied:
@@ -92,7 +97,7 @@ func _provide_table(npc: Npc) -> void:
 		print("NPC sits: %s(%d,%d) [%s]" % [notation.side, notation.i, notation.j, npc.order_label()])
 		var x_sign: float = sign(table.global_position.x)
 		var seat: Vector3 = table.global_position + Vector3(x_sign * 0.5, 0, -1)
-		var alley_x: float = x_sign * 0.8
+		var alley_x: float = x_sign * 1.5
 		var y: float = seat.y
 		npc.go_to_table(table, [
 			Vector3(alley_x, y, -3.0),

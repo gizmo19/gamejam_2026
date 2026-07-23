@@ -29,6 +29,14 @@ https://ambientcg.com
 Creative Commons CC0 1.0 Universal License
 https://docs.ambientcg.com/license/
 
+Wooden Beam:
+You are free to use this image:
+
+- For both personal and commercial projects and to modify it.
+- In a website or presentation template or application or as part of your design.
+https://www.magnific.com/free-vector/wooden-background_5371886.htm#fromView=search&page=1&position=3&uuid=15a7928f-7e9f-4404-95bd-2e009dd72aa2&query=Stylized+wood+texture
+Designed by brgfx / Freepik
+
 ## Models
 
 ### Kenney's Food Kit
