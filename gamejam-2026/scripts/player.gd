@@ -14,7 +14,7 @@ const MAX_STAMINA: float = 100.0
 
 var pitch: float = 0.0
 var held_item: int = -1
-var stamina: float = MAX_STAMINA
+var stamina: float = 60.0
 
 var _focused_pickup: PickupArea = null
 var _focused_target: Node = null
@@ -134,6 +134,10 @@ func _update_action_progress(delta: float) -> void:
 
 func spend_stamina(amount: float) -> void:
 	stamina = clampf(stamina - amount, 0.0, MAX_STAMINA)
+	_sync_stamina_hud()
+
+func restore_stamina(amount: float) -> void:
+	stamina = clampf(stamina + amount, 0.0, MAX_STAMINA)
 	_sync_stamina_hud()
 
 func _sync_stamina_hud() -> void:

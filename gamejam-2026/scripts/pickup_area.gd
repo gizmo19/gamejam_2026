@@ -24,32 +24,12 @@ func set_focused(focused: bool) -> void:
 func get_look_action(player: Node) -> LookAction:
 	if player == null or player.held_item != -1:
 		return null
-	return LookAction.create(_prepare_duration(), func() -> void:
+	return LookAction.create(Item.prepare_duration(item_type), func() -> void:
 		try_pick_up(player)
-	, _prepare_stamina_cost())
+	, Item.prepare_stamina_cost(item_type))
 
 func try_pick_up(player: Node) -> bool:
 	if player == null or player.held_item != -1:
 		return false
 	player.pick_up(item_type)
 	return true
-
-func _prepare_duration() -> float:
-	match item_type:
-		Item.Type.BEER:
-			return 0.5
-		Item.Type.SOUP:
-			return 1.0
-		Item.Type.CHICKEN:
-			return 2.0
-	return 1.0
-
-func _prepare_stamina_cost() -> float:
-	match item_type:
-		Item.Type.BEER:
-			return 1.0
-		Item.Type.SOUP:
-			return 3.0
-		Item.Type.CHICKEN:
-			return 5.0
-	return 0.0

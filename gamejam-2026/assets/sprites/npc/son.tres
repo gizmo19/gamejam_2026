@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bvug56fwswly4"]
+
+[ext_resource type="Texture2D" uid="uid://npa4au5xm23n" path="res://assets/sprites/npc/son.png" id="1_5mc0o"]
+
+[resource]
+transparency = 1
+albedo_texture = ExtResource("1_5mc0o")
+texture_filter = 0
+texture_repeat = false
+billboard_mode = 2

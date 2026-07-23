@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://ccyua5tywv6ni" path="res://scenes/item.tscn" id="3_item"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1"]
-size = Vector3(1.4623047, 0.6378174, 0.6)
+size = Vector3(2.1357422, 0.8164673, 1.1953125)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eotx8"]
 emission_enabled = true
@@ -24,11 +24,11 @@ is_hemisphere = true
 script = ExtResource("1_table_script")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=672326473]
-transform = Transform3D(-2.6226834e-08, 0, 1, 0, 0.5, 0, -0.6, 0, -4.371139e-08, -0.002, 0.2, 0)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.002, 0.39073902, 0)
 shape = SubResource("BoxShape3D_1")
 
 [node name="Model" parent="." unique_id=853636885 instance=ExtResource("2_table_model")]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 
 [node name="DebugMeshDirty" type="MeshInstance3D" parent="." unique_id=868292488]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010372758, 0.6560756, -0.074355304)
