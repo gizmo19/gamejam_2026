@@ -1,6 +1,7 @@
 [gd_scene format=3]
 
 [ext_resource type="PackedScene" uid="uid://dnfeckinxfln0" path="res://assets/models/architecture/bar.blend" id="1_bar_model"]
+[ext_resource type="Script" uid="uid://wgmsyyp6uwhh" path="res://scripts/bar_queue.gd" id="2_bar_queue"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1"]
 size = Vector3(10, 2.5, 2.0)
@@ -12,3 +13,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
 shape = SubResource("BoxShape3D_1")
 
 [node name="Model" parent="." instance=ExtResource("1_bar_model")]
+
+[node name="BarQueue" type="Node" parent="."]
+script = ExtResource("2_bar_queue")

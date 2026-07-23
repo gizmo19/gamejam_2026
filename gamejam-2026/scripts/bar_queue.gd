@@ -4,10 +4,6 @@ extends Node
 const BAR_QUEUE_SPACING: float = 0.8
 
 var _queue: Array[Npc] = []
-var _bar: Node3D
-
-func setup(bar: Node3D) -> void:
-	_bar = bar
 
 func size() -> int:
 	return _queue.size()
@@ -23,7 +19,7 @@ func get_npc(idx: int) -> Npc:
 
 func slot_position(idx: int) -> Vector3:
 	# bar at z=-3, spawn at z=+5 → queue grows toward +Z
-	return _bar.global_position + Vector3(0, 0, idx * BAR_QUEUE_SPACING)
+	return get_parent().global_position + Vector3(0, 0, idx * BAR_QUEUE_SPACING)
 
 func append(npc: Npc) -> void:
 	_queue.append(npc)

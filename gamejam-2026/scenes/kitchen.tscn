@@ -1,0 +1,24 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" uid="uid://br50bn7opcl0x" path="res://scenes/pickup_area.tscn" id="1_pickup"]
+[ext_resource type="PackedScene" uid="uid://dxfp3kpr8gagf" path="res://scenes/fireplace_kitchen.tscn" id="2_fireplace"]
+[ext_resource type="PackedScene" uid="uid://ckitchen12026" path="res://scenes/kitchen1.tscn" id="3_kitchen1"]
+
+[node name="Kitchen" type="Node3D"]
+
+[node name="PickupSoup" parent="." instance=ExtResource("1_pickup")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.329426, 9.536743e-07, -5.0073543)
+
+[node name="PickupChicken" parent="." instance=ExtResource("1_pickup")]
+transform = Transform3D(0.46235228, 0, -0.88669634, 0, 1, 0, 0.88669634, 0, 0.46235228, -3.067755, 9.536743e-07, -5.7918644)
+item_type = 0
+
+[node name="PickupBeer" parent="." instance=ExtResource("1_pickup")]
+transform = Transform3D(0.46235228, 0, -0.88669634, 0, 1, 0, 0.88669634, 0, 0.46235228, -1.7645502, 9.536743e-07, -6.110322)
+item_type = 2
+
+[node name="Fireplace" parent="." instance=ExtResource("2_fireplace")]
+transform = Transform3D(1, 0, 0, 0, 1.2, 0, 0, 0, 1, -6.625553, 0, -9)
+
+[node name="Kitchen1" parent="." instance=ExtResource("3_kitchen1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.429867, 0, -4.386796)
