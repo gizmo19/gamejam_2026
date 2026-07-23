@@ -8,8 +8,10 @@ const LOOK_SENSITIVITY: float = 2.5
 
 @onready var camera: Camera3D = $Camera3D
 @onready var hud: CanvasLayer = $HUD
-@onready var _held_label: Label = $HUD/HeldLabel
+# @onready var _held_label: Label = $HUD/HeldLabel
 @onready var interact_ray: RayCast3D = $Camera3D/InteractRay
+@onready var picked_up_item: Node3D = $PickedUpItem
+@onready var _held_item_visual: Item = $PickedUpItem/Item
 
 var pitch: float = 0.0
 var held_item: int = -1
@@ -22,14 +24,18 @@ var _action_progress: float = 0.0
 func _ready() -> void:
 	add_to_group("player")
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	picked_up_item.visible = false
 
 func pick_up(type: int) -> void:
 	held_item = type
-	_held_label.text = "Holding: " + Item.NAMES[type]
+	# _held_label.text = "Holding: " + Item.NAMES[type]
+	_held_item_visual.item_type = type as Item.Type
+	picked_up_item.visible = true
 
 func clear_held_item() -> void:
 	held_item = -1
-	_held_label.text = ""
+	# _held_label.text = ""
+	picked_up_item.visible = false
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
@@ -43,11 +49,6 @@ func _input(event: InputEvent) -> void:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		else:
 			get_tree().quit()
-
-func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("Interaction") and _focused_pickup:
-		if _focused_pickup.try_pick_up(self):
-			get_viewport().set_input_as_handled()
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():

@@ -12,8 +12,8 @@
 [ext_resource type="Script" uid="uid://wgmsyyp6uwhh" path="res://scripts/bar_queue.gd" id="9_bar_queue"]
 [ext_resource type="PackedScene" uid="uid://4ef8ndei8nkg" path="res://assets/wood_furniture/ceiling.glb" id="10_ceiling"]
 [ext_resource type="PackedScene" uid="uid://dn83uo3ueni6q" path="res://assets/wood_furniture/beam_part1.glb" id="11_beam1"]
-[ext_resource type="PackedScene" uid="uid://qsa21oq1s1hw" path="res://assets/wood_furniture/beam_part2.glb" id="12_beam2"]
 [ext_resource type="PackedScene" uid="uid://br50bn7opcl0x" path="res://scenes/pickup_area.tscn" id="11_ya4ey"]
+[ext_resource type="PackedScene" uid="uid://qsa21oq1s1hw" path="res://assets/wood_furniture/beam_part2.glb" id="12_beam2"]
 
 [sub_resource type="Environment" id="Env_1"]
 background_mode = 1

@@ -35,6 +35,12 @@ func _on_queue_slot_reached(npc: Npc) -> void:
 		npc.wait_in_queue()
 
 func _on_patience_expired(npc: Npc) -> void:
+	if not npc.was_served:
+		if npc.target_table:
+			ScoreState.record_left_at_table()
+		else:
+			ScoreState.record_left_unserved()
+
 	_bar_queue.erase(npc)
 	var exit_pos := npc_spawn_point.global_position
 	var waypoints: Array[Vector3] = []
@@ -49,7 +55,7 @@ func _on_patience_expired(npc: Npc) -> void:
 		waypoints.append(exit_pos)
 	else:
 		waypoints.append(exit_pos)
-	
+
 	npc.leave(waypoints)
 
 func _on_serve_requested(npc: Npc) -> void:
@@ -58,6 +64,7 @@ func _on_serve_requested(npc: Npc) -> void:
 		return
 	player.clear_held_item()
 	npc.accept_delivery()
+	ScoreState.record_served()
 
 func _provide_table(npc: Npc) -> void:
 	_bar_queue.erase(npc)

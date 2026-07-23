@@ -1,26 +1,32 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene format=3 uid="uid://ccpldcwmoeiua"]
 
-[ext_resource type="Script" path="res://scripts/player.gd" id="1_script"]
-[ext_resource type="PackedScene" path="res://scenes/hud.tscn" id="2_hud"]
+[ext_resource type="Script" uid="uid://ch5fe5yitnoqb" path="res://scripts/player.gd" id="1_script"]
+[ext_resource type="PackedScene" uid="uid://cbcl51spn6ple" path="res://scenes/hud.tscn" id="2_hud"]
+[ext_resource type="PackedScene" uid="uid://ccyua5tywv6ni" path="res://scenes/item.tscn" id="3_qhqgy"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1"]
 radius = 0.35
 height = 1.7
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D" unique_id=363492818]
 collision_layer = 2
-collision_mask = 1
 script = ExtResource("1_script")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=617904424]
 shape = SubResource("CapsuleShape3D_1")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-position = Vector3(0, 0.6, 0)
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1399561450]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
 
-[node name="HUD" parent="." instance=ExtResource("2_hud")]
-
-[node name="InteractRay" type="RayCast3D" parent="Camera3D"]
+[node name="InteractRay" type="RayCast3D" parent="Camera3D" unique_id=392716386]
 target_position = Vector3(0, 0, -2.5)
 collision_mask = 9
 collide_with_areas = true
+
+[node name="HUD" parent="." unique_id=1457373694 instance=ExtResource("2_hud")]
+
+[node name="PickedUpItem" type="Node3D" parent="." unique_id=1589208315]
+visible = false
+
+[node name="Item" parent="PickedUpItem" unique_id=2009337387 instance=ExtResource("3_qhqgy")]
+transform = Transform3D(0.23934755, -0.068198375, 0.023701152, 0.061373096, 0.2354078, 0.057589278, -0.03802772, -0.049316943, 0.24211928, 0.1525774, 0.4267707, -0.22057916)

@@ -25,6 +25,7 @@ signal serve_requested(npc: Npc)
 var state: State
 var order: Order
 var target_table: Table
+var was_served: bool = false
 
 func order_label() -> String:
 	match order:
@@ -132,6 +133,7 @@ func _on_arrived() -> void:
 		queue_free()
 
 func accept_delivery() -> void:
+	was_served = true
 	_time_left = -1.0
 	state_timer.start(2.0)
 

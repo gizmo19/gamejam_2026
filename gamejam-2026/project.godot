@@ -16,6 +16,10 @@ config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 config/run/main_scene="res://scenes/main.tscn"
 
+[autoload]
+
+ScoreState="*res://scripts/score_state.gd"
+
 [display]
 
 window/size/mode=3
