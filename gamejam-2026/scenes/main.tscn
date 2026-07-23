@@ -2,7 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://ccpldcwmoeiua" path="res://scenes/player.tscn" id="1_player"]
 [ext_resource type="PackedScene" uid="uid://bvbgof22am11a" path="res://scenes/table.tscn" id="2_table"]
-[ext_resource type="Material" uid="uid://cjbxmy0e36bwn" path="res://assets/WoodFloor035_1K-JPG/WoodFloor035_1K-JPG.tres" id="2_tipki"]
 [ext_resource type="Script" uid="uid://6j5q506akplv" path="res://scripts/main.gd" id="3_main_script"]
 [ext_resource type="PackedScene" path="res://scenes/bar.tscn" id="4_bar"]
 [ext_resource type="Material" uid="uid://dgjpr1r37k0pd" path="res://assets/WoodSiding006_1K-PNG/WoodSiding006_1K-PNG.tres" id="6_85g3d"]
@@ -17,8 +16,9 @@
 [ext_resource type="PackedScene" uid="uid://br50bn7opcl0x" path="res://scenes/pickup_area.tscn" id="11_ya4ey"]
 [ext_resource type="PackedScene" uid="uid://qsa21oq1s1hw" path="res://assets/wood_furniture/beam_part2.glb" id="12_beam2"]
 [ext_resource type="PackedScene" uid="uid://bspifn116mrfd" path="res://scenes/stone_wall.tscn" id="13_stone_wall"]
-[ext_resource type="PackedScene" path="res://scenes/fireplace_kitchen.tscn" id="14_fireplace"]
-[ext_resource type="PackedScene" path="res://scenes/kitchen1.tscn" id="15_kitchen1"]
+[ext_resource type="PackedScene" uid="uid://dxfp3kpr8gagf" path="res://scenes/fireplace_kitchen.tscn" id="14_fireplace"]
+[ext_resource type="PackedScene" uid="uid://ckitchen12026" path="res://scenes/kitchen1.tscn" id="15_kitchen1"]
+[ext_resource type="PackedScene" uid="uid://cdoor12345678" path="res://scenes/kitchen_door.tscn" id="16_kitchen_door"]
 
 [sub_resource type="Environment" id="Env_1"]
 background_mode = 1
@@ -42,6 +42,12 @@ size = Vector3(20, 0.5, 24)
 [sub_resource type="CylinderShape3D" id="CylShape_pillar"]
 height = 6.742676
 radius = 0.55
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wall10"]
+size = Vector3(0.5, 5.7, 2.6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kwall_room"]
+size = Vector3(6.12, 5.7, 0.6)
 
 [node name="Main" type="Node3D" unique_id=231097996]
 script = ExtResource("3_main_script")
@@ -182,6 +188,11 @@ transform = Transform3D(1, 0, 0, 0, 1.2, 0, 0, 0, 0.5, -1.8363662, -0.001, -3.51
 material_override = ExtResource("6_85g3d")
 mesh = ExtResource("7_choun")
 
+[node name="Wall11" type="MeshInstance3D" parent="Architecture/Decorative" unique_id=19211935]
+transform = Transform3D(1, 0, 0, 0, 1.2, 0, 0, 0, 0.5, -1.6784656, 3.1354184, -6.934032)
+material_override = ExtResource("6_85g3d")
+mesh = ExtResource("7_choun")
+
 [node name="Pillar10" type="MeshInstance3D" parent="Architecture/Decorative" unique_id=1967062123]
 transform = Transform3D(-5.2453668e-08, 0, -1.2, 0, 1.2, 0, 1.2, 0, -5.2453668e-08, 4.438, 0, -8.733)
 material_override = ExtResource("6_85g3d")
@@ -262,6 +273,12 @@ transform = Transform3D(-5.2453665e-08, -7.00271e-17, 1.1999999, 0.028941732, 1.
 
 [node name="StoneWall4" parent="Architecture/Decorative/KitchenWall" unique_id=277423208 instance=ExtResource("13_stone_wall")]
 transform = Transform3D(0.9961947, -0.10458689, 0, 0.08715574, 1.1954337, 0, 0, 0, 0.5, -2.2017632, -0.3033259, -3.7469544)
+
+[node name="StoneWall5" parent="Architecture/Decorative/KitchenWall" unique_id=173453409 instance=ExtResource("13_stone_wall")]
+transform = Transform3D(0.9961947, -0.10458689, 0, 0.08715574, 1.1954337, 0, 0, 0, 0.5, -1.9173007, 2.8777015, -6.855781)
+
+[node name="KitchenDoor" parent="Architecture/Decorative/KitchenWall" unique_id=1055544014 instance=ExtResource("16_kitchen_door")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1957493, -0.3033259, -7.032463)
 
 [node name="CeilingGroup" type="Node3D" parent="Architecture/Decorative" unique_id=550000001]
 
@@ -382,6 +399,20 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, -8.542923)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.371338, 0)
 shape = SubResource("BoxShape3D_kwall")
 
+[node name="Wall10_Body" type="StaticBody3D" parent="Architecture/Collisions/Walls" unique_id=590000001]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.836, 0, -3.518)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Architecture/Collisions/Walls/Wall10_Body" unique_id=590000002]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.13, 2.85, -0.06)
+shape = SubResource("BoxShape3D_wall10")
+
+[node name="KitchenWallRoom_Body" type="StaticBody3D" parent="Architecture/Collisions/Walls" unique_id=590000003]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.237, 0, -1.567)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Architecture/Collisions/Walls/KitchenWallRoom_Body" unique_id=590000004]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.85, 0)
+shape = SubResource("BoxShape3D_kwall_room")
+
 [node name="CeilingBody" type="StaticBody3D" parent="Architecture/Collisions" unique_id=570000007]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 
@@ -458,5 +489,26 @@ shape = SubResource("CylShape_pillar")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0760612, 0, -8.733236)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Architecture/Collisions/Pillars/Pillar_10" unique_id=580000020]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.371338, 0)
+shape = SubResource("CylShape_pillar")
+
+[node name="Pillar_11" type="StaticBody3D" parent="Architecture/Collisions/Pillars" unique_id=590000005]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2498968, 0, -5.3097405)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Architecture/Collisions/Pillars/Pillar_11" unique_id=590000006]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.371338, 0)
+shape = SubResource("CylShape_pillar")
+
+[node name="Pillar_12" type="StaticBody3D" parent="Architecture/Collisions/Pillars" unique_id=590000007]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.4383955, 0, -2.0164342)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Architecture/Collisions/Pillars/Pillar_12" unique_id=590000008]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.371338, 0)
+shape = SubResource("CylShape_pillar")
+
+[node name="Pillar_13" type="StaticBody3D" parent="Architecture/Collisions/Pillars" unique_id=590000009]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2498968, 0, -2.0164342)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Architecture/Collisions/Pillars/Pillar_13" unique_id=590000010]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.371338, 0)
 shape = SubResource("CylShape_pillar")
