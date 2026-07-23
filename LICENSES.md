@@ -37,6 +37,10 @@ You are free to use this image:
 https://www.magnific.com/free-vector/wooden-background_5371886.htm#fromView=search&page=1&position=3&uuid=15a7928f-7e9f-4404-95bd-2e009dd72aa2&query=Stylized+wood+texture
 Designed by brgfx / Freepik
 
+Wooden planks:
+Royalty Free License: Free to use for all Commercial and Non-Commercial purposes.
+https://freestylized.com/material/wooden_planks_17/
+
 ## Models
 
 ### Kenney's Food Kit

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bvbgof22am11a"]
 
 [ext_resource type="Script" uid="uid://d4e3x14e24mhu" path="res://scripts/table.gd" id="1_table_script"]
-[ext_resource type="PackedScene" uid="uid://m1sslxbmamf0" path="res://assets/wood_furniture/old_wooden_dinner_table.glb" id="2_table_model"]
+[ext_resource type="PackedScene" uid="uid://bts27dhfqgvgt" path="res://assets/wood_furniture/table.glb" id="2_table_model"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1"]
 size = Vector3(1.4623047, 0.6378174, 0.6)
