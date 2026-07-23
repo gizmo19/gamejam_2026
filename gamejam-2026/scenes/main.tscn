@@ -10,11 +10,14 @@
 [ext_resource type="PackedScene" uid="uid://6geq7p62jfd2" path="res://scenes/entrance.tscn" id="7_jkv2x"]
 [ext_resource type="ArrayMesh" uid="uid://be770oc4htylf" path="res://assets/models/architecture/Wall_Window.obj" id="8_choun"]
 [ext_resource type="ArrayMesh" uid="uid://bivga8hktyiy6" path="res://assets/models/architecture/Pillar.obj" id="8_ya4ey"]
-[ext_resource type="Script" uid="uid://wgmsyyp6uwhh" path="res://scripts/bar_queue.gd" id="9_bar_queue"]
+[ext_resource type="Script" path="res://scripts/bar_queue.gd" id="9_bar_queue"]
 [ext_resource type="PackedScene" uid="uid://4ef8ndei8nkg" path="res://assets/wood_furniture/ceiling.glb" id="10_ceiling"]
 [ext_resource type="PackedScene" uid="uid://dn83uo3ueni6q" path="res://assets/wood_furniture/beam_part1.glb" id="11_beam1"]
 [ext_resource type="PackedScene" uid="uid://br50bn7opcl0x" path="res://scenes/pickup_area.tscn" id="11_ya4ey"]
 [ext_resource type="PackedScene" uid="uid://qsa21oq1s1hw" path="res://assets/wood_furniture/beam_part2.glb" id="12_beam2"]
+[ext_resource type="PackedScene" uid="uid://bspifn116mrfd" path="res://scenes/stone_wall.tscn" id="13_stone_wall"]
+[ext_resource type="PackedScene" path="res://scenes/fireplace_kitchen.tscn" id="14_fireplace"]
+[ext_resource type="PackedScene" path="res://scenes/kitchen1.tscn" id="15_kitchen1"]
 
 [sub_resource type="Environment" id="Env_1"]
 background_mode = 1
@@ -22,10 +25,6 @@ background_color = Color(0.1, 0.15, 0.3, 1)
 ambient_light_source = 2
 ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_energy = 0.8
-
-[sub_resource type="BoxMesh" id="BoxMesh_ground"]
-resource_name = "Floor"
-size = Vector3(20, 0.5, 20)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ground"]
 size = Vector3(22.35199, 0.5, 24.818909)
@@ -60,44 +59,44 @@ shadow_enabled = true
 [node name="Tables" type="Node3D" parent="." unique_id=1958920198]
 
 [node name="R_3_2" parent="Tables" unique_id=906569279 instance=ExtResource("2_table")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 1)
+transform = Transform3D(-1.0053619e-07, 0, 2.3, 0, 2.3, 0, -2.3, 0, -1.0053619e-07, -6, 0, 1)
 
 [node name="R_2_2" parent="Tables" unique_id=1445727533 instance=ExtResource("2_table")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 4)
+transform = Transform3D(-1.0053619e-07, 0, 2.3, 0, 2.3, 0, -2.3, 0, -1.0053619e-07, -6, 0, 4)
 
 [node name="R_1_2" parent="Tables" unique_id=2054884828 instance=ExtResource("2_table")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 7)
+transform = Transform3D(-1.0053619e-07, 0, 2.3, 0, 2.3, 0, -2.3, 0, -1.0053619e-07, -6, 0, 7)
 
 [node name="R_3_1" parent="Tables" unique_id=1614854171 instance=ExtResource("2_table")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 1)
+transform = Transform3D(-1.0053619e-07, 0, 2.3, 0, 2.3, 0, -2.3, 0, -1.0053619e-07, -3, 0, 1)
 
 [node name="R_2_1" parent="Tables" unique_id=1110221332 instance=ExtResource("2_table")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 4)
+transform = Transform3D(-1.0053619e-07, 0, 2.3, 0, 2.3, 0, -2.3, 0, -1.0053619e-07, -3, 0, 4)
 
 [node name="R_1_1" parent="Tables" unique_id=1817397619 instance=ExtResource("2_table")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 7)
+transform = Transform3D(-1.0053619e-07, 0, 2.3, 0, 2.3, 0, -2.3, 0, -1.0053619e-07, -3, 0, 7)
 
 [node name="L_1_1" parent="Tables" unique_id=783966446 instance=ExtResource("2_table")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 7)
+transform = Transform3D(-1.0053619e-07, 0, 2.3, 0, 2.3, 0, -2.3, 0, -1.0053619e-07, 6, 0, 7)
 
 [node name="L_1_2" parent="Tables" unique_id=897503427 instance=ExtResource("2_table")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 7)
+transform = Transform3D(-1.0053619e-07, 0, 2.3, 0, 2.3, 0, -2.3, 0, -1.0053619e-07, 3, 0, 7)
 
 [node name="L_2_1" parent="Tables" unique_id=1974082925 instance=ExtResource("2_table")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 4)
+transform = Transform3D(-1.0053619e-07, 0, 2.3, 0, 2.3, 0, -2.3, 0, -1.0053619e-07, 6, 0, 4)
 
 [node name="L_2_2" parent="Tables" unique_id=1473424883 instance=ExtResource("2_table")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 4)
+transform = Transform3D(-1.0053619e-07, 0, 2.3, 0, 2.3, 0, -2.3, 0, -1.0053619e-07, 3, 0, 4)
 
 [node name="L_3_1" parent="Tables" unique_id=1594565941 instance=ExtResource("2_table")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 1)
+transform = Transform3D(-1.0053619e-07, 0, 2.3, 0, 2.3, 0, -2.3, 0, -1.0053619e-07, 6, 0, 1)
 
 [node name="L_3_2" parent="Tables" unique_id=165881820 instance=ExtResource("2_table")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 1)
+transform = Transform3D(-1.0053619e-07, 0, 2.3, 0, 2.3, 0, -2.3, 0, -1.0053619e-07, 3, 0, 1)
 is_dirty = true
 
 [node name="Bar" parent="." unique_id=1826808953 instance=ExtResource("4_bar")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -2)
+transform = Transform3D(0.5, 0, 0, 0, 0.45, 0, 0, 0, 0.5, 0, 0, -2)
 
 [node name="NpcSpawnPoint" type="Marker3D" parent="." unique_id=184544230]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 8)
@@ -118,6 +117,12 @@ item_type = 0
 transform = Transform3D(0.46235228, 0, -0.88669634, 0, 1, 0, 0.88669634, 0, 0.46235228, -1.7645502, 9.536743e-07, -6.110322)
 item_type = 2
 
+[node name="Fireplace" parent="Kitchen" unique_id=730000004 instance=ExtResource("14_fireplace")]
+transform = Transform3D(1, 0, 0, 0, 1.2, 0, 0, 0, 1, -6.625553, 0, -9)
+
+[node name="Kitchen1" parent="Kitchen" unique_id=740000001 instance=ExtResource("15_kitchen1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.429867, 0, -4.386796)
+
 [node name="Architecture" type="Node3D" parent="." unique_id=1134794364]
 
 [node name="Entrance" parent="Architecture" unique_id=776505309 instance=ExtResource("7_jkv2x")]
@@ -125,10 +130,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9.486)
 
 [node name="Decorative" type="Node3D" parent="Architecture" unique_id=436815116]
 
-[node name="Floor" type="MeshInstance3D" parent="Architecture/Decorative" unique_id=2066148590]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
-mesh = SubResource("BoxMesh_ground")
-surface_material_override/0 = ExtResource("2_tipki")
+[node name="Floor2" parent="Architecture/Decorative" unique_id=1748830093 instance=ExtResource("10_ceiling")]
+transform = Transform3D(2.222, 0, 0, 0, 2, 0, 0, 0, 2, 0, -2.5466628, 0)
 
 [node name="Wall" type="MeshInstance3D" parent="Architecture/Decorative" unique_id=9119818]
 transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, -8.52798, 9.536743e-07, 6.631937)
@@ -155,38 +158,33 @@ transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, -8.8034, 0, -2.034893)
 material_override = ExtResource("6_85g3d")
 mesh = ExtResource("8_ya4ey")
 
-[node name="Wall3" type="MeshInstance3D" parent="Architecture/Decorative" unique_id=1258032527]
-transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, -8.52798, 9.536743e-07, -4.5398283)
-material_override = ExtResource("6_85g3d")
-mesh = ExtResource("7_choun")
-
-[node name="Pillar4" type="MeshInstance3D" parent="Architecture/Decorative" unique_id=1458312667]
-transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, -8.8034, 0, -8.415649)
+[node name="Pillar9" type="MeshInstance3D" parent="Architecture/Decorative" unique_id=1137274486]
+transform = Transform3D(-5.2453668e-08, 0, -1.2, 0, 1.2, 0, 1.2, 0, -5.2453668e-08, -2.25, 0, -8.939)
 material_override = ExtResource("6_85g3d")
 mesh = ExtResource("8_ya4ey")
 
-[node name="Wall7" type="MeshInstance3D" parent="Architecture/Decorative" unique_id=2084261228]
-transform = Transform3D(0.11628644, -0.00014854703, -1.1943524, 0.0032344519, 1.1999956, 0.00016566897, 1.194348, -0.0032352835, 0.11628642, -5.99111, -0.0009650038, -8.652618)
-material_override = ExtResource("6_85g3d")
-mesh = ExtResource("7_choun")
-
-[node name="Pillar9" type="MeshInstance3D" parent="Architecture/Decorative" unique_id=1137274486]
-transform = Transform3D(-5.2453668e-08, 0, -1.2, 0, 1.2, 0, 1.2, 0, -5.2453668e-08, -3.0081813, 0, -8.939091)
+[node name="Pillar11" type="MeshInstance3D" parent="Architecture/Decorative" unique_id=1273302550]
+transform = Transform3D(1, 0, 0, 0, 1.2, 0, 0, 0, 1, -2.25, 0, -5.3097405)
 material_override = ExtResource("6_85g3d")
 mesh = ExtResource("8_ya4ey")
 
 [node name="Wall8" type="MeshInstance3D" parent="Architecture/Decorative" unique_id=1766378250]
-transform = Transform3D(-0.0007750777, -0.00014854677, -1.1999998, 0.0032351858, 1.1999956, -0.00015063585, 1.1999955, -0.0032352824, -0.0007746744, -0.2080006, -0.0009997195, -8.931401)
+transform = Transform3D(-0.0007750777, -0.00014854677, -1.1999998, 0.0032351858, 1.1999956, -0.00015063585, 1.1999955, -0.0032352824, -0.0007746744, 0.9087859, -0.0009997195, -8.457925)
+material_override = ExtResource("6_85g3d")
+mesh = ExtResource("7_choun")
+
+[node name="Wall10" type="MeshInstance3D" parent="Architecture/Decorative" unique_id=942735174]
+transform = Transform3D(1, 0, 0, 0, 1.2, 0, 0, 0, 0.5, -1.8363662, -0.001, -3.5187888)
 material_override = ExtResource("6_85g3d")
 mesh = ExtResource("7_choun")
 
 [node name="Pillar10" type="MeshInstance3D" parent="Architecture/Decorative" unique_id=1967062123]
-transform = Transform3D(-5.2453668e-08, 0, -1.2, 0, 1.2, 0, 1.2, 0, -5.2453668e-08, 3.0760612, 9.536743e-07, -8.733236)
+transform = Transform3D(-5.2453668e-08, 0, -1.2, 0, 1.2, 0, 1.2, 0, -5.2453668e-08, 4.438, 0, -8.733)
 material_override = ExtResource("6_85g3d")
 mesh = ExtResource("8_ya4ey")
 
 [node name="Wall9" type="MeshInstance3D" parent="Architecture/Decorative" unique_id=785202245]
-transform = Transform3D(-0.13355474, -0.00014854688, -1.1925448, 0.0031986486, 1.1999956, -0.00050769607, 1.1925405, -0.003235281, -0.13355385, 5.973223, 0.0019694942, -8.113926)
+transform = Transform3D(-0.13355474, -0.00014854688, -1.1925448, 0.0031986486, 1.1999956, -0.00050769607, 1.1925405, -0.003235281, -0.13355385, 7.069549, 0.0019694942, -8.113926)
 material_override = ExtResource("6_85g3d")
 mesh = ExtResource("7_choun")
 
@@ -225,8 +223,19 @@ transform = Transform3D(-1.2, 0, 1.8119498e-07, 0, 1.2, 0, -1.8119498e-07, 0, -1
 material_override = ExtResource("6_85g3d")
 mesh = ExtResource("8_ya4ey")
 
+[node name="Pillar12" type="MeshInstance3D" parent="Architecture/Decorative" unique_id=311657980]
+transform = Transform3D(1, 0, 0, 0, 1.2, 0, 0, 0, 1, 4.4383955, 0, -2.0164342)
+material_override = ExtResource("6_85g3d")
+mesh = ExtResource("8_ya4ey")
+
 [node name="KitchenWall" type="Node3D" parent="Architecture/Decorative" unique_id=560000001]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3033259, 0)
+
+[node name="Beam_19" parent="Architecture/Decorative/KitchenWall" unique_id=1843095315 instance=ExtResource("11_beam1")]
+transform = Transform3D(-0.6, 0, 5.2453668e-08, 0, 0.6, 0, -5.2453668e-08, 0, -0.6, -8.198627, 2.1936648, -4.9178705)
+
+[node name="Beam_20" parent="Architecture/Decorative/KitchenWall" unique_id=1630297681 instance=ExtResource("11_beam1")]
+transform = Transform3D(-0.6, 0, 5.2453668e-08, 0, 0.6, 0, -5.2453668e-08, 0, -0.6, -8.198627, 2.1936648, -3.2228096)
 
 [node name="Pillar11" type="MeshInstance3D" parent="Architecture/Decorative/KitchenWall" unique_id=154752593]
 transform = Transform3D(1, 0, 0, 0, 1.2, 0, 0, 0, 1, -2.2498968, -0.3033259, -2.0164342)
@@ -238,10 +247,17 @@ transform = Transform3D(-5.245366e-08, 0, -1.1999999, 0.093399234, 1.1963596, -4
 material_override = ExtResource("6_85g3d")
 mesh = ExtResource("7_choun")
 
-[node name="KitchenWall_Kitchen" type="MeshInstance3D" parent="Architecture/Decorative/KitchenWall" unique_id=1529101495]
-transform = Transform3D(-5.2291966e-08, 4.115467e-09, 1.1999999, 0.094150916, 1.1963007, 0, -1.1963007, 0.094150916, -5.2453665e-08, -5.3877215, -0.2862289, -2.4212265)
-material_override = ExtResource("6_85g3d")
-mesh = ExtResource("7_choun")
+[node name="StoneWall" parent="Architecture/Decorative/KitchenWall" unique_id=720000001 instance=ExtResource("13_stone_wall")]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, -8.686474, -0.3033259, -4.753534)
+
+[node name="StoneWall3" parent="Architecture/Decorative/KitchenWall" unique_id=711230001 instance=ExtResource("13_stone_wall")]
+transform = Transform3D(-5.245366e-08, 0, -1.1999999, 0.054686654, 1.1987532, -2.3904294e-09, 1.1987532, -0.054686654, -5.2399162e-08, -5.7639008, -0.3033259, -8.257227)
+
+[node name="StoneWall2" parent="Architecture/Decorative/KitchenWall" unique_id=1892883420 instance=ExtResource("13_stone_wall")]
+transform = Transform3D(-5.2453665e-08, -7.00271e-17, 1.1999999, 0.028941732, 1.1996511, 1.265083e-09, -1.1996511, 0.028941732, -5.2438406e-08, -5.208894, -0.3033259, -2.3534203)
+
+[node name="StoneWall4" parent="Architecture/Decorative/KitchenWall" unique_id=277423208 instance=ExtResource("13_stone_wall")]
+transform = Transform3D(0.9961947, -0.10458689, 0, 0.08715574, 1.1954337, 0, 0, 0, 0.5, -2.2017632, -0.3033259, -3.7469544)
 
 [node name="CeilingGroup" type="Node3D" parent="Architecture/Decorative" unique_id=550000001]
 
@@ -254,16 +270,25 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -7.7
 [node name="Beam_2" parent="Architecture/Decorative/CeilingGroup" unique_id=550000004 instance=ExtResource("12_beam2")]
 transform = Transform3D(1.1, 0, 0, 0, 1, 0, 0, 0, 1, 0.14974284, 4.2359834, -2)
 
+[node name="Beam_17" parent="Architecture/Decorative/CeilingGroup" unique_id=1164089950 instance=ExtResource("12_beam2")]
+transform = Transform3D(-4.8082526e-08, 0, 1, 0, 1, 0, -1.1, 0, -4.371139e-08, -2.25, 4.022, -5.441)
+
 [node name="Beam_4" parent="Architecture/Decorative/CeilingGroup" unique_id=550000006 instance=ExtResource("12_beam2")]
 transform = Transform3D(0.99672407, 0.08087739, 0, -0.08087739, 0.99672407, 0, 0, 0, 1, 5.903, 4.006, -2)
 
-[node name="Beam_7" parent="Architecture/Decorative/CeilingGroup" unique_id=1164089950 instance=ExtResource("12_beam2")]
+[node name="Beam_7" parent="Architecture/Decorative/CeilingGroup" unique_id=1617464085 instance=ExtResource("12_beam2")]
 transform = Transform3D(-0.9967789, -0.08019893, -8.742278e-08, -0.08019893, 0.9967789, 0, 8.714118e-08, 7.011213e-09, -1, -5.602999, 4.006, -2)
 
 [node name="Beam_5" parent="Architecture/Decorative/CeilingGroup" unique_id=550000007 instance=ExtResource("11_beam1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.8, 3, -2)
 
-[node name="Beam_3" parent="Architecture/Decorative/CeilingGroup" unique_id=1843095315 instance=ExtResource("11_beam1")]
+[node name="Beam_16" parent="Architecture/Decorative/CeilingGroup" unique_id=132088153 instance=ExtResource("11_beam1")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2.25, 3.267, -7.511)
+
+[node name="Beam_18" parent="Architecture/Decorative/CeilingGroup" unique_id=1269732290 instance=ExtResource("11_beam1")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2.25, 3.258, -3.278)
+
+[node name="Beam_3" parent="Architecture/Decorative/CeilingGroup" unique_id=972288610 instance=ExtResource("11_beam1")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -7.783, 3, 3.7)
 
 [node name="Beam_6" parent="Architecture/Decorative/CeilingGroup" unique_id=973388085 instance=ExtResource("12_beam2")]
