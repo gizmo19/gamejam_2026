@@ -37,23 +37,23 @@ func _print_bar_queue() -> void:
 		return
 	var entries: PackedStringArray = []
 	for i in _bar_queue.size():
-		entries.append("[%d] %s" % [i, _bar_queue[i].order_label()])
+		entries.append("[%d] %s" % [i, _bar_queue.get_npc(i).order_label()])
 	print("Bar queue: ", " | ".join(entries))
 
 func _bar_queue_pos(idx: int) -> Vector3:
 	# bar at z=-3, spawn at z=+5 → queue grows toward +Z
-	return bar.global_position + Vector3(0, 0, idx * BAR_QUEUE_SPACING)
+	return bar.global_position + Vector3(0, 0, idx * BarQueue.BAR_QUEUE_SPACING)
 
 func _reposition_bar_queue() -> void:
 	for i in _bar_queue.size():
-		var npc := _bar_queue[i]
+		var npc: Npc = _bar_queue.get_npc(i)
 		npc.update_bar_position(_bar_queue_pos(i))
 		npc.set_interactable(i == 0 and npc.state == Npc.State.WAITING_AT_BAR)
 
 func _on_queue_slot_reached(npc: Npc) -> void:
 	if _bar_queue.is_empty() or not _bar_queue.has(npc):
 		return
-	if _bar_queue[0] == npc:
+	if _bar_queue.get_npc(0) == npc:
 		npc.begin_ordering()
 	else:
 		npc.wait_in_queue()

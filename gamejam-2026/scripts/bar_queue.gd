@@ -9,6 +9,18 @@ var _bar: Node3D
 func setup(bar: Node3D) -> void:
 	_bar = bar
 
+func size() -> int:
+	return _queue.size()
+
+func is_empty() -> bool:
+	return _queue.is_empty()
+
+func has(npc: Npc) -> bool:
+	return _queue.has(npc)
+
+func get_npc(idx: int) -> Npc:
+	return _queue[idx]
+
 func append(npc: Npc) -> void:
 	_queue.append(npc)
 	_reposition()

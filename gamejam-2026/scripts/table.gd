@@ -7,12 +7,14 @@ const DIRTY_COLOR := Color.RED
 var is_occupied: bool = false
 var is_dirty: bool = false
 
-@onready var table_mesh: MeshInstance3D = $TableMesh
+var table_mesh: MeshInstance3D
 
 func _ready() -> void:
-	var mat := table_mesh.get_surface_override_material(0)
-	if mat:
-		table_mesh.set_surface_override_material(0, mat.duplicate())
+	table_mesh = find_child("*", true, false) as MeshInstance3D
+	if table_mesh:
+		var mat := table_mesh.get_surface_override_material(0)
+		if mat:
+			table_mesh.set_surface_override_material(0, mat.duplicate())
 
 func dirty() -> void:
 	is_dirty = true
@@ -23,6 +25,8 @@ func clean() -> void:
 	_set_table_color(CLEAN_COLOR)
 
 func _set_table_color(color: Color) -> void:
+	if table_mesh == null:
+		return
 	var mat := table_mesh.get_surface_override_material(0) as StandardMaterial3D
 	if mat == null:
 		mat = StandardMaterial3D.new()
