@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://d1c05v447ggea"]
+
+[ext_resource type="PackedScene" uid="uid://4ef8ndei8nkg" path="res://assets/wood_furniture/ceiling.glb" id="1_floor_wood_model"]
+
+[node name="FloorWood" type="Node3D" unique_id=750100001]
+
+[node name="Model" parent="." unique_id=750100002 instance=ExtResource("1_floor_wood_model")]

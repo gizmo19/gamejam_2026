@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://cpillar202601"]
+
+[ext_resource type="ArrayMesh" uid="uid://bivga8hktyiy6" path="res://assets/models/architecture/Pillar.obj" id="1_pillar_mesh"]
+[ext_resource type="Material" uid="uid://dgjpr1r37k0pd" path="res://assets/WoodSiding006_1K-PNG/WoodSiding006_1K-PNG.tres" id="2_wood_material"]
+
+[sub_resource type="CylinderShape3D" id="CylShape_1"]
+height = 5.619
+radius = 0.458
+
+[node name="Pillar" type="StaticBody3D" unique_id=760100001]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=760100002]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.809, 0)
+shape = SubResource("CylShape_1")
+
+[node name="Mesh" type="MeshInstance3D" parent="." unique_id=760100003]
+material_override = ExtResource("2_wood_material")
+mesh = ExtResource("1_pillar_mesh")

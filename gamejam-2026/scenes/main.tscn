@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://ccpldcwmoeiua" path="res://scenes/player.tscn" id="1_player"]
 [ext_resource type="PackedScene" uid="uid://bvbgof22am11a" path="res://scenes/table.tscn" id="2_table"]
 [ext_resource type="Script" uid="uid://6j5q506akplv" path="res://scripts/main.gd" id="3_main_script"]
-[ext_resource type="PackedScene" path="res://scenes/bar.tscn" id="4_bar"]
+[ext_resource type="PackedScene" uid="uid://cg4lyib5lwu0b" path="res://scenes/bar.tscn" id="4_bar"]
 [ext_resource type="PackedScene" uid="uid://6geq7p62jfd2" path="res://scenes/entrance.tscn" id="8_choun"]
 [ext_resource type="PackedScene" uid="uid://c8i3y7r8bmb4j" path="res://scenes/synek.tscn" id="8_tipki"]
 [ext_resource type="PackedScene" uid="uid://bxeo33e5v6il7" path="res://scenes/popup_bubble.tscn" id="9_85g3d"]
@@ -73,7 +73,7 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2.99
 is_dirty = true
 
 [node name="Bar" parent="." unique_id=1826808953 instance=ExtResource("4_bar")]
-transform = Transform3D(0.5, 0, 0, 0, 0.45, 0, 0, 0, 0.5, 0, 0, -2)
+transform = Transform3D(0.5, 0, 0, 0, 0.45, 0, 0, 0, 0.5, 0, -0.1983285, -2)
 
 [node name="NpcSpawnPoint" type="Marker3D" parent="." unique_id=184544230]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 8)
