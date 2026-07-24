@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://b3vqoq3i386al" path="res://assets/models/architecture/fireplace_kitchen.glb" id="1_fireplace_model"]
 [ext_resource type="PackedScene" uid="uid://uooow8x62aij" path="res://scenes/fire_light.tscn" id="2_fire_light"]
+[ext_resource type="PackedScene" uid="uid://bmdflr1adjsbv" path="res://assets/models/food/pot-stew.glb" id="3_h3qv1"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1"]
 size = Vector3(2, 2.5, 1)
@@ -25,3 +26,6 @@ transform = Transform3D(1, 0, 0, 0, 1.2, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="FireLight" parent="." unique_id=730000004 instance=ExtResource("2_fire_light")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 0.8, 1)
+
+[node name="SoupPot" parent="." unique_id=2032076156 instance=ExtResource("3_h3qv1")]
+transform = Transform3D(1.6904118, 0, -1.0688818, 0, 2, 0, 1.0688818, 0, 1.6904118, -0.5203552, 0.2119981, 1.8857679)
