@@ -22,9 +22,10 @@
 [ext_resource type="PackedScene" uid="uid://d1c05v447ggea" path="res://scenes/floor_wood.tscn" id="23_floor_wood"]
 [ext_resource type="PackedScene" uid="uid://cfloorstn2601" path="res://scenes/floor_stone.tscn" id="24_floor_stone"]
 [ext_resource type="PackedScene" path="res://scenes/pillar.tscn" id="25_pillar"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_ground"]
-size = Vector3(22.35199, 0.5, 24.818909)
+[ext_resource type="PackedScene" uid="uid://clog20262601" path="res://assets/models/architecture/LOG.glb" id="26_log"]
+[ext_resource type="PackedScene" uid="uid://cramp20262601" path="res://scenes/ramp.tscn" id="27_ramp"]
+[ext_resource type="PackedScene" path="res://scenes/carpet.tscn" id="28_carpet"]
+[ext_resource type="PackedScene" uid="uid://ddqoelsh4i0gq" path="res://assets/models/architecture/small_stairs.glb" id="29_small_stairs"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_uvkd1"]
 
@@ -307,17 +308,6 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2.1
 [node name="Beam_26" parent="Decorative/CeilingGroup" unique_id=591969358 instance=ExtResource("7_beam1")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2.1980944, 3.171722, -0.82955694)
 
-[node name="Collisions" type="Node3D" parent="." unique_id=1978590869]
-
-[node name="Ground" type="StaticBody3D" parent="Collisions" unique_id=450450535]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
-visible = false
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Collisions/Ground" unique_id=792674870]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.22787476, 0, -0.12612915)
-visible = false
-shape = SubResource("BoxShape3D_ground")
-
 [node name="Props" type="Node3D" parent="." unique_id=352956493]
 
 [node name="Shelf" type="StaticBody3D" parent="Props" unique_id=867327788]
@@ -385,3 +375,21 @@ transform = Transform3D(-4.8082526e-08, 0, 1, 0, 1, 0, -1.1, 0, -4.371139e-08, 9
 
 [node name="FloorStone" parent="Props" unique_id=750200001 instance=ExtResource("24_floor_stone")]
 transform = Transform3D(1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 13.979566, -0.971725, 2.1032152)
+
+[node name="Log" parent="Props" unique_id=1344336581 instance=ExtResource("26_log")]
+transform = Transform3D(0.44532484, 0.45469016, 0, -0.22734508, 0.8906497, 0, 0, 0, 1, 9.69707, -0.61198044, 4.025325)
+
+[node name="Log3" parent="Props" unique_id=1258374299 instance=ExtResource("26_log")]
+transform = Transform3D(0.44532484, 0.45469016, 0, -0.22734508, 0.8906497, 0, 0, 0, 1, 9.69707, -0.61198044, 8.593274)
+
+[node name="Log2" parent="Props" unique_id=1125258775 instance=ExtResource("26_log")]
+transform = Transform3D(-5.2453668e-08, 0, 1.2, 0, 1.9, 0, -1.2, 0, -5.2453668e-08, 9.01234, -0.78344375, 0.89996076)
+
+[node name="Ramp" parent="Props" unique_id=780200001 instance=ExtResource("27_ramp")]
+transform = Transform3D(0.9613, -0.2756, 0, 0.2756, 0.9613, 0, 0, 0, 1, 10, -0.685, 3.5)
+
+[node name="Carpet" parent="Props" unique_id=790200001 instance=ExtResource("28_carpet")]
+transform = Transform3D(0.66201854, 0, 0.74948746, 0, 1, 0, -0.74948746, 0, 0.66201854, 14.896035, -0.7068344, 2.4663353)
+
+[node name="SmallStairs" parent="Props" unique_id=800200001 instance=ExtResource("29_small_stairs")]
+transform = Transform3D(-5.6824803e-08, 0, -1, 0, 1, 0, 1.3, 0, -4.371139e-08, 10.36994, -0.7967129, 6.3511767)

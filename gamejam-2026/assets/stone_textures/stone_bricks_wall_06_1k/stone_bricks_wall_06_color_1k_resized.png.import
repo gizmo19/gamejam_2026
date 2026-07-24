@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ckwwlaii5r6e2"
-path.s3tc="res://.godot/imported/carpet_resized.jpg-244a5c23b4f2adb72f9eb9bba50b0fd8.s3tc.ctex"
+uid="uid://dohsjuxlhkfu1"
+path.s3tc="res://.godot/imported/stone_bricks_wall_06_color_1k_resized.png-a84396e4aea414b5e8acfeec81e234cd.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/util_textures/carpet_resized.jpg"
-dest_files=["res://.godot/imported/carpet_resized.jpg-244a5c23b4f2adb72f9eb9bba50b0fd8.s3tc.ctex"]
+source_file="res://assets/stone_textures/stone_bricks_wall_06_1k/stone_bricks_wall_06_color_1k_resized.png"
+dest_files=["res://.godot/imported/stone_bricks_wall_06_color_1k_resized.png-a84396e4aea414b5e8acfeec81e234cd.s3tc.ctex"]
 
 [params]
 

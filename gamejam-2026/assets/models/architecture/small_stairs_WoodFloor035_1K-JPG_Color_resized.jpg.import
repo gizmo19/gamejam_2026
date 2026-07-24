@@ -2,17 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ckwwlaii5r6e2"
-path.s3tc="res://.godot/imported/carpet_resized.jpg-244a5c23b4f2adb72f9eb9bba50b0fd8.s3tc.ctex"
+uid="uid://mmupvh6hoabs"
+path.s3tc="res://.godot/imported/small_stairs_WoodFloor035_1K-JPG_Color_resized.jpg-4477a08116d9d98881310cd2bf8c3685.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "947873ad71b76f6a8e521b97636c19b9"
+}
 
 [deps]
 
-source_file="res://assets/util_textures/carpet_resized.jpg"
-dest_files=["res://.godot/imported/carpet_resized.jpg-244a5c23b4f2adb72f9eb9bba50b0fd8.s3tc.ctex"]
+source_file="res://assets/models/architecture/small_stairs_WoodFloor035_1K-JPG_Color_resized.jpg"
+dest_files=["res://.godot/imported/small_stairs_WoodFloor035_1K-JPG_Color_resized.jpg-4477a08116d9d98881310cd2bf8c3685.s3tc.ctex"]
 
 [params]
 

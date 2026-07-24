@@ -2,17 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ckwwlaii5r6e2"
-path.s3tc="res://.godot/imported/carpet_resized.jpg-244a5c23b4f2adb72f9eb9bba50b0fd8.s3tc.ctex"
+uid="uid://dhqp86gudhwuj"
+path.s3tc="res://.godot/imported/fireplace_stone_bricks_wall_06_color_1k_resized.png-63ebbd74daf26f0960a0af650d92c672.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "5c45338e71ee5dd1af975843ada76375"
+}
 
 [deps]
 
-source_file="res://assets/util_textures/carpet_resized.jpg"
-dest_files=["res://.godot/imported/carpet_resized.jpg-244a5c23b4f2adb72f9eb9bba50b0fd8.s3tc.ctex"]
+source_file="res://assets/models/architecture/fireplace_stone_bricks_wall_06_color_1k_resized.png"
+dest_files=["res://.godot/imported/fireplace_stone_bricks_wall_06_color_1k_resized.png-63ebbd74daf26f0960a0af650d92c672.s3tc.ctex"]
 
 [params]
 

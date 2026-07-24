@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://ccarpet202601"]
+
+[ext_resource type="PackedScene" uid="uid://he26qnwx6c7a" path="res://assets/models/architecture/carpet.glb" id="1_carpet_model"]
+
+[node name="Carpet" type="Node3D" unique_id=790100001]
+
+[node name="Model" parent="." unique_id=790100002 instance=ExtResource("1_carpet_model")]
