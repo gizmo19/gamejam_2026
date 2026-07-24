@@ -22,6 +22,7 @@ var _time_left: float = 0.0
 var _order_taken: bool = false
 var _pending_ducats: int = 0
 var _eating_finished: bool = false
+var _last_countdown: int = -1
 
 signal order_given
 signal needs_table(npc: Npc)
@@ -106,28 +107,38 @@ func _process(delta: float) -> void:
 	match state:
 		State.WAITING_AT_BAR:
 			if _order_taken:
-				pass
+				_set_countdown_visible(false)
 			elif _time_left > 0.0:
 				_time_left = maxf(_time_left - delta, 0.0)
 				if _time_left == 0.0:
 					patience_expired.emit(self)
-				countdown_label.text = "%d" % ceili(_time_left)
-				countdown_label.visible = true
+				_set_countdown_visible(true)
+				var n := ceili(_time_left)
+				if n != _last_countdown:
+					_last_countdown = n
+					countdown_label.text = "%d" % n
 			else:
-				countdown_label.visible = false
+				_set_countdown_visible(false)
 		State.SEATED:
 			if was_served:
-				pass
+				_set_countdown_visible(false)
 			elif _time_left > 0.0:
 				_time_left = maxf(_time_left - delta, 0.0)
 				if _time_left == 0.0:
 					patience_expired.emit(self)
-				countdown_label.text = "%s\n%d" % [order_label(), ceili(_time_left)]
-				countdown_label.visible = true
+				_set_countdown_visible(true)
+				var n := ceili(_time_left)
+				if n != _last_countdown:
+					_last_countdown = n
+					countdown_label.text = "%s\n%d" % [order_label(), n]
 			else:
-				countdown_label.visible = false
+				_set_countdown_visible(false)
 		_:
-			countdown_label.visible = false
+			_set_countdown_visible(false)
+
+func _set_countdown_visible(visible: bool) -> void:
+	if countdown_label.visible != visible:
+		countdown_label.visible = visible
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
