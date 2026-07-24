@@ -29,10 +29,14 @@ SOFTWARE.
   Vinrax
   https://opengameart.org/content/coin-drop
 
-## Textures
-
-DRAGON-STUDIO
+- DRAGON-STUDIO
 Door sounds effects from pixabay
+
+- spookymodem
+Key jiggle
+https://opengameart.org/content/key-jiggle
+
+## Textures
 
 https://ambientcg.com
 Creative Commons CC0 1.0 Universal License
