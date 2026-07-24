@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://cramp20262601"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ramp"]
+size = Vector3(2.5, 0.25, 2.0)
+
+[node name="Ramp" type="StaticBody3D" unique_id=780100001]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=780100002]
+shape = SubResource("BoxShape3D_ramp")

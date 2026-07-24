@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://b111bpus1cek3"]
+
+[ext_resource type="ArrayMesh" uid="uid://pwwxy5rcqj6b" path="res://assets/models/architecture/Wall.obj" id="1_wall_mesh"]
+[ext_resource type="Material" uid="uid://dgjpr1r37k0pd" path="res://assets/WoodSiding006_1K-PNG/WoodSiding006_1K-PNG.tres" id="2_wood_material"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1"]
+size = Vector3(4.75, 5.6, 0.25)
+
+[node name="WoodenWall" type="StaticBody3D" unique_id=740100001]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=740100002]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 2.8, 0)
+shape = SubResource("BoxShape3D_1")
+
+[node name="Mesh" type="MeshInstance3D" parent="." unique_id=740100003]
+material_override = ExtResource("2_wood_material")
+mesh = ExtResource("1_wall_mesh")

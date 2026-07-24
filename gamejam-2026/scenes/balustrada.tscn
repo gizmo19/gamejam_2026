@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://dkn2ru5sfnb42"]
+
+[ext_resource type="PackedScene" uid="uid://bbalustr202601" path="res://assets/models/architecture/balustrada.glb" id="1_balustrada_model"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1"]
+size = Vector3(3.0, 1.0, 0.3)
+
+[node name="Balustrada" type="StaticBody3D" unique_id=720000001]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=720000002]
+shape = SubResource("BoxShape3D_1")
+
+[node name="Model" parent="." unique_id=720000003 instance=ExtResource("1_balustrada_model")]
