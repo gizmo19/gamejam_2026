@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://csleepdr2026"]
+[gd_scene format=3 uid="uid://d12u50fxspore"]
 
-[ext_resource type="Script" uid="uid://csleepd20261" path="res://scripts/sleep_door.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://c2tson2glkwgi" path="res://scripts/sleep_door.gd" id="1_script"]
 [ext_resource type="PackedScene" uid="uid://c0xyj3420cbd0" path="res://assets/models/architecture/main_door.glb" id="2_door_model"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sleep_door"]
@@ -22,7 +22,7 @@ shape = SubResource("BoxShape3D_sleep_door")
 
 [node name="LabelSleep" type="Label3D" parent="Door" unique_id=910100006]
 unique_name_in_owner = true
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, -0.60131836)
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, -1.3931141, -0.60131836)
 visible = false
 pixel_size = 0.01
 double_sided = false
