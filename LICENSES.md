@@ -23,6 +23,12 @@ SOFTWARE.
 
 -- Godot Engine <https://godotengine.org>
 
+## Audio
+
+- Coin drop
+Vinrax
+https://opengameart.org/content/coin-drop
+
 ## Textures
 
 https://ambientcg.com
