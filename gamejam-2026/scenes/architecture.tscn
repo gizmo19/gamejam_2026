@@ -20,12 +20,13 @@
 [ext_resource type="PackedScene" uid="uid://cpillar202601" path="res://scenes/pillar.tscn" id="25_pillar"]
 [ext_resource type="PackedScene" uid="uid://clog20262601" path="res://assets/models/architecture/LOG.glb" id="26_log"]
 [ext_resource type="PackedScene" uid="uid://cramp20262601" path="res://scenes/ramp.tscn" id="27_ramp"]
+[ext_resource type="Script" uid="uid://c2tson2glkwgi" path="res://scripts/sleep_door.gd" id="27_xbe0c"]
 [ext_resource type="PackedScene" uid="uid://ccarpet202601" path="res://scenes/carpet.tscn" id="28_carpet"]
 [ext_resource type="PackedScene" uid="uid://ddqoelsh4i0gq" path="res://assets/models/architecture/small_stairs.glb" id="29_small_stairs"]
 [ext_resource type="PackedScene" uid="uid://b162lox3oijq3" path="res://assets/models/architecture/standing_shelf.glb" id="30_standing_shelf"]
 [ext_resource type="PackedScene" uid="uid://uaf1kn8rxu3g" path="res://assets/models/architecture/taboret.glb" id="31_taboret"]
 [ext_resource type="PackedScene" uid="uid://bxkypw6t081qc" path="res://assets/models/architecture/chair.glb" id="32_chair"]
-[ext_resource type="PackedScene" path="res://scenes/sleep_door.tscn" id="33_sleep_door"]
+[ext_resource type="PackedScene" uid="uid://d12u50fxspore" path="res://scenes/sleep_door.tscn" id="33_sleep_door"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_uvkd1"]
 
@@ -520,5 +521,5 @@ shape = SubResource("BoxShape3D_standing_shelf")
 
 [node name="Model" parent="Props/StandingShelf" unique_id=810200003 instance=ExtResource("30_standing_shelf")]
 
-[node name="SleepDoor" parent="Props" unique_id=920200001 instance=ExtResource("33_sleep_door")]
+[node name="SleepDoor" parent="Props" unique_id=910100001 instance=ExtResource("33_sleep_door")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2.7270398, 5.590697, -6.974081)
