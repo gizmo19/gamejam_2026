@@ -7,6 +7,9 @@ enum Order {CHICKEN, SOUP, BEER}
 const GRAVITY: float = 9.8
 const BAR_WAIT_TIME: float = 20.0
 const TABLE_WAIT_TIME: float = 45.0
+const TAKE_ORDER_TIME: float = 0.5
+
+const WALK_SPEED: float = 1.5
 
 @onready var mover: NpcMover = $Mover
 @onready var interaction: NpcInteraction = $Interaction
@@ -17,7 +20,6 @@ const TABLE_WAIT_TIME: float = 45.0
 var _time_left: float = 0.0
 var _order_taken: bool = false
 var _pending_ducats: int = 0
-var _pending_stars: String = ""
 var _eating_finished: bool = false
 
 signal order_given
@@ -80,7 +82,7 @@ func go_to_table(table: Table, waypoints: Array[Vector3]) -> void:
 
 func get_look_action(_player: Node) -> LookAction:
 	if state == State.WAITING_AT_BAR and not _order_taken:
-		return LookAction.create(1.5, func() -> void:
+		return LookAction.create(TAKE_ORDER_TIME, func() -> void:
 			_take_order()
 		, 0.0)
 	return null
@@ -139,8 +141,8 @@ func _physics_process(delta: float) -> void:
 	if v.length() > 0.1:
 		look_at(global_position + v, Vector3.UP)
 
-	velocity.x = v.x
-	velocity.z = v.z
+	velocity.x = v.x * WALK_SPEED
+	velocity.z = v.z * WALK_SPEED
 	move_and_slide()
 
 func _on_arrived() -> void:
@@ -158,7 +160,6 @@ func _on_arrived() -> void:
 func accept_delivery() -> void:
 	var wait_time := TABLE_WAIT_TIME - _time_left
 	_pending_ducats = 3 if wait_time < 15.0 else (2 if wait_time < 30.0 else 1)
-	_pending_stars = "★★★" if _pending_ducats == 3 else ("★★☆" if _pending_ducats == 2 else "★☆☆")
 	countdown_label.visible = false
 	was_served = true
 	_time_left = -1.0
@@ -167,9 +168,9 @@ func accept_delivery() -> void:
 func _eating_duration() -> float:
 	match order:
 		Order.SOUP: return 12.0
-		Order.BEER: return 22.0
-		Order.CHICKEN: return 38.0
-	return 20.0
+		Order.BEER: return 8.0
+		Order.CHICKEN: return 18.0
+	return 10.0
 
 func _on_order_taken() -> void:
 	if state == State.WAITING_AT_BAR and not _order_taken:
@@ -184,6 +185,9 @@ func _on_timer_timeout() -> void:
 			ScoreState.record_ducats(_pending_ducats)
 			countdown_label.text = "+%d dukatów" % _pending_ducats
 			countdown_label.visible = true
+			# Free the seat immediately on pay; NPC still walks out after the tip display.
+			if target_table:
+				target_table.vacate()
 			state_timer.start(2.0)
 		else:
 			patience_expired.emit(self)

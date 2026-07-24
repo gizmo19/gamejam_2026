@@ -2,8 +2,10 @@
 class_name Table
 extends StaticBody3D
 
-const CLEAN_DURATION: float = 1.5
-const SERVE_DURATION: float = 0.5
+const CLEAN_DURATION: float = 1.0
+const SERVE_DURATION: float = 0.25
+
+signal cleaned
 
 var is_occupied: bool = false
 @export var is_dirty: bool = false
@@ -11,19 +13,16 @@ var is_occupied: bool = false
 var customer: Npc = null
 var has_food: bool = false
 
-@onready var dirt_marker: MeshInstance3D = $DebugMeshDirty
 @onready var placed_item: Item = $PlacedItem
 
 func _ready() -> void:
-	dirt_marker.visible = false
-	if placed_item:
-		placed_item.visible = false
+	placed_item.visible = false
 	if is_dirty:
 		set_dirty(true)
 
 func set_dirty(value: bool) -> void:
 	is_dirty = value
-	dirt_marker.visible = value
+	placed_item.visible = value
 
 func assign_customer(npc: Npc) -> void:
 	customer = npc
@@ -32,18 +31,29 @@ func place_food(item_type: Item.Type) -> void:
 	has_food = true
 	placed_item.item_type = item_type
 	placed_item.visible = true
+	placed_item.empty = false
 
-func clear_customer() -> void:
+func vacate() -> void:
+	var leave_dirty: bool = has_food
+	is_occupied = false
+	
 	customer = null
 	has_food = false
 	if placed_item:
-		placed_item.visible = false
+		placed_item.empty = true
+		if not is_dirty:
+			placed_item.visible = false
+
+	if leave_dirty:
+		set_dirty(true)
+		ScoreState.record_table_left_dirty()
 
 func get_look_action(player: Node) -> LookAction:
 	if is_dirty:
 		return LookAction.create(CLEAN_DURATION, func() -> void:
 			set_dirty(false)
 			ScoreState.record_table_cleaned()
+			cleaned.emit()
 		, 6.0)
 
 	if customer \

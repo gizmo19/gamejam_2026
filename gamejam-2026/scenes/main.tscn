@@ -4,9 +4,11 @@
 [ext_resource type="PackedScene" uid="uid://bvbgof22am11a" path="res://scenes/table.tscn" id="2_table"]
 [ext_resource type="Script" uid="uid://6j5q506akplv" path="res://scripts/main.gd" id="3_main_script"]
 [ext_resource type="PackedScene" path="res://scenes/bar.tscn" id="4_bar"]
+[ext_resource type="PackedScene" uid="uid://6geq7p62jfd2" path="res://scenes/entrance.tscn" id="8_choun"]
 [ext_resource type="PackedScene" uid="uid://c8i3y7r8bmb4j" path="res://scenes/synek.tscn" id="8_tipki"]
+[ext_resource type="PackedScene" uid="uid://bxeo33e5v6il7" path="res://scenes/popup_bubble.tscn" id="9_85g3d"]
 [ext_resource type="Script" uid="uid://dj184uc8v2ioi" path="res://scripts/npc_spawn_manager.gd" id="9_npc_spawn"]
-[ext_resource type="PackedScene" path="res://scenes/kitchen.tscn" id="20_kitchen"]
+[ext_resource type="PackedScene" uid="uid://8hu4nwcn16tt" path="res://scenes/kitchen.tscn" id="20_kitchen"]
 [ext_resource type="PackedScene" uid="uid://be2ftevuw33p" path="res://scenes/architecture.tscn" id="21_architecture"]
 
 [sub_resource type="Environment" id="Env_1"]
@@ -83,5 +85,30 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 8)
 
 [node name="Architecture" parent="." unique_id=1426112326 instance=ExtResource("21_architecture")]
 
+[node name="Entrance" parent="Architecture" unique_id=683576434 instance=ExtResource("8_choun")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9.486)
+
 [node name="Synek" parent="." unique_id=1399062612 instance=ExtResource("8_tipki")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 4.3344703, 0.053358793, -7.1432776)
+
+[node name="Tutorial" type="Node3D" parent="." unique_id=1642103367]
+
+[node name="TableClean" parent="Tutorial" unique_id=371318544 instance=ExtResource("9_85g3d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.8415463, 1.7127837, 1.036017)
+text = "Clean the table"
+
+[node name="Eat" parent="Tutorial" unique_id=1479426615 instance=ExtResource("9_85g3d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.4482265, 2.2594624, -6.953378)
+text = "Then eat with your Son to
+replenish STAMINA"
+
+[node name="PrepareDish" parent="Tutorial" unique_id=1306221416 instance=ExtResource("9_85g3d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7970127, 3.1168575, -7.392351)
+text = "FIRST Prepare dishes
+in the KITCHEN
+< ----"
+
+[node name="OpenDoors" parent="Tutorial" unique_id=1226386729 instance=ExtResource("9_85g3d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.13689098, 2.5257213, 8.116911)
+text = "OPEN The Tavern
+let clients in!"

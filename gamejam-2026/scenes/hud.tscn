@@ -1,22 +1,20 @@
 [gd_scene format=3 uid="uid://cbcl51spn6ple"]
 
 [ext_resource type="Script" uid="uid://c8k4nm5u4owta" path="res://scripts/hud.gd" id="1_ahhtf"]
+[ext_resource type="Texture2D" uid="uid://cymp8s3pakibf" path="res://assets/sprites/hud/stamina.png" id="2_5ysmq"]
 [ext_resource type="Texture2D" uid="uid://b2ibtyxlmo0f6" path="res://assets/sprites/hud/pointer.png" id="2_oo0fn"]
+[ext_resource type="Texture2D" uid="uid://butyi0awtpmpt" path="res://assets/sprites/hud/popup_bubble.png" id="4_6fi6k"]
+[ext_resource type="Texture2D" uid="uid://bbgcfb7xn1nmm" path="res://assets/sprites/hud/paper.png" id="5_uo2fv"]
+[ext_resource type="StyleBox" uid="uid://chobmj7rdc7hr" path="res://assets/hud/button_background.tres" id="6_047uy"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6fi6k"]
+texture = ExtResource("2_5ysmq")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ahhtf"]
 bg_color = Color(0.15553045, 0.20647529, 0.3091691, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oo0fn"]
 bg_color = Color(0.21690094, 0.4505924, 0.82868224, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5ysmq"]
-bg_color = Color(0.17, 0.13033333, 0.051000003, 1)
-anti_aliasing = false
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6fi6k"]
-bg_color = Color(0.13280001, 0.83, 0.44654003, 1)
-shadow_color = Color(0.37764, 0.54, 0.31860003, 0.5176471)
-shadow_size = 11
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5ysmq"]
 atlas = ExtResource("2_oo0fn")
@@ -52,23 +50,19 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5ysmq"]
+bg_color = Color(0.17, 0.13033333, 0.051000003, 1)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6fi6k"]
+bg_color = Color(0.13280001, 0.83, 0.44654003, 1)
+shadow_color = Color(0.37764, 0.54, 0.31860003, 0.5176471)
+shadow_size = 11
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_047uy"]
+
 [node name="HUD" type="CanvasLayer" unique_id=1542318261]
 script = ExtResource("1_ahhtf")
-
-[node name="CrosshairPoint" type="ColorRect" parent="." unique_id=1059536782]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -2.0
-offset_top = -2.0
-offset_right = 2.0
-offset_bottom = 2.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(1, 1, 1, 0.85)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1259697395]
 anchors_preset = 15
@@ -105,6 +99,11 @@ tab_size = 2
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=1260500861]
 layout_mode = 2
 
+[node name="BoxContainer2" type="BoxContainer" parent="VBoxContainer/HBoxContainer" unique_id=2143262880]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.2
+
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer" unique_id=614198611]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -117,13 +116,23 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/MarginContainer/HBoxContainer" unique_id=1451363251]
 layout_mode = 2
-text = "Stamina:"
+theme_override_font_sizes/font_size = 32
+text = "Stamina"
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="VBoxContainer/HBoxContainer/MarginContainer/HBoxContainer" unique_id=1796855607]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="VBoxContainer/HBoxContainer/MarginContainer/HBoxContainer/AspectRatioContainer" unique_id=201217847]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_6fi6k")
 
 [node name="StaminaBar" type="ProgressBar" parent="VBoxContainer/HBoxContainer/MarginContainer/HBoxContainer" unique_id=1357643936]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme_override_font_sizes/font_size = 30
 theme_override_styles/background = SubResource("StyleBoxFlat_ahhtf")
 theme_override_styles/fill = SubResource("StyleBoxFlat_oo0fn")
 step = 0.1
@@ -132,26 +141,7 @@ value = 79.1
 [node name="BoxContainer" type="BoxContainer" parent="VBoxContainer/HBoxContainer" unique_id=2036253012]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 1.25
-
-[node name="ProgressBar" type="ProgressBar" parent="." unique_id=563776073]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -62.0
-offset_top = 54.0
-offset_right = 65.0
-offset_bottom = 71.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/background = SubResource("StyleBoxFlat_5ysmq")
-theme_override_styles/fill = SubResource("StyleBoxFlat_6fi6k")
-max_value = 1.0
-step = 0.001
-value = 0.55
-show_percentage = false
+size_flags_stretch_ratio = 1.85
 
 [node name="PointerAnchor" type="Control" parent="." unique_id=1993823263]
 layout_mode = 3
@@ -171,3 +161,315 @@ scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_047uy")
 animation = &"pointer"
 frame_progress = 0.39857092
+
+[node name="ProgressBar" type="ProgressBar" parent="PointerAnchor" unique_id=563776073]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -62.0
+offset_top = 54.0
+offset_right = 65.0
+offset_bottom = 71.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_5ysmq")
+theme_override_styles/fill = SubResource("StyleBoxFlat_6fi6k")
+max_value = 1.0
+step = 0.001
+value = 0.55
+show_percentage = false
+
+[node name="NotificationPopup" type="NinePatchRect" parent="PointerAnchor" unique_id=1545037256]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(85, 66)
+layout_mode = 0
+offset_left = -441.0
+offset_top = -433.0
+offset_right = 448.0
+offset_bottom = -345.0
+texture = ExtResource("4_6fi6k")
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 15
+patch_margin_bottom = 15
+
+[node name="MarginContainer" type="MarginContainer" parent="PointerAnchor/NotificationPopup" unique_id=1924605774]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PointerAnchor/NotificationPopup/MarginContainer" unique_id=1461576645]
+layout_mode = 2
+alignment = 1
+
+[node name="NotificationLabel" type="Label" parent="PointerAnchor/NotificationPopup/MarginContainer/HBoxContainer" unique_id=1397668514]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(0.15, 0.1, 0.05, 1)
+theme_override_font_sizes/font_size = 18
+text = "foofoofoo foofoofoo foofoofoo foofoofoo "
+horizontal_alignment = 1
+
+[node name="StaminaCostPopup" type="NinePatchRect" parent="PointerAnchor" unique_id=1763477982]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(85, 66)
+layout_mode = 0
+offset_left = -216.0
+offset_top = -79.0
+offset_right = -69.0
+offset_bottom = -13.0
+texture = ExtResource("4_6fi6k")
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 15
+patch_margin_bottom = 15
+
+[node name="MarginContainer" type="MarginContainer" parent="PointerAnchor/StaminaCostPopup" unique_id=428744350]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PointerAnchor/StaminaCostPopup/MarginContainer" unique_id=1302109359]
+layout_mode = 2
+alignment = 1
+
+[node name="StaminaCostLabel" type="Label" parent="PointerAnchor/StaminaCostPopup/MarginContainer/HBoxContainer" unique_id=1864750192]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(0.15, 0.1, 0.05, 1)
+theme_override_font_sizes/font_size = 18
+text = "-12%"
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="PointerAnchor/StaminaCostPopup/MarginContainer/HBoxContainer" unique_id=113542471]
+layout_mode = 2
+texture = ExtResource("2_5ysmq")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=608134163]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource("5_uo2fv")
+
+[node name="MarginContainer" type="MarginContainer" parent="TextureRect" unique_id=790040209]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 292
+theme_override_constants/margin_top = 95
+theme_override_constants/margin_right = 337
+theme_override_constants/margin_bottom = 64
+
+[node name="MenuTabs" type="TabContainer" parent="TextureRect/MarginContainer" unique_id=1304070347]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_047uy")
+current_tab = 4
+tabs_visible = false
+
+[node name="MainMenu" type="TabBar" parent="TextureRect/MarginContainer/MenuTabs" unique_id=585437271]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="StartGame" type="TabBar" parent="TextureRect/MarginContainer/MenuTabs" unique_id=2143238496]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="Options" type="TabBar" parent="TextureRect/MarginContainer/MenuTabs" unique_id=2060659727]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="Credits" type="TabBar" parent="TextureRect/MarginContainer/MenuTabs" unique_id=816822636]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 3
+
+[node name="Licenses" type="TabBar" parent="TextureRect/MarginContainer/MenuTabs" unique_id=1392940965]
+layout_mode = 2
+metadata/_tab_index = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/MarginContainer/MenuTabs/Licenses" unique_id=867678648]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="TextureRect/MarginContainer/MenuTabs/Licenses/VBoxContainer" unique_id=588701692]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Licenses"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TextureRect/MarginContainer/MenuTabs/Licenses/VBoxContainer" unique_id=1256389424]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "## Engine
+
+Copyright (c) 2014-present Godot Engine contributors.
+Copyright (c) 2007-2014 Juan Linietsky, Ariel Manzur.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the \"Software\"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+-- Godot Engine <https://godotengine.org>
+
+## Audio
+
+- Coin drop
+  Vinrax
+  https://opengameart.org/content/coin-drop
+
+## Textures
+
+https://ambientcg.com
+Creative Commons CC0 1.0 Universal License
+https://docs.ambientcg.com/license/
+
+Wooden Beam:
+You are free to use this image:
+
+- For both personal and commercial projects and to modify it.
+- In a website or presentation template or application or as part of your design.
+  https://www.magnific.com/free-vector/wooden-background_5371886.htm#fromView=search&page=1&position=3&uuid=15a7928f-7e9f-4404-95bd-2e009dd72aa2&query=Stylized+wood+texture
+  Designed by brgfx / Freepik
+
+Wooden planks:
+Royalty Free License: Free to use for all Commercial and Non-Commercial purposes.
+https://freestylized.com/material/wooden_planks_17/
+
+Kenney's Retro Textures Fantasy (1.0)
+
+    Created/distributed by Kenney (www.kenney.nl)
+    Creation date: 15-01-2026
+
+    		------------------------------
+
+    License: (Creative Commons Zero, CC0)
+    http://creativecommons.org/publicdomain/zero/1.0/
+
+    You can use this content for personal, educational, and commercial purposes.
+
+    Support by crediting 'Kenney' or 'www.kenney.nl' (this is not a requirement)
+
+    		------------------------------
+
+    • Website : www.kenney.nl
+    • Donate  : www.kenney.nl/donate
+
+    • Patreon : patreon.com/kenney
+
+    Follow on social media for updates:
+
+    • Twitter:	 twitter.com/KenneyNL
+    • BlueSky:	 bsky.app/profile/kenney.nl
+    • Instagram:	 instagram.com/kenney_nl
+
+## Models
+
+### Kenney's Food Kit
+
+    Food Kit (2.0)
+
+    Created/distributed by Kenney (www.kenney.nl)
+    Creation date: 26-06-2024 01:23
+
+    		------------------------------
+
+    License: (Creative Commons Zero, CC0)
+    http://creativecommons.org/publicdomain/zero/1.0/
+
+    You can use this content for personal, educational, and commercial purposes.
+
+    Support by crediting 'Kenney' or 'www.kenney.nl' (this is not a requirement)
+
+    		------------------------------
+
+    • Website : www.kenney.nl
+    • Donate  : www.kenney.nl/donate
+
+    • Patreon : patreon.com/kenney
+
+    Follow on social media for updates:
+
+    • Twitter:   twitter.com/KenneyNL
+    • Instagram: instagram.com/kenney_nl
+    • Mastodon:  mastodon.gamedev.place/@kenney
+
+### Kenney's Fantasy Kit
+
+    Retro Fantasy Kit (2.0)
+
+    Created/distributed by Kenney (www.kenney.nl)
+    Creation date: 19-02-2025 16:10
+
+    		------------------------------
+
+    License: (Creative Commons Zero, CC0)
+    http://creativecommons.org/publicdomain/zero/1.0/
+
+    You can use this content for personal, educational, and commercial purposes.
+
+    Support by crediting 'Kenney' or 'www.kenney.nl' (this is not a requirement)
+
+    		------------------------------
+
+    • Website : www.kenney.nl
+    • Donate  : www.kenney.nl/donate
+
+    • Patreon : patreon.com/kenney
+
+    Follow on social media for updates:
+
+    • Twitter:   twitter.com/KenneyNL
+    • Instagram: instagram.com/kenney_nl
+    • Mastodon:  mastodon.gamedev.place/@kenney"
+
+[node name="Button" type="Button" parent="TextureRect/MarginContainer/MenuTabs/Licenses/VBoxContainer" unique_id=1116542054]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = ExtResource("6_047uy")
+theme_override_styles/pressed = ExtResource("6_047uy")
+text = "Back"

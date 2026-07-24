@@ -3,6 +3,8 @@ extends Node3D
 const OPEN_DURATION: float = 1.0
 const CLOSE_DURATION: float = 3.0
 
+signal opened
+
 @onready var _label_closed: Label3D = %LabelClosed
 @onready var _label_opened: Label3D = %LabelOpened
 
@@ -16,6 +18,7 @@ func get_look_action(_player: Node) -> LookAction:
 	if ScoreState.phase == ScoreState.Phase.MORNING:
 		return LookAction.create(OPEN_DURATION, func() -> void:
 			ScoreState.open_for_business()
+			opened.emit()
 		, 0.0)
 	if ScoreState.phase == ScoreState.Phase.NOON and ScoreState.all_customers_done:
 		return LookAction.create(CLOSE_DURATION, func() -> void:

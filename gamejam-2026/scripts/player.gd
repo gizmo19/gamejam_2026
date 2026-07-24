@@ -12,6 +12,8 @@ const MAX_STAMINA: float = 100.0
 @onready var _held_item_container: Node3D = $PickedUpItem
 @onready var _held_item_visual: Item = $PickedUpItem/Item
 
+signal item_picked_up(type: int)
+
 var pitch: float = 0.0
 var held_item: int = -1
 var stamina: float = 60.0
@@ -36,6 +38,7 @@ func pick_up(type: int) -> void:
 	held_item = type
 	_held_item_visual.item_type = type as Item.Type
 	_held_item_container.visible = true
+	item_picked_up.emit(type)
 
 func clear_held_item() -> void:
 	held_item = -1
@@ -48,11 +51,6 @@ func _input(event: InputEvent) -> void:
 		pitch = clamp(pitch, -1.4, 1.4)
 		camera.rotation.x = pitch
 
-	if event.is_action_pressed("Escape"):
-		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
-			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		else:
-			get_tree().quit()
 
 func _physics_process(delta: float) -> void:
 	_update_movement(delta)
@@ -74,7 +72,14 @@ func _update_movement(delta: float) -> void:
 		pitch = clamp(pitch, -1.4, 1.4)
 		camera.rotation.x = pitch
 
-	var speed: float = SPRINT_SPEED if Input.is_action_pressed("Sprint") else SPEED
+	var can_sprint := stamina > 5.0
+	var speed: float
+	if can_sprint and Input.is_action_pressed("Sprint"):
+		speed = SPRINT_SPEED
+	elif can_sprint:
+		speed = SPEED
+	else:
+		speed = SPEED * 0.5
 
 	var input_dir := Input.get_vector("Left", "Right", "Forward", "Back")
 	var direction := (transform.basis * Vector3(input_dir.x, 0.0, input_dir.y)).normalized()
@@ -118,7 +123,9 @@ func _update_interact_focus() -> void:
 	if target_changed or action_availability_changed:
 		_reset_action_progress()
 
-	hud.set_interact_hover(_focused_action != null or _focused_pickup != null)
+	var hovering := _focused_action != null or _focused_pickup != null
+	var stamina_cost := _focused_action.stamina_cost if _focused_action else 0.0
+	hud.set_interact_hover(hovering, stamina_cost)
 
 func _resolve_interact_candidate(collider: Object) -> Node:
 	var node := collider as Node

@@ -3,9 +3,9 @@ extends Node
 enum Phase {MORNING, NOON, NIGHT}
 
 const PHASE_DURATIONS: Dictionary = {
-	Phase.MORNING: -1.0,
-	Phase.NOON: -1.0,
-	Phase.NIGHT: -1.0,
+	Phase.MORNING: - 1.0,
+	Phase.NOON: - 1.0,
+	Phase.NIGHT: - 1.0,
 }
 
 const PHASE_NAMES: Dictionary = {
@@ -139,11 +139,6 @@ func reset() -> void:
 	changed.emit()
 
 func advance_day() -> void:
-	served = 0
-	left_at_table = 0
-	left_unserved = 0
-	tables_cleaned = 0
-	tables_left_dirty = 0
 	all_customers_arrived = false
 	all_customers_done = false
 	day += 1

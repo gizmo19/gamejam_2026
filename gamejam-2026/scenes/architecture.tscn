@@ -2,7 +2,6 @@
 
 [ext_resource type="Material" uid="uid://dgjpr1r37k0pd" path="res://assets/WoodSiding006_1K-PNG/WoodSiding006_1K-PNG.tres" id="1_wood_material"]
 [ext_resource type="ArrayMesh" uid="uid://pwwxy5rcqj6b" path="res://assets/models/architecture/Wall.obj" id="2_wall"]
-[ext_resource type="PackedScene" uid="uid://6geq7p62jfd2" path="res://scenes/entrance.tscn" id="3_entrance"]
 [ext_resource type="ArrayMesh" uid="uid://be770oc4htylf" path="res://assets/models/architecture/Wall_Window.obj" id="4_wall_window"]
 [ext_resource type="ArrayMesh" uid="uid://bivga8hktyiy6" path="res://assets/models/architecture/Pillar.obj" id="5_pillar"]
 [ext_resource type="PackedScene" uid="uid://4ef8ndei8nkg" path="res://assets/wood_furniture/ceiling.glb" id="6_ceiling"]
@@ -44,9 +43,6 @@ radius = 0.55
 size = Vector3(3, 4, 2.5)
 
 [node name="Architecture" type="Node3D" unique_id=1426112326]
-
-[node name="Entrance" parent="." unique_id=884335026 instance=ExtResource("3_entrance")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9.486)
 
 [node name="Decorative" type="Node3D" parent="." unique_id=290057102]
 

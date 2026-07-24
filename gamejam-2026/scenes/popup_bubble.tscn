@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://bxeo33e5v6il7"]
+
+[ext_resource type="Script" uid="uid://j0oo1trp2rfe" path="res://scripts/popup_bubble.gd" id="1_ffdgr"]
+[ext_resource type="Texture2D" uid="uid://butyi0awtpmpt" path="res://assets/sprites/hud/popup_bubble.png" id="2_r8irk"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_r8irk"]
+viewport_path = NodePath("SubViewport")
+
+[node name="PopupBubble" type="Node3D" unique_id=815741127]
+script = ExtResource("1_ffdgr")
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=1154761341]
+billboard = 1
+alpha_cut = 2
+texture_filter = 0
+texture = SubResource("ViewportTexture_r8irk")
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=857144824]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(77, 58)
+render_target_update_mode = 4
+
+[node name="NinePatchRect" type="NinePatchRect" parent="SubViewport" unique_id=127893937]
+custom_minimum_size = Vector2(77, 58)
+offset_right = 77.0
+offset_bottom = 58.0
+texture = ExtResource("2_r8irk")
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 15
+patch_margin_bottom = 15
+
+[node name="MarginContainer" type="MarginContainer" parent="SubViewport/NinePatchRect" unique_id=2043439040]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Label" type="Label" parent="SubViewport/NinePatchRect/MarginContainer" unique_id=670692834]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(0.15, 0.1, 0.05, 1)
+theme_override_font_sizes/font_size = 18
+text = "Hello"
+horizontal_alignment = 1
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=2021391666]
+light_energy = 3.933
+omni_range = 2.2342863

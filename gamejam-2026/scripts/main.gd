@@ -7,6 +7,12 @@ const NPC_SCENE: PackedScene = preload("res://scenes/npc.tscn")
 @onready var _bar_queue: BarQueue = $Bar/BarQueue
 @onready var _npc_spawn_manager: NpcSpawnManager = $NpcSpawnManager
 
+@onready var _player: CharacterBody3D = $Player
+@onready var _tutorial_table_clean: Node3D = $Tutorial/TableClean
+@onready var _tutorial_prepare_dish: Node3D = $Tutorial/PrepareDish
+@onready var _tutorial_eat: Node3D = $Tutorial/Eat
+@onready var _tutorial_open_doors: Node3D = $Tutorial/OpenDoors
+
 var _active_npc_count: int = 0
 var _all_spawned: bool = false
 
@@ -15,6 +21,46 @@ func _ready() -> void:
 	_npc_spawn_manager.spawn_requested.connect(_spawn_npc)
 	_npc_spawn_manager.all_customers_spawned.connect(_on_all_customers_spawned)
 	ScoreState.tavern_closed.connect(_clear_all_npcs)
+
+	_prepare_tutorial()
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("ToggleFullscreen"):
+		var mode := DisplayServer.window_get_mode()
+		if mode == DisplayServer.WINDOW_MODE_FULLSCREEN \
+				or mode == DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+		else:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+	if event.is_action_pressed("Escape"):
+		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		else:
+			get_tree().quit()
+
+func _prepare_tutorial() -> void:
+	$Tables/L_3_2.cleaned.connect(_dismiss_tutorial_table_clean, CONNECT_ONE_SHOT)
+	_player.item_picked_up.connect(_dismiss_tutorial_prepare_dish, CONNECT_ONE_SHOT)
+	$Synek.fed.connect(_dismiss_tutorial_eat, CONNECT_ONE_SHOT)
+	$Architecture/Entrance.opened.connect(_dismiss_tutorial_open_doors, CONNECT_ONE_SHOT)
+
+func _dismiss_tutorial_table_clean() -> void:
+	if is_instance_valid(_tutorial_table_clean):
+		_tutorial_table_clean.queue_free()
+
+func _dismiss_tutorial_prepare_dish(_type: int) -> void:
+	if is_instance_valid(_tutorial_prepare_dish):
+		_tutorial_prepare_dish.queue_free()
+
+func _dismiss_tutorial_eat() -> void:
+	if is_instance_valid(_tutorial_eat):
+		_tutorial_eat.queue_free()
+
+func _dismiss_tutorial_open_doors() -> void:
+	if is_instance_valid(_tutorial_open_doors):
+		_tutorial_open_doors.queue_free()
 
 func _spawn_npc() -> void:
 	var npc: Npc = NPC_SCENE.instantiate()
@@ -55,17 +101,21 @@ func _clear_all_npcs() -> void:
 		_bar_queue.erase(_bar_queue.get_npc(0))
 	for npc in npcs:
 		if npc.target_table:
-			npc.target_table.is_occupied = false
-			npc.target_table.clear_customer()
+			# Kick mid-service: leave a mess for morning cleanup. Already-vacated
+			# (paid) tables are already dirty and must stay that way.
+			var table: Table = npc.target_table
+			if table.is_occupied or table.customer != null or table.has_food:
+				table.vacate()
+			npc.target_table = null
 		npc.queue_free()
+	# Free any stuck occupancy flags; never wipe dirty tables for the next day.
 	for table_node in tables.get_children():
 		var table := table_node as Table
 		if table == null:
 			continue
 		table.is_occupied = false
-		table.clear_customer()
-		if table.is_dirty:
-			table.set_dirty(false)
+		if table.customer != null or table.has_food:
+			table.vacate()
 
 func _on_queue_slot_reached(npc: Npc) -> void:
 	if _bar_queue.is_empty() or not _bar_queue.has(npc):
@@ -87,12 +137,10 @@ func _on_patience_expired(npc: Npc) -> void:
 	var waypoints: Array[Vector3] = []
 
 	if npc.target_table:
-		var had_food := npc.target_table.has_food
-		npc.target_table.is_occupied = false
-		npc.target_table.clear_customer()
-		if had_food:
-			npc.target_table.set_dirty(true)
-			ScoreState.record_table_left_dirty()
+		var table: Table = npc.target_table
+		# Paid customers already vacated on tip; impatient ones still hold the seat.
+		if table.is_occupied or table.customer != null or table.has_food:
+			table.vacate()
 		npc.target_table = null
 		_print_matrix()
 		var x_sign: float = sign(npc.global_position.x)

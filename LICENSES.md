@@ -26,8 +26,8 @@ SOFTWARE.
 ## Audio
 
 - Coin drop
-Vinrax
-https://opengameart.org/content/coin-drop
+  Vinrax
+  https://opengameart.org/content/coin-drop
 
 ## Textures
 
@@ -40,12 +40,39 @@ You are free to use this image:
 
 - For both personal and commercial projects and to modify it.
 - In a website or presentation template or application or as part of your design.
-https://www.magnific.com/free-vector/wooden-background_5371886.htm#fromView=search&page=1&position=3&uuid=15a7928f-7e9f-4404-95bd-2e009dd72aa2&query=Stylized+wood+texture
-Designed by brgfx / Freepik
+  https://www.magnific.com/free-vector/wooden-background_5371886.htm#fromView=search&page=1&position=3&uuid=15a7928f-7e9f-4404-95bd-2e009dd72aa2&query=Stylized+wood+texture
+  Designed by brgfx / Freepik
 
 Wooden planks:
 Royalty Free License: Free to use for all Commercial and Non-Commercial purposes.
 https://freestylized.com/material/wooden_planks_17/
+
+Kenney's Retro Textures Fantasy (1.0)
+
+    Created/distributed by Kenney (www.kenney.nl)
+    Creation date: 15-01-2026
+
+    		------------------------------
+
+    License: (Creative Commons Zero, CC0)
+    http://creativecommons.org/publicdomain/zero/1.0/
+
+    You can use this content for personal, educational, and commercial purposes.
+
+    Support by crediting 'Kenney' or 'www.kenney.nl' (this is not a requirement)
+
+    		------------------------------
+
+    • Website : www.kenney.nl
+    • Donate  : www.kenney.nl/donate
+
+    • Patreon : patreon.com/kenney
+
+    Follow on social media for updates:
+
+    • Twitter:	 twitter.com/KenneyNL
+    • BlueSky:	 bsky.app/profile/kenney.nl
+    • Instagram:	 instagram.com/kenney_nl
 
 ## Models
 
