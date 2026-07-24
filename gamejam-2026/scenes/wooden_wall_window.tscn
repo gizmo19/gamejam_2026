@@ -2,6 +2,8 @@
 
 [ext_resource type="ArrayMesh" uid="uid://be770oc4htylf" path="res://assets/models/architecture/Wall_Window.obj" id="1_wall_window_mesh"]
 [ext_resource type="Material" uid="uid://dgjpr1r37k0pd" path="res://assets/WoodSiding006_1K-PNG/WoodSiding006_1K-PNG.tres" id="2_wood_material"]
+[ext_resource type="PackedScene" uid="uid://7l07tw7yf4qa" path="res://assets/models/architecture/window.glb" id="3_window_model"]
+[ext_resource type="PackedScene" uid="uid://clog20262601" path="res://assets/models/architecture/LOG.glb" id="4_log_model"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1"]
 size = Vector3(4.75, 5.6, 0.25)
@@ -15,3 +17,30 @@ shape = SubResource("BoxShape3D_1")
 [node name="Mesh" type="MeshInstance3D" parent="." unique_id=740200003]
 material_override = ExtResource("2_wood_material")
 mesh = ExtResource("1_wall_window_mesh")
+
+[node name="Window" parent="." unique_id=740200004 instance=ExtResource("3_window_model")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.61118436, 0, -0.04862356)
+
+[node name="Log" parent="." unique_id=740200005 instance=ExtResource("4_log_model")]
+transform = Transform3D(0.078816615, -0.39805403, 0, 0.79610807, 0.039408308, 0, 0, 0, 0.3, -0.22656298, 2.0337098, -0.018554091)
+
+[node name="Log3" parent="." unique_id=1258374299 instance=ExtResource("4_log_model")]
+transform = Transform3D(0.07624909, -0.6943245, 0, 0.5951354, 0.08895727, 0, 0, 0, 0.29999998, -0.11022532, 1.9025614, -1.2249599)
+
+[node name="Log4" parent="." unique_id=729427048 instance=ExtResource("4_log_model")]
+transform = Transform3D(0.07624909, -0.6943245, 0, 0.5951354, 0.08895727, 0, 0, 0, 0.29999998, -0.11022532, 1.9025614, 1.1847829)
+
+[node name="Log5" parent="." unique_id=1782175520 instance=ExtResource("4_log_model")]
+transform = Transform3D(-2.8412401e-08, -0.7, 1.3113417e-08, 0, -3.059797e-08, -0.3, 0.65, -3.059797e-08, 5.7320567e-16, -0.25206363, 0.6977079, -0.024189234)
+
+[node name="Log6" parent="." unique_id=1673278744 instance=ExtResource("4_log_model")]
+transform = Transform3D(-2.6178093e-08, -0.69739765, -0.025844434, 1.1296969e-09, 0.060303677, -0.29888472, 0.3, -6.108221e-08, -1.1296961e-09, 0.038924575, 3.5477247, -0.050643325)
+
+[node name="Log7" parent="." unique_id=547027667 instance=ExtResource("4_log_model")]
+transform = Transform3D(-0.00012918698, -0.6973517, -0.02607064, -0.13703816, 0.049088348, -0.2400156, 0.18471745, 0.035929922, -0.17808098, 0.043808028, 3.284116, 0.85358334)
+
+[node name="Log8" parent="." unique_id=412941523 instance=ExtResource("4_log_model")]
+transform = Transform3D(-0.00016090098, -0.69734496, 0.026103264, -0.13395986, 0.047246747, 0.23014577, -0.16172422, -0.038441762, -0.19066088, 0.04861842, 3.298968, -0.926967)
+
+[node name="Log2" parent="." unique_id=900171882 instance=ExtResource("4_log_model")]
+transform = Transform3D(0.0042413957, -0.39998996, 9.801965e-05, 0.0021324502, 0.00014074509, 0.2999981, -0.5999813, -0.0028271116, 0.0010669448, -0.22656298, 2.2329826, -0.018554091)
