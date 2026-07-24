@@ -18,13 +18,13 @@ texture = SubResource("ViewportTexture_r8irk")
 [node name="SubViewport" type="SubViewport" parent="." unique_id=857144824]
 transparent_bg = true
 handle_input_locally = false
-size = Vector2i(77, 58)
+size = Vector2i(85, 66)
 render_target_update_mode = 4
 
 [node name="NinePatchRect" type="NinePatchRect" parent="SubViewport" unique_id=127893937]
-custom_minimum_size = Vector2(77, 58)
-offset_right = 77.0
-offset_bottom = 58.0
+custom_minimum_size = Vector2(85, 66)
+offset_right = 85.0
+offset_bottom = 66.0
 texture = ExtResource("2_r8irk")
 patch_margin_left = 16
 patch_margin_top = 16
