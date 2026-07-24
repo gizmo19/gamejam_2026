@@ -81,9 +81,6 @@ func _on_play_pressed() -> void:
 	if player:
 		player.unlock_controls()
 
-func _process(_delta: float) -> void:
-	_refresh_scores()
-
 func set_stamina(value: float) -> void:
 	_stamina_bar.value = value
 
