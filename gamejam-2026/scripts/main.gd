@@ -7,13 +7,14 @@ const NPC_SCENE: PackedScene = preload("res://scenes/npc.tscn")
 @onready var _bar_queue: BarQueue = $Bar/BarQueue
 @onready var _npc_spawn_manager: NpcSpawnManager = $NpcSpawnManager
 
+var _active_npc_count: int = 0
+var _all_spawned: bool = false
+
 func _ready() -> void:
 	_npc_spawn_manager.setup(_bar_queue)
 	_npc_spawn_manager.spawn_requested.connect(_spawn_npc)
-
-func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("SpawnNpc"):
-		_spawn_npc()
+	_npc_spawn_manager.all_customers_spawned.connect(_on_all_customers_spawned)
+	ScoreState.tavern_closed.connect(_clear_all_npcs)
 
 func _spawn_npc() -> void:
 	var npc: Npc = NPC_SCENE.instantiate()
@@ -25,6 +26,46 @@ func _spawn_npc() -> void:
 	npc.queue_slot_reached.connect(_on_queue_slot_reached)
 	npc.setup(_bar_queue.slot_position(_bar_queue.size()))
 	_bar_queue.append(npc)
+	_active_npc_count += 1
+	npc.tree_exiting.connect(_on_npc_exiting)
+
+func _on_all_customers_spawned() -> void:
+	ScoreState.mark_all_customers_arrived()
+	_all_spawned = true
+	_check_all_done()
+
+func _on_npc_exiting() -> void:
+	if not _all_spawned:
+		return
+	_active_npc_count = maxi(0, _active_npc_count - 1)
+	_check_all_done()
+
+func _check_all_done() -> void:
+	if _all_spawned and _active_npc_count <= 0:
+		ScoreState.mark_all_customers_done()
+
+func _clear_all_npcs() -> void:
+	_all_spawned = false
+	_active_npc_count = 0
+	var npcs: Array = []
+	for child in get_children():
+		if child is Npc:
+			npcs.append(child)
+	while not _bar_queue.is_empty():
+		_bar_queue.erase(_bar_queue.get_npc(0))
+	for npc in npcs:
+		if npc.target_table:
+			npc.target_table.is_occupied = false
+			npc.target_table.clear_customer()
+		npc.queue_free()
+	for table_node in tables.get_children():
+		var table := table_node as Table
+		if table == null:
+			continue
+		table.is_occupied = false
+		table.clear_customer()
+		if table.is_dirty:
+			table.set_dirty(false)
 
 func _on_queue_slot_reached(npc: Npc) -> void:
 	if _bar_queue.is_empty() or not _bar_queue.has(npc):
@@ -46,10 +87,12 @@ func _on_patience_expired(npc: Npc) -> void:
 	var waypoints: Array[Vector3] = []
 
 	if npc.target_table:
+		var had_food := npc.target_table.has_food
 		npc.target_table.is_occupied = false
 		npc.target_table.clear_customer()
-		npc.target_table.set_dirty(true)
-		ScoreState.record_table_left_dirty()
+		if had_food:
+			npc.target_table.set_dirty(true)
+			ScoreState.record_table_left_dirty()
 		npc.target_table = null
 		_print_matrix()
 		var x_sign: float = sign(npc.global_position.x)

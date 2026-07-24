@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://b1ftir4604cio" path="res://assets/models/architecture/stairs.glb" id="12_stairs"]
 [ext_resource type="PackedScene" uid="uid://darchbarl2026" path="res://assets/models/architecture/barrel.glb" id="13_barrel_arch"]
 [ext_resource type="PackedScene" uid="uid://co23jhed1x81r" path="res://scenes/chandelier.tscn" id="15_chandelier"]
+[ext_resource type="Script" uid="uid://c0sxd2nknyuw" path="res://scripts/stairs.gd" id="16_stairs_script"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ground"]
 size = Vector3(22.35199, 0.5, 24.818909)
@@ -38,6 +39,9 @@ height = 6.742676
 radius = 0.55
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_uvkd1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_stairs_col"]
+size = Vector3(3, 4, 2.5)
 
 [node name="Architecture" type="Node3D" unique_id=1426112326]
 
@@ -454,6 +458,11 @@ transform = Transform3D(0.8, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2842734, 3.5)
 
 [node name="Stairs" type="StaticBody3D" parent="Props" unique_id=691376490]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -6)
+script = ExtResource("16_stairs_script")
 
 [node name="Model" parent="Props/Stairs" unique_id=299776442 instance=ExtResource("12_stairs")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 4.3122444, 0, 2.2646244)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Props/Stairs" unique_id=692376490]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 2, 0.5)
+shape = SubResource("BoxShape3D_stairs_col")

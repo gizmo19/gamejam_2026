@@ -26,6 +26,11 @@ func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	_held_item_container.visible = false
 	_sync_stamina_hud()
+	ScoreState.day_changed.connect(_on_day_changed)
+
+func _on_day_changed(_day: int) -> void:
+	stamina = MAX_STAMINA
+	_sync_stamina_hud()
 
 func pick_up(type: int) -> void:
 	held_item = type

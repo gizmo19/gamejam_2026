@@ -3,9 +3,9 @@ extends Node
 enum Phase {MORNING, NOON, NIGHT}
 
 const PHASE_DURATIONS: Dictionary = {
-	Phase.MORNING: - 1.0,
-	Phase.NOON: 60.0,
-	Phase.NIGHT: - 1.0, # endless for now
+	Phase.MORNING: -1.0,
+	Phase.NOON: -1.0,
+	Phase.NIGHT: -1.0,
 }
 
 const PHASE_NAMES: Dictionary = {
@@ -17,6 +17,12 @@ const PHASE_NAMES: Dictionary = {
 signal changed
 signal phase_changed(phase: Phase)
 signal day_changed(day: int)
+signal ducats_changed(total: int)
+signal customers_all_arrived
+signal customers_all_done
+signal tavern_closed
+signal screen_fade_in
+signal screen_fade_out
 
 var served: int = 0
 var left_at_table: int = 0
@@ -24,20 +30,32 @@ var left_unserved: int = 0
 var tables_cleaned: int = 0
 var tables_left_dirty: int = 0
 
+var total_ducats: int = 0
+var all_customers_arrived: bool = false
+var all_customers_done: bool = false
+
 var day: int = 1
 var phase: Phase = Phase.MORNING
 var phase_elapsed: float = 0.0
+
+var _transition_timer: float = -1.0
 
 func _ready() -> void:
 	_start_phase(Phase.MORNING, false)
 
 func _process(delta: float) -> void:
 	var duration: float = PHASE_DURATIONS[phase]
-	if duration < 0.0:
-		return
-	phase_elapsed += delta
-	if phase_elapsed >= duration:
-		_advance_phase()
+	if duration >= 0.0:
+		phase_elapsed += delta
+		if phase_elapsed >= duration:
+			_advance_phase()
+
+	if _transition_timer > 0.0:
+		_transition_timer -= delta
+		if _transition_timer <= 0.0:
+			_transition_timer = -1.0
+			advance_day()
+			screen_fade_out.emit()
 
 func get_phase_name() -> String:
 	return PHASE_NAMES[phase]
@@ -80,18 +98,54 @@ func record_table_left_dirty() -> void:
 	tables_left_dirty += 1
 	changed.emit()
 
+func record_ducats(amount: int) -> void:
+	total_ducats += amount
+	ducats_changed.emit(total_ducats)
+	changed.emit()
+
+func mark_all_customers_arrived() -> void:
+	all_customers_arrived = true
+	customers_all_arrived.emit()
+	changed.emit()
+
+func mark_all_customers_done() -> void:
+	all_customers_done = true
+	customers_all_done.emit()
+	changed.emit()
+
+func close_tavern() -> void:
+	tavern_closed.emit()
+	_start_phase(Phase.NIGHT, true)
+
+func start_day_transition() -> void:
+	if phase != Phase.NIGHT:
+		return
+	screen_fade_in.emit()
+	_transition_timer = 1.5
+
 func reset() -> void:
 	served = 0
 	left_at_table = 0
 	left_unserved = 0
 	tables_cleaned = 0
 	tables_left_dirty = 0
+	total_ducats = 0
+	all_customers_arrived = false
+	all_customers_done = false
+	_transition_timer = -1.0
 	day = 1
 	_start_phase(Phase.MORNING, true)
 	day_changed.emit(day)
 	changed.emit()
 
 func advance_day() -> void:
+	served = 0
+	left_at_table = 0
+	left_unserved = 0
+	tables_cleaned = 0
+	tables_left_dirty = 0
+	all_customers_arrived = false
+	all_customers_done = false
 	day += 1
 	_start_phase(Phase.MORNING, true)
 	day_changed.emit(day)
@@ -105,11 +159,11 @@ func open_for_business() -> void:
 func _advance_phase() -> void:
 	match phase:
 		Phase.MORNING:
-			pass # endless; call open_for_business() to start noon
+			pass
 		Phase.NOON:
 			_start_phase(Phase.NIGHT, true)
 		Phase.NIGHT:
-			pass # endless for now; call advance_day() when ready
+			pass
 
 func _start_phase(next_phase: Phase, emit_signal: bool) -> void:
 	phase = next_phase

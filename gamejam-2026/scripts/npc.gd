@@ -15,6 +15,10 @@ const TABLE_WAIT_TIME: float = 45.0
 @onready var state_label: Label3D = $StateLabel
 
 var _time_left: float = 0.0
+var _order_taken: bool = false
+var _pending_ducats: int = 0
+var _pending_stars: String = ""
+var _eating_finished: bool = false
 
 signal order_given
 signal needs_table(npc: Npc)
@@ -28,9 +32,9 @@ var was_served: bool = false
 
 func order_label() -> String:
 	match order:
-		Order.CHICKEN: return "Chicken"
-		Order.SOUP: return "Soup"
-		Order.BEER: return "Beer"
+		Order.CHICKEN: return "Kurczak"
+		Order.SOUP: return "Zupa"
+		Order.BEER: return "Piwo"
 	return "?"
 
 func set_state(new_state: State) -> void:
@@ -54,7 +58,7 @@ func update_bar_position(new_pos: Vector3) -> void:
 func begin_ordering() -> void:
 	set_state(State.WAITING_AT_BAR)
 	_time_left = BAR_WAIT_TIME
-	set_interactable(true)
+	_order_taken = false
 
 func wait_in_queue() -> void:
 	set_state(State.WAITING_IN_QUEUE)
@@ -74,6 +78,21 @@ func go_to_table(table: Table, waypoints: Array[Vector3]) -> void:
 	set_state(State.WALKING_TO_TABLE)
 	mover.move_along(waypoints)
 
+func get_look_action(_player: Node) -> LookAction:
+	if state == State.WAITING_AT_BAR and not _order_taken:
+		return LookAction.create(1.5, func() -> void:
+			_take_order()
+		, 0.0)
+	return null
+
+func _take_order() -> void:
+	_order_taken = true
+	_time_left = -1.0
+	order_given.emit()
+	countdown_label.text = order_label()
+	countdown_label.visible = true
+	state_timer.start(3.0)
+
 func _ready() -> void:
 	order = [Order.CHICKEN, Order.SOUP, Order.BEER].pick_random()
 	mover.navigation_finished.connect(_on_arrived)
@@ -83,17 +102,20 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	match state:
 		State.WAITING_AT_BAR:
-			if _time_left > 0.0:
+			if _order_taken:
+				pass
+			elif _time_left > 0.0:
 				_time_left = maxf(_time_left - delta, 0.0)
 				if _time_left == 0.0:
 					patience_expired.emit(self)
-			if interaction.enabled:
-				countdown_label.text = "%s\n%d" % [order_label(), ceili(_time_left)]
-			else:
 				countdown_label.text = "%d" % ceili(_time_left)
-			countdown_label.visible = true
+				countdown_label.visible = true
+			else:
+				countdown_label.visible = false
 		State.SEATED:
-			if _time_left > 0.0:
+			if was_served:
+				pass
+			elif _time_left > 0.0:
 				_time_left = maxf(_time_left - delta, 0.0)
 				if _time_left == 0.0:
 					patience_expired.emit(self)
@@ -134,18 +156,34 @@ func _on_arrived() -> void:
 		queue_free()
 
 func accept_delivery() -> void:
+	var wait_time := TABLE_WAIT_TIME - _time_left
+	_pending_ducats = 3 if wait_time < 15.0 else (2 if wait_time < 30.0 else 1)
+	_pending_stars = "★★★" if _pending_ducats == 3 else ("★★☆" if _pending_ducats == 2 else "★☆☆")
+	countdown_label.visible = false
 	was_served = true
 	_time_left = -1.0
-	state_timer.start(2.0)
+	state_timer.start(_eating_duration())
+
+func _eating_duration() -> float:
+	match order:
+		Order.SOUP: return 12.0
+		Order.BEER: return 22.0
+		Order.CHICKEN: return 38.0
+	return 20.0
 
 func _on_order_taken() -> void:
-	if state == State.WAITING_AT_BAR:
-		order_given.emit()
-		set_interactable(false)
-		state_timer.start(1.0)
+	if state == State.WAITING_AT_BAR and not _order_taken:
+		_take_order()
 
 func _on_timer_timeout() -> void:
 	if state == State.WAITING_AT_BAR:
 		needs_table.emit(self)
 	elif state == State.SEATED:
-		patience_expired.emit(self)
+		if was_served and not _eating_finished:
+			_eating_finished = true
+			ScoreState.record_ducats(_pending_ducats)
+			countdown_label.text = "+%d dukatów" % _pending_ducats
+			countdown_label.visible = true
+			state_timer.start(2.0)
+		else:
+			patience_expired.emit(self)
