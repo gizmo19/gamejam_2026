@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://kemkkmmbg7m7"]
+
+[ext_resource type="Texture2D" uid="uid://dgg7j0yf2mpt4" path="res://assets/sprites/npc/noble.png" id="1_3mlim"]
+
+[resource]
+transparency = 1
+albedo_texture = ExtResource("1_3mlim")
+texture_filter = 0
+texture_repeat = false
+billboard_mode = 2

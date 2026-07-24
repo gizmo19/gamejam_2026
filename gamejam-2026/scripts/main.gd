@@ -104,8 +104,7 @@ func _on_all_customers_spawned() -> void:
 	_check_all_done()
 
 func _on_npc_exiting() -> void:
-	if not _all_spawned:
-		return
+	# Must decrement even if more customers are still scheduled to spawn.
 	_active_npc_count = maxi(0, _active_npc_count - 1)
 	_check_all_done()
 

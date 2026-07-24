@@ -289,6 +289,7 @@ texture = ExtResource("2_5ysmq")
 
 [node name="MenuOverlay" type="TextureRect" parent="." unique_id=608134163]
 unique_name_in_owner = true
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

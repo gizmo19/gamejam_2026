@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dgg7j0yf2mpt4"
-path.s3tc="res://.godot/imported/noble.png-e8bef86dbd270a7fe638951b7eed111a.s3tc.ctex"
+uid="uid://ys3qc4sin6gc"
+path.s3tc="res://.godot/imported/knight_gal.png-be845b6a8f9a0860f066e30453b5b24c.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/sprites/npc/noble.png"
-dest_files=["res://.godot/imported/noble.png-e8bef86dbd270a7fe638951b7eed111a.s3tc.ctex"]
+source_file="res://assets/sprites/npc/knight_gal.png"
+dest_files=["res://.godot/imported/knight_gal.png-be845b6a8f9a0860f066e30453b5b24c.s3tc.ctex"]
 
 [params]
 

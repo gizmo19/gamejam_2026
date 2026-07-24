@@ -1,6 +1,9 @@
 extends Node
 
-const MUSIC_NIGHT1: AudioStream = preload("res://assets/audio/music_night1_low.mp3")
+const ALL_MUSIC: Array[AudioStream] = [
+	preload("res://assets/audio/music_night1.mp3"),
+	preload("res://assets/audio/music_night2.mp3")
+]
 
 var _player: AudioStreamPlayer
 
@@ -10,7 +13,7 @@ func _ready() -> void:
 	ScoreState.customers_all_done.connect(_on_customers_all_done)
 	ScoreState.day_changed.connect(_on_day_changed)
 
-func play(stream: AudioStream, loop: bool = true) -> void:
+func play(stream: AudioStream, loop: bool = false) -> void:
 	if stream == null:
 		return
 	if stream is AudioStreamMP3:
@@ -24,7 +27,7 @@ func stop_all() -> void:
 	_player.stream = null
 
 func _on_customers_all_done() -> void:
-	play(MUSIC_NIGHT1)
+	play(ALL_MUSIC.pick_random())
 
 func _on_day_changed(_day: int) -> void:
 	stop_all()

@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://b3bhqo52pygw1"]
+
+[ext_resource type="Texture2D" uid="uid://7tvux4xfadtb" path="res://assets/sprites/npc/noblesse.png" id="1_nggps"]
+
+[resource]
+transparency = 1
+albedo_texture = ExtResource("1_nggps")
+texture_filter = 0
+texture_repeat = false
+billboard_mode = 2

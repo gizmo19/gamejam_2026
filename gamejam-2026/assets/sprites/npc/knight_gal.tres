@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dcutwqywcmf0q"]
+
+[ext_resource type="Texture2D" uid="uid://ys3qc4sin6gc" path="res://assets/sprites/npc/knight_gal.png" id="1_p1weq"]
+
+[resource]
+transparency = 1
+albedo_texture = ExtResource("1_p1weq")
+texture_filter = 0
+texture_repeat = false
+billboard_mode = 2

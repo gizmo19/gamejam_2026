@@ -12,11 +12,19 @@ const TAKE_ORDER_TIME: float = 0.5
 const WALK_SPEED: float = 1.5
 const WALK_TO_BAR_SPEED: float = 1.0
 
+const SPRITE_MATERIALS: Array[Material] = [
+	preload("res://assets/sprites/npc/noblesse.tres"),
+	preload("res://assets/sprites/npc/noble.tres"),
+	preload("res://assets/sprites/npc/knight.tres"),
+	preload("res://assets/sprites/npc/knight_gal.tres"),
+]
+
 @onready var mover: NpcMover = $Mover
 @onready var interaction: NpcInteraction = $Interaction
 @onready var state_timer: Timer = $StateTimer
 @onready var countdown_label: Label3D = $CountdownLabel
 @onready var state_label: Label3D = $StateLabel
+@onready var sprite: MeshInstance3D = $Sprite
 
 var _time_left: float = 0.0
 var _order_taken: bool = false
@@ -98,6 +106,7 @@ func _take_order() -> void:
 
 func _ready() -> void:
 	order = [Order.CHICKEN, Order.SOUP, Order.BEER].pick_random()
+	sprite.material_override = SPRITE_MATERIALS.pick_random()
 	mover.navigation_finished.connect(_on_arrived)
 	interaction.interaction_requested.connect(_on_order_taken)
 	state_timer.timeout.connect(_on_timer_timeout)
@@ -168,11 +177,26 @@ func accept_delivery() -> void:
 	state_timer.start(_eating_duration())
 
 func _eating_duration() -> float:
+	var duration: float
 	match order:
-		Order.SOUP: return 12.0
-		Order.BEER: return 8.0
-		Order.CHICKEN: return 18.0
-	return 10.0
+		Order.SOUP: duration = 12.0
+		Order.BEER: duration = 8.0
+		Order.CHICKEN: duration = 18.0
+		_: duration = 10.0
+	if _is_last_customer_of_day():
+		duration *= 0.2
+	return duration
+
+func _is_last_customer_of_day() -> bool:
+	if not ScoreState.all_customers_arrived:
+		return false
+	var count := 0
+	for sibling in get_parent().get_children():
+		if sibling is Npc:
+			count += 1
+			if count > 1:
+				return false
+	return true
 
 func _on_order_taken() -> void:
 	if state == State.WAITING_AT_BAR and not _order_taken:

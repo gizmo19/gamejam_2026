@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bvww6bdnygbr2"]
+
+[ext_resource type="Texture2D" uid="uid://cr7gqrfxx283p" path="res://assets/sprites/npc/knight.png" id="1_ulqh2"]
+
+[resource]
+transparency = 1
+albedo_texture = ExtResource("1_ulqh2")
+texture_filter = 0
+texture_repeat = false
+billboard_mode = 2
