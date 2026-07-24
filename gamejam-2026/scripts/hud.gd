@@ -139,8 +139,9 @@ func _fade_from_black() -> void:
 	_fade_tween.tween_property(_fade_overlay, "modulate:a", 0.0, 0.8)
 
 func _refresh_scores() -> void:
-	_game_scores.text = "[b]Day %d[/b]   Dukats: %d / 1000\n[b]Served:[/b] %d\n[b]Left at table:[/b] %d\n[b]Left unserved:[/b] %d\n[b]Cleaned tables:[/b] %d\n[b]Dirty tables:[/b] %d" % [
+	_game_scores.text = "[b]Day %d / %s[/b]   Dukats: %d / 1000\n[b]Served:[/b] %d\n[b]Left at table:[/b] %d\n[b]Left unserved:[/b] %d\n[b]Cleaned tables:[/b] %d\n[b]Dirty tables:[/b] %d" % [
 		ScoreState.day,
+		ScoreState.get_phase_name(),
 		ScoreState.total_ducats,
 		ScoreState.served,
 		ScoreState.left_at_table,

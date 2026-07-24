@@ -71,6 +71,7 @@ func begin_ordering() -> void:
 	set_state(State.WAITING_AT_BAR)
 	_time_left = BAR_WAIT_TIME
 	_order_taken = false
+	_last_countdown = -1
 
 func wait_in_queue() -> void:
 	set_state(State.WAITING_IN_QUEUE)
@@ -116,7 +117,8 @@ func _process(delta: float) -> void:
 	match state:
 		State.WAITING_AT_BAR:
 			if _order_taken:
-				_set_countdown_visible(false)
+				# Leave the post-order reveal from _take_order() alone until state_timer fires.
+				pass
 			elif _time_left > 0.0:
 				_time_left = maxf(_time_left - delta, 0.0)
 				if _time_left == 0.0:
@@ -130,7 +132,9 @@ func _process(delta: float) -> void:
 				_set_countdown_visible(false)
 		State.SEATED:
 			if was_served:
-				_set_countdown_visible(false)
+				# Leave tip reveal from _on_timer_timeout alone while eating finishes / pays.
+				if not _eating_finished:
+					_set_countdown_visible(false)
 			elif _time_left > 0.0:
 				_time_left = maxf(_time_left - delta, 0.0)
 				if _time_left == 0.0:

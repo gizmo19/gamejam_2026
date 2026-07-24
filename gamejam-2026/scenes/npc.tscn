@@ -9,13 +9,6 @@
 radius = 0.35
 height = 1.7
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_1"]
-radius = 0.35
-height = 1.7
-
-[sub_resource type="StandardMaterial3D" id="Mat_npc"]
-albedo_color = Color(1, 0.5, 0.1, 1)
-
 [sub_resource type="SphereShape3D" id="SphereShape3D_interaction"]
 radius = 1.5
 
@@ -28,11 +21,6 @@ script = ExtResource("1_npc")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1071423630]
 shape = SubResource("CapsuleShape3D_body")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1554773894]
-visible = false
-mesh = SubResource("CapsuleMesh_1")
-surface_material_override/0 = SubResource("Mat_npc")
 
 [node name="Mover" type="Node" parent="." unique_id=1021602217]
 script = ExtResource("2_mover")
@@ -58,7 +46,7 @@ text = "Countdown Label"
 outline_size = 8
 
 [node name="StateLabel" type="Label3D" parent="." unique_id=711044438]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9540577, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.16920525, 0)
 pixel_size = 0.01
 billboard = 1
 texture_filter = 0

@@ -36,6 +36,7 @@
 [ext_resource type="PackedScene" uid="uid://bbe71xlhfqjam" path="res://assets/models/architecture/bottle.glb" id="37_bottle"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_uvkd1"]
+size = Vector3(1, 1, 0.9951172)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_stairs_col"]
 size = Vector3(3, 4, 2.5)
@@ -120,7 +121,7 @@ transform = Transform3D(-0.05131847, -0.0004321779, -1.1989021, 0.15532345, 1.38
 transform = Transform3D(-0.051318448, -0.00037044118, -1.1989021, 0.15532349, 1.1898848, -0.007016203, 1.1887984, -0.15548144, -0.050837904, 0.7814326, 5.0344963, -7.9038987)
 
 [node name="Wall19" parent="Decorative" unique_id=312214821 instance=ExtResource("21_wooden_wall")]
-transform = Transform3D(1.1969676, -0.09946382, -0.00036453028, 0.08525166, 1.3964434, -0.0062725726, 0.0008092428, 0.007269295, 1.1999836, 3.181916, 5.750821, -6.078739)
+transform = Transform3D(1.1923478, -0.13530278, 0, 0.13530278, 1.1923478, 0, 0, 0, 1.1999999, 3.0409377, 5.7508216, -6.0793223)
 
 [node name="Wall20" parent="Decorative" unique_id=1288758886 instance=ExtResource("21_wooden_wall")]
 transform = Transform3D(0.0008092281, 0.0072693, 1.1999836, 0.087695755, 1.3962374, -0.006273308, -1.196791, 0.10231524, 0.00035170553, 6.405675, 5.5888705, -3.479316)

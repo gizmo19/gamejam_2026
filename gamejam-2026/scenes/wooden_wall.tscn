@@ -9,7 +9,7 @@ size = Vector3(4.75, 5.6, 0.25)
 [node name="WoodenWall" type="StaticBody3D" unique_id=740100001]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=740100002]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 2.8, 0)
+transform = Transform3D(-4.3547374e-08, 0.08654718, 0.99624777, 3.7830974e-09, 0.99624777, -0.08654718, -1, 0, -4.371139e-08, -0.095769286, 2.8, 0)
 shape = SubResource("BoxShape3D_1")
 
 [node name="Mesh" type="MeshInstance3D" parent="." unique_id=740100003]
