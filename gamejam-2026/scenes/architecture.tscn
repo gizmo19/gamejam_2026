@@ -20,7 +20,6 @@
 [ext_resource type="PackedScene" uid="uid://cpillar202601" path="res://scenes/pillar.tscn" id="25_pillar"]
 [ext_resource type="PackedScene" uid="uid://clog20262601" path="res://assets/models/architecture/LOG.glb" id="26_log"]
 [ext_resource type="PackedScene" uid="uid://cramp20262601" path="res://scenes/ramp.tscn" id="27_ramp"]
-[ext_resource type="Script" uid="uid://c2tson2glkwgi" path="res://scripts/sleep_door.gd" id="27_xbe0c"]
 [ext_resource type="PackedScene" uid="uid://ccarpet202601" path="res://scenes/carpet.tscn" id="28_carpet"]
 [ext_resource type="PackedScene" uid="uid://ddqoelsh4i0gq" path="res://assets/models/architecture/small_stairs.glb" id="29_small_stairs"]
 [ext_resource type="PackedScene" uid="uid://b162lox3oijq3" path="res://assets/models/architecture/standing_shelf.glb" id="30_standing_shelf"]
@@ -393,8 +392,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 2)
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 4, -0.12894154, 0.69978774, -8.932688)
 shape = SubResource("BoxShape3D_uvkd1")
 
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Props/Barrel" unique_id=759082655]
+transform = Transform3D(-6.556708e-08, -1, 0, 1.5, -4.371139e-08, 0, 0, 0, 4, 4.7327137, -0.14045465, -0.42157888)
+shape = SubResource("BoxShape3D_uvkd1")
+
 [node name="Model" parent="Props/Barrel" unique_id=1952011509 instance=ExtResource("13_barrel_arch")]
 transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 1.262322, -0.26058507, -10.08803)
+
+[node name="Model6" parent="Props/Barrel" unique_id=645388215 instance=ExtResource("13_barrel_arch")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 4.888505, -0.9367775, 0.94741726)
+
+[node name="Model7" parent="Props/Barrel" unique_id=341343056 instance=ExtResource("13_barrel_arch")]
+transform = Transform3D(0.7, 0, 0, 0, 0.49497473, 0.49497473, 0, -0.49497473, 0.49497473, 4.800645, -0.66323006, 0.2528484)
+
+[node name="Model8" parent="Props/Barrel" unique_id=278925173 instance=ExtResource("13_barrel_arch")]
+transform = Transform3D(0.7, 0, 0, 0, -3.059797e-08, 0.7, 0, -0.7, -3.059797e-08, 5.0015373, 0.013908982, -0.874344)
 
 [node name="Model2" parent="Props/Barrel" unique_id=535008043 instance=ExtResource("13_barrel_arch")]
 transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 1.0987153, -0.26058507, -8.794186)
@@ -457,8 +469,32 @@ script = ExtResource("16_stairs_script")
 [node name="Model" parent="Props/Stairs" unique_id=777480255 instance=ExtResource("12_stairs")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 4.3122444, 0, 2.2646244)
 
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Props/Stairs" unique_id=402789627]
+transform = Transform3D(7.642742e-15, 4.371139e-08, 4, 4, -4.371139e-08, 0, 1.7484555e-07, 1, -1.7484555e-07, 2.9482694, 2.0914218, 3.712493)
+shape = SubResource("BoxShape3D_uvkd1")
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Props/Stairs" unique_id=692376490]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0.07702494, 1.9748614, 0.5)
+transform = Transform3D(-8.305164e-08, 0, 0.8, 0, 0.2, 0, -1.9, 0, -3.4969112e-08, 3.931642, 2.2899122, 0.5)
+shape = SubResource("BoxShape3D_stairs_col")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Props/Stairs" unique_id=1310529187]
+transform = Transform3D(-1.0167391, -0.00027296375, -0.24925704, -0.8100841, -0.00021749517, 0.3128433, -0.0022686152, 0.19999969, 1.8818383e-08, 1.2958198, 1.9831796, 0.80541086)
+shape = SubResource("BoxShape3D_stairs_col")
+
+[node name="CollisionShape3D7" type="CollisionShape3D" parent="Props/Stairs" unique_id=1460943895]
+transform = Transform3D(-1.0165424, 0.0041319504, -0.24919656, -0.8100841, -0.00021749512, 0.3128433, 0.020124875, 0.19995716, 0.0054897238, 1.7016683, 1.9831796, 3.534478)
+shape = SubResource("BoxShape3D_stairs_col")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="Props/Stairs" unique_id=1464689826]
+transform = Transform3D(1.017389, 0.0002731819, 0.24900587, -0.8092678, -0.00021730566, 0.31304327, 0.0022689572, -0.19999966, -1.0884392e-08, 1.2958198, 4.341382, 0.4246683)
+shape = SubResource("BoxShape3D_stairs_col")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="Props/Stairs" unique_id=5637433]
+transform = Transform3D(3.8146625e-11, -8.742265e-09, 0.4, -0.49999923, -0.00034907722, 0, 0.000872693, -0.19999969, -1.7484556e-08, -0.55447483, 5.717641, 0.4246683)
+shape = SubResource("BoxShape3D_stairs_col")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="Props/Stairs" unique_id=1416014180]
+transform = Transform3D(3.8146625e-11, -8.742265e-09, 0.4, -0.49999923, -0.00034907722, 0, 0.000872693, -0.19999969, -1.7484556e-08, 0.3142872, 0.46703625, 3.477027)
 shape = SubResource("BoxShape3D_stairs_col")
 
 [node name="Fireplace" parent="Props" unique_id=730100001 instance=ExtResource("18_fireplace")]
@@ -473,7 +509,10 @@ transform = Transform3D(1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 13.979566, -0.971725, 2.1
 [node name="Log" parent="Props" unique_id=1344336581 instance=ExtResource("26_log")]
 transform = Transform3D(0.44532484, 0.45469016, 0, -0.22734508, 0.8906497, 0, 0, 0, 1, 9.69707, -0.61198044, 4.025325)
 
-[node name="Log3" parent="Props" unique_id=1258374299 instance=ExtResource("26_log")]
+[node name="Log7" parent="Props" unique_id=1258374299 instance=ExtResource("26_log")]
+transform = Transform3D(0.2, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 10.1473, -0.79250515, -0.3530117)
+
+[node name="Log3" parent="Props" unique_id=835130139 instance=ExtResource("26_log")]
 transform = Transform3D(0.44532484, 0.45469016, 0, -0.22734508, 0.8906497, 0, 0, 0, 1, 9.69707, -0.61198044, 8.593274)
 
 [node name="Log2" parent="Props" unique_id=1125258775 instance=ExtResource("26_log")]
