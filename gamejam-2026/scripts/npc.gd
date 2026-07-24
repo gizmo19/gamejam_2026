@@ -10,6 +10,7 @@ const TABLE_WAIT_TIME: float = 45.0
 const TAKE_ORDER_TIME: float = 0.5
 
 const WALK_SPEED: float = 1.5
+const WALK_TO_BAR_SPEED: float = 1.0
 
 @onready var mover: NpcMover = $Mover
 @onready var interaction: NpcInteraction = $Interaction
@@ -141,8 +142,9 @@ func _physics_process(delta: float) -> void:
 	if v.length() > 0.1:
 		look_at(global_position + v, Vector3.UP)
 
-	velocity.x = v.x * WALK_SPEED
-	velocity.z = v.z * WALK_SPEED
+	var speed := WALK_TO_BAR_SPEED if state == State.WALKING_TO_BAR else WALK_SPEED
+	velocity.x = v.x * speed
+	velocity.z = v.z * speed
 	move_and_slide()
 
 func _on_arrived() -> void:

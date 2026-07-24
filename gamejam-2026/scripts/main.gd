@@ -7,11 +7,12 @@ const NPC_SCENE: PackedScene = preload("res://scenes/npc.tscn")
 @onready var _bar_queue: BarQueue = $Bar/BarQueue
 @onready var _npc_spawn_manager: NpcSpawnManager = $NpcSpawnManager
 
-@onready var _player: CharacterBody3D = $Player
+@onready var _player: Player = $Player
 @onready var _tutorial_table_clean: Node3D = $Tutorial/TableClean
 @onready var _tutorial_prepare_dish: Node3D = $Tutorial/PrepareDish
 @onready var _tutorial_eat: Node3D = $Tutorial/Eat
 @onready var _tutorial_open_doors: Node3D = $Tutorial/OpenDoors
+@onready var _tutorial_serve_customer: Node3D = $Tutorial/ServeCustomer
 
 var _active_npc_count: int = 0
 var _all_spawned: bool = false
@@ -24,6 +25,15 @@ func _ready() -> void:
 
 	_prepare_tutorial()
 
+func lock_player_controls() -> void:
+	_player.lock_controls()
+
+func unlock_player_controls() -> void:
+	_player.unlock_controls()
+
+func is_player_controls_locked() -> bool:
+	return _player.controls_locked
+
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ToggleFullscreen"):
 		var mode := DisplayServer.window_get_mode()
@@ -32,19 +42,21 @@ func _unhandled_input(event: InputEvent) -> void:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 		else:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+			if not is_player_controls_locked():
+				Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 	if event.is_action_pressed("Escape"):
-		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
-			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		else:
+		if is_player_controls_locked():
 			get_tree().quit()
+		else:
+			lock_player_controls()
 
 func _prepare_tutorial() -> void:
 	$Tables/L_3_2.cleaned.connect(_dismiss_tutorial_table_clean, CONNECT_ONE_SHOT)
 	_player.item_picked_up.connect(_dismiss_tutorial_prepare_dish, CONNECT_ONE_SHOT)
 	$Synek.fed.connect(_dismiss_tutorial_eat, CONNECT_ONE_SHOT)
 	$Architecture/Entrance.opened.connect(_dismiss_tutorial_open_doors, CONNECT_ONE_SHOT)
+	_tutorial_serve_customer.visible = false
 
 func _dismiss_tutorial_table_clean() -> void:
 	if is_instance_valid(_tutorial_table_clean):
@@ -61,6 +73,17 @@ func _dismiss_tutorial_eat() -> void:
 func _dismiss_tutorial_open_doors() -> void:
 	if is_instance_valid(_tutorial_open_doors):
 		_tutorial_open_doors.queue_free()
+
+func _show_tutorial_serve_customer(npc: Npc) -> void:
+	if not is_instance_valid(_tutorial_serve_customer):
+		return
+	_tutorial_serve_customer.visible = true
+	if not npc.order_given.is_connected(_dismiss_tutorial_serve_customer):
+		npc.order_given.connect(_dismiss_tutorial_serve_customer, CONNECT_ONE_SHOT)
+
+func _dismiss_tutorial_serve_customer() -> void:
+	if is_instance_valid(_tutorial_serve_customer):
+		_tutorial_serve_customer.queue_free()
 
 func _spawn_npc() -> void:
 	var npc: Npc = NPC_SCENE.instantiate()
@@ -121,7 +144,11 @@ func _on_queue_slot_reached(npc: Npc) -> void:
 	if _bar_queue.is_empty() or not _bar_queue.has(npc):
 		return
 	if _bar_queue.get_npc(0) == npc:
+		if _available_tables().is_empty():
+			_on_patience_expired(npc)
+			return
 		npc.begin_ordering()
+		_show_tutorial_serve_customer(npc)
 	else:
 		npc.wait_in_queue()
 
@@ -151,17 +178,22 @@ func _on_patience_expired(npc: Npc) -> void:
 
 	npc.leave(waypoints)
 
-func _provide_table(npc: Npc) -> void:
-	_bar_queue.erase(npc)
-
+func _available_tables() -> Array[Table]:
 	var available: Array[Table] = []
 	for node in tables.get_children():
 		var table := node as Table
 		if table == null or table.is_occupied or table.is_dirty:
 			continue
 		available.append(table)
+	return available
 
+func _provide_table(npc: Npc) -> void:
+	_bar_queue.erase(npc)
+
+	var available := _available_tables()
 	if available.is_empty():
+		# Tables filled while the order was being taken — leave unserved.
+		_on_patience_expired(npc)
 		return
 
 	var table: Table = available.pick_random()

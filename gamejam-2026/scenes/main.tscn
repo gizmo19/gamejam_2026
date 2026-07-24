@@ -112,3 +112,7 @@ in the KITCHEN
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.13689098, 2.5257213, 8.116911)
 text = "OPEN The Tavern
 let clients in!"
+
+[node name="ServeCustomer" parent="Tutorial" unique_id=815741127 instance=ExtResource("9_85g3d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.60416245, 2.4575918, -0.5966387)
+text = "See what customer wants"

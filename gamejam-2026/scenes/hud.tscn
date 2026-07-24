@@ -4,8 +4,12 @@
 [ext_resource type="Texture2D" uid="uid://cymp8s3pakibf" path="res://assets/sprites/hud/stamina.png" id="2_5ysmq"]
 [ext_resource type="Texture2D" uid="uid://b2ibtyxlmo0f6" path="res://assets/sprites/hud/pointer.png" id="2_oo0fn"]
 [ext_resource type="Texture2D" uid="uid://butyi0awtpmpt" path="res://assets/sprites/hud/popup_bubble.png" id="4_6fi6k"]
+[ext_resource type="Texture2D" uid="uid://0786kovyxro1" path="res://assets/sprites/npc/controls_interact.png" id="4_mphia"]
 [ext_resource type="Texture2D" uid="uid://bbgcfb7xn1nmm" path="res://assets/sprites/hud/paper.png" id="5_uo2fv"]
 [ext_resource type="StyleBox" uid="uid://chobmj7rdc7hr" path="res://assets/hud/button_background.tres" id="6_047uy"]
+[ext_resource type="Texture2D" uid="uid://dj554bwm0wjn7" path="res://assets/sprites/npc/son_icon.png" id="7_5pdws"]
+[ext_resource type="Texture2D" uid="uid://dhhb3loa52a6g" path="res://assets/sprites/npc/controls_keys.png" id="8_0i1j5"]
+[ext_resource type="Texture2D" uid="uid://r0h3wmdparsv" path="res://assets/sprites/npc/controls_pad.png" id="9_mphia"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6fi6k"]
 texture = ExtResource("2_5ysmq")
@@ -60,6 +64,15 @@ shadow_color = Color(0.37764, 0.54, 0.31860003, 0.5176471)
 shadow_size = 11
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_047uy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0m4u7"]
+bg_color = Color(0.055000015, 0.55, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_apjy4"]
+bg_color = Color(0.13999999, 0.44099993, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5n1hp"]
+bg_color = Color(0.91, 0, 0.1971667, 1)
 
 [node name="HUD" type="CanvasLayer" unique_id=1542318261]
 script = ExtResource("1_ahhtf")
@@ -161,6 +174,15 @@ scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_047uy")
 animation = &"pointer"
 frame_progress = 0.39857092
+
+[node name="InteractionHint" type="TextureRect" parent="PointerAnchor" unique_id=878883768]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 35.0
+offset_top = 9.0
+offset_right = 137.0
+offset_bottom = 56.0
+texture = ExtResource("4_mphia")
 
 [node name="ProgressBar" type="ProgressBar" parent="PointerAnchor" unique_id=563776073]
 unique_name_in_owner = true
@@ -265,13 +287,14 @@ horizontal_alignment = 1
 layout_mode = 2
 texture = ExtResource("2_5ysmq")
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=608134163]
+[node name="MenuOverlay" type="TextureRect" parent="." unique_id=608134163]
+unique_name_in_owner = true
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource("5_uo2fv")
 
-[node name="MarginContainer" type="MarginContainer" parent="TextureRect" unique_id=790040209]
+[node name="MarginContainer" type="MarginContainer" parent="MenuOverlay" unique_id=790040209]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -283,37 +306,332 @@ theme_override_constants/margin_top = 95
 theme_override_constants/margin_right = 337
 theme_override_constants/margin_bottom = 64
 
-[node name="MenuTabs" type="TabContainer" parent="TextureRect/MarginContainer" unique_id=1304070347]
+[node name="MenuTabs" type="TabContainer" parent="MenuOverlay/MarginContainer" unique_id=1304070347]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_047uy")
-current_tab = 4
+current_tab = 0
 tabs_visible = false
 
-[node name="MainMenu" type="TabBar" parent="TextureRect/MarginContainer/MenuTabs" unique_id=585437271]
-visible = false
+[node name="GameInit" type="TabBar" parent="MenuOverlay/MarginContainer/MenuTabs" unique_id=733724011]
 layout_mode = 2
 metadata/_tab_index = 0
 
-[node name="StartGame" type="TabBar" parent="TextureRect/MarginContainer/MenuTabs" unique_id=2143238496]
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuOverlay/MarginContainer/MenuTabs/GameInit" unique_id=218307504]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 40
+
+[node name="Label" type="Label" parent="MenuOverlay/MarginContainer/MenuTabs/GameInit/VBoxContainer" unique_id=1701191376]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 62
+text = "This game is First Person perspective
+Best experienced in FULLSCREEN mode:"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuOverlay/MarginContainer/MenuTabs/GameInit/VBoxContainer" unique_id=1059787147]
+layout_mode = 2
+theme_override_constants/margin_left = 250
+theme_override_constants/margin_right = 250
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuOverlay/MarginContainer/MenuTabs/GameInit/VBoxContainer/MarginContainer" unique_id=1403754852]
+layout_mode = 2
+theme_override_constants/separation = 59
+
+[node name="FullscreenButton" type="Button" parent="MenuOverlay/MarginContainer/MenuTabs/GameInit/VBoxContainer/MarginContainer/VBoxContainer" unique_id=490757113]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 88
+theme_override_styles/normal = ExtResource("6_047uy")
+theme_override_styles/pressed = ExtResource("6_047uy")
+text = "Go Fullscreen"
+
+[node name="DontFullscreenButton" type="Button" parent="MenuOverlay/MarginContainer/MenuTabs/GameInit/VBoxContainer/MarginContainer/VBoxContainer" unique_id=946986212]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = ExtResource("6_047uy")
+theme_override_styles/pressed = ExtResource("6_047uy")
+text = "stay like now"
+
+[node name="Label2" type="Label" parent="MenuOverlay/MarginContainer/MenuTabs/GameInit/VBoxContainer" unique_id=525397780]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 34
+text = "You can always use ALT+Enter to enable fullscreen again"
+horizontal_alignment = 1
+
+[node name="MainMenu" type="TabBar" parent="MenuOverlay/MarginContainer/MenuTabs" unique_id=585437271]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
-[node name="Options" type="TabBar" parent="TextureRect/MarginContainer/MenuTabs" unique_id=2060659727]
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuOverlay/MarginContainer/MenuTabs/MainMenu" unique_id=1895805604]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 40
+
+[node name="Label" type="Label" parent="MenuOverlay/MarginContainer/MenuTabs/MainMenu/VBoxContainer" unique_id=1416614434]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 62
+text = "Main Menu"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuOverlay/MarginContainer/MenuTabs/MainMenu/VBoxContainer" unique_id=54170788]
+layout_mode = 2
+theme_override_constants/margin_left = 250
+theme_override_constants/margin_right = 250
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuOverlay/MarginContainer/MenuTabs/MainMenu/VBoxContainer/MarginContainer" unique_id=1058976680]
+layout_mode = 2
+theme_override_constants/separation = 26
+
+[node name="StartGameButton" type="Button" parent="MenuOverlay/MarginContainer/MenuTabs/MainMenu/VBoxContainer/MarginContainer/VBoxContainer" unique_id=843590853]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 88
+theme_override_styles/normal = ExtResource("6_047uy")
+theme_override_styles/pressed = ExtResource("6_047uy")
+text = "Start Game"
+
+[node name="CreditsButton" type="Button" parent="MenuOverlay/MarginContainer/MenuTabs/MainMenu/VBoxContainer/MarginContainer/VBoxContainer" unique_id=1551117574]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = ExtResource("6_047uy")
+theme_override_styles/pressed = ExtResource("6_047uy")
+text = "Credits"
+
+[node name="LicensesButton" type="Button" parent="MenuOverlay/MarginContainer/MenuTabs/MainMenu/VBoxContainer/MarginContainer/VBoxContainer" unique_id=115712532]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = ExtResource("6_047uy")
+theme_override_styles/pressed = ExtResource("6_047uy")
+text = "Licenses"
+
+[node name="QuitButton" type="Button" parent="MenuOverlay/MarginContainer/MenuTabs/MainMenu/VBoxContainer/MarginContainer/VBoxContainer" unique_id=635544943]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = ExtResource("6_047uy")
+theme_override_styles/pressed = ExtResource("6_047uy")
+text = "Quit"
+
+[node name="Intro" type="TabBar" parent="MenuOverlay/MarginContainer/MenuTabs" unique_id=2143238496]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 2
 
-[node name="Credits" type="TabBar" parent="TextureRect/MarginContainer/MenuTabs" unique_id=816822636]
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuOverlay/MarginContainer/MenuTabs/Intro" unique_id=1622255602]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 40
+
+[node name="Label" type="Label" parent="MenuOverlay/MarginContainer/MenuTabs/Intro/VBoxContainer" unique_id=279127113]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 62
+text = "You work at tavern."
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MenuOverlay/MarginContainer/MenuTabs/Intro/VBoxContainer" unique_id=365321541]
+layout_mode = 2
+theme_override_constants/separation = 62
+alignment = 1
+
+[node name="Label2" type="Label" parent="MenuOverlay/MarginContainer/MenuTabs/Intro/VBoxContainer/HBoxContainer" unique_id=2098524173]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 62
+text = "You're saving money for your
+son's college education."
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="MenuOverlay/MarginContainer/MenuTabs/Intro/VBoxContainer/HBoxContainer" unique_id=1479335609]
+layout_mode = 2
+texture = ExtResource("7_5pdws")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuOverlay/MarginContainer/MenuTabs/Intro/VBoxContainer" unique_id=1016935887]
+layout_mode = 2
+theme_override_constants/margin_left = 250
+theme_override_constants/margin_right = 250
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuOverlay/MarginContainer/MenuTabs/Intro/VBoxContainer/MarginContainer" unique_id=1232392808]
+layout_mode = 2
+theme_override_constants/separation = 26
+
+[node name="IntroNextButton" type="Button" parent="MenuOverlay/MarginContainer/MenuTabs/Intro/VBoxContainer/MarginContainer/VBoxContainer" unique_id=1157030615]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 83
+theme_override_styles/normal = ExtResource("6_047uy")
+theme_override_styles/pressed = ExtResource("6_047uy")
+text = "Next"
+
+[node name="Start" type="TabBar" parent="MenuOverlay/MarginContainer/MenuTabs" unique_id=913939402]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 3
 
-[node name="Licenses" type="TabBar" parent="TextureRect/MarginContainer/MenuTabs" unique_id=1392940965]
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuOverlay/MarginContainer/MenuTabs/Start" unique_id=952325901]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 49
+
+[node name="Label" type="Label" parent="MenuOverlay/MarginContainer/MenuTabs/Start/VBoxContainer" unique_id=1090893875]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 62
+text = "Controls"
+horizontal_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MenuOverlay/MarginContainer/MenuTabs/Start/VBoxContainer" unique_id=783428164]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.86
+theme_override_constants/separation = 62
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuOverlay/MarginContainer/MenuTabs/Start/VBoxContainer/HBoxContainer2" unique_id=267671180]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Label" type="Label" parent="MenuOverlay/MarginContainer/MenuTabs/Start/VBoxContainer/HBoxContainer2/VBoxContainer" unique_id=1463576877]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 62
+text = "Keyboard"
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="MenuOverlay/MarginContainer/MenuTabs/Start/VBoxContainer/HBoxContainer2/VBoxContainer" unique_id=2011569628]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+texture = ExtResource("8_0i1j5")
+stretch_mode = 5
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MenuOverlay/MarginContainer/MenuTabs/Start/VBoxContainer/HBoxContainer2" unique_id=635462475]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label2" type="Label" parent="MenuOverlay/MarginContainer/MenuTabs/Start/VBoxContainer/HBoxContainer2/VBoxContainer2" unique_id=1935510873]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 62
+text = "Gamepad"
+horizontal_alignment = 1
+
+[node name="TextureRect2" type="TextureRect" parent="MenuOverlay/MarginContainer/MenuTabs/Start/VBoxContainer/HBoxContainer2/VBoxContainer2" unique_id=1295825181]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+texture = ExtResource("9_mphia")
+stretch_mode = 5
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="MenuOverlay/MarginContainer/MenuTabs/Start/VBoxContainer" unique_id=1401010116]
+layout_mode = 2
+theme_override_constants/separation = 36
+
+[node name="Label" type="Label" parent="MenuOverlay/MarginContainer/MenuTabs/Start/VBoxContainer/HBoxContainer3" unique_id=1178300899]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 41
+theme_override_styles/normal = SubResource("StyleBoxFlat_0m4u7")
+text = "WALK + SPRINT"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="MenuOverlay/MarginContainer/MenuTabs/Start/VBoxContainer/HBoxContainer3" unique_id=659951956]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 41
+theme_override_styles/normal = SubResource("StyleBoxFlat_apjy4")
+text = "HOLD to INTERACT"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="MenuOverlay/MarginContainer/MenuTabs/Start/VBoxContainer/HBoxContainer3" unique_id=474300563]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 41
+theme_override_styles/normal = SubResource("StyleBoxFlat_5n1hp")
+text = "DISCARD ITEM"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MenuOverlay/MarginContainer/MenuTabs/Start/VBoxContainer" unique_id=1439683118]
+layout_mode = 2
+theme_override_constants/separation = 62
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="MenuOverlay/MarginContainer/MenuTabs/Start/VBoxContainer/HBoxContainer" unique_id=806388301]
+layout_mode = 2
+texture = ExtResource("2_5ysmq")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Label2" type="Label" parent="MenuOverlay/MarginContainer/MenuTabs/Start/VBoxContainer/HBoxContainer" unique_id=1219094175]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 36
+text = "Be mindful of your Stamina,
+each action costs some energy"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuOverlay/MarginContainer/MenuTabs/Start/VBoxContainer" unique_id=1066808202]
+layout_mode = 2
+theme_override_constants/margin_left = 250
+theme_override_constants/margin_right = 250
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuOverlay/MarginContainer/MenuTabs/Start/VBoxContainer/MarginContainer" unique_id=1422677096]
+layout_mode = 2
+theme_override_constants/separation = 26
+
+[node name="PlayButton" type="Button" parent="MenuOverlay/MarginContainer/MenuTabs/Start/VBoxContainer/MarginContainer/VBoxContainer" unique_id=668104512]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 83
+theme_override_styles/normal = ExtResource("6_047uy")
+theme_override_styles/pressed = ExtResource("6_047uy")
+text = "Start"
+
+[node name="Credits" type="TabBar" parent="MenuOverlay/MarginContainer/MenuTabs" unique_id=816822636]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 4
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/MarginContainer/MenuTabs/Licenses" unique_id=867678648]
+[node name="VBoxContainer2" type="VBoxContainer" parent="MenuOverlay/MarginContainer/MenuTabs/Credits" unique_id=1834378015]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -321,13 +639,108 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="TextureRect/MarginContainer/MenuTabs/Licenses/VBoxContainer" unique_id=588701692]
+[node name="Label" type="Label" parent="MenuOverlay/MarginContainer/MenuTabs/Credits/VBoxContainer2" unique_id=972194354]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 40
-text = "Licenses"
+theme_override_font_sizes/font_size = 62
+text = "Credits"
+horizontal_alignment = 1
 
-[node name="RichTextLabel" type="RichTextLabel" parent="TextureRect/MarginContainer/MenuTabs/Licenses/VBoxContainer" unique_id=1256389424]
+[node name="Label2" type="Label" parent="MenuOverlay/MarginContainer/MenuTabs/Credits/VBoxContainer2" unique_id=806224638]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 62
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MenuOverlay/MarginContainer/MenuTabs/Credits/VBoxContainer2" unique_id=1163582376]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuOverlay/MarginContainer/MenuTabs/Credits/VBoxContainer2/HBoxContainer" unique_id=148269031]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label3" type="Label" parent="MenuOverlay/MarginContainer/MenuTabs/Credits/VBoxContainer2/HBoxContainer/VBoxContainer" unique_id=1738843172]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "Mateusz Hajduczek"
+horizontal_alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MenuOverlay/MarginContainer/MenuTabs/Credits/VBoxContainer2/HBoxContainer/VBoxContainer" unique_id=1119164255]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 40
+theme_override_font_sizes/bold_font_size = 40
+theme_override_font_sizes/bold_italics_font_size = 40
+theme_override_font_sizes/italics_font_size = 40
+theme_override_font_sizes/mono_font_size = 40
+text = "Programming
+Environment Design
+3D Modelling"
+horizontal_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MenuOverlay/MarginContainer/MenuTabs/Credits/VBoxContainer2/HBoxContainer" unique_id=881535081]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label4" type="Label" parent="MenuOverlay/MarginContainer/MenuTabs/Credits/VBoxContainer2/HBoxContainer/VBoxContainer2" unique_id=1094320813]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "Darek Greenly"
+horizontal_alignment = 1
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="MenuOverlay/MarginContainer/MenuTabs/Credits/VBoxContainer2/HBoxContainer/VBoxContainer2" unique_id=742568775]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 40
+theme_override_font_sizes/bold_font_size = 40
+theme_override_font_sizes/bold_italics_font_size = 40
+theme_override_font_sizes/italics_font_size = 40
+theme_override_font_sizes/mono_font_size = 40
+text = "Programming
+Sprite Drawing
+Music"
+horizontal_alignment = 1
+
+[node name="CreditsBack" type="Button" parent="MenuOverlay/MarginContainer/MenuTabs/Credits/VBoxContainer2" unique_id=1056470167]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = ExtResource("6_047uy")
+theme_override_styles/pressed = ExtResource("6_047uy")
+text = "Back"
+
+[node name="Licenses" type="TabBar" parent="MenuOverlay/MarginContainer/MenuTabs" unique_id=1392940965]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuOverlay/MarginContainer/MenuTabs/Licenses" unique_id=867678648]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="MenuOverlay/MarginContainer/MenuTabs/Licenses/VBoxContainer" unique_id=588701692]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 62
+text = "Licenses"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuOverlay/MarginContainer/MenuTabs/Licenses/VBoxContainer" unique_id=1393244159]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 159
+theme_override_constants/margin_right = 208
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MenuOverlay/MarginContainer/MenuTabs/Licenses/VBoxContainer/MarginContainer" unique_id=1256389424]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/default_color = Color(0, 0, 0, 1)
@@ -467,7 +880,8 @@ Kenney's Retro Textures Fantasy (1.0)
     • Instagram: instagram.com/kenney_nl
     • Mastodon:  mastodon.gamedev.place/@kenney"
 
-[node name="Button" type="Button" parent="TextureRect/MarginContainer/MenuTabs/Licenses/VBoxContainer" unique_id=1116542054]
+[node name="LicenseBack" type="Button" parent="MenuOverlay/MarginContainer/MenuTabs/Licenses/VBoxContainer" unique_id=1116542054]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
 theme_override_styles/normal = ExtResource("6_047uy")

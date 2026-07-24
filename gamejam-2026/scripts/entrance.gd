@@ -1,7 +1,7 @@
 extends Node3D
 
 const OPEN_DURATION: float = 1.0
-const CLOSE_DURATION: float = 3.0
+const CLOSE_DURATION: float = 1.5
 
 signal opened
 

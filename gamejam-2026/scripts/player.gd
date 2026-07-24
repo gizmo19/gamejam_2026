@@ -1,4 +1,5 @@
 extends CharacterBody3D
+class_name Player
 
 const SPEED: float = 4.0
 const SPRINT_SPEED: float = 8.0
@@ -17,6 +18,7 @@ signal item_picked_up(type: int)
 var pitch: float = 0.0
 var held_item: int = -1
 var stamina: float = 60.0
+var controls_locked: bool = false
 
 var _focused_pickup: PickupArea = null
 var _focused_target: Node = null
@@ -25,10 +27,27 @@ var _action_progress: float = 0.0
 
 func _ready() -> void:
 	add_to_group("player")
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	lock_controls()
 	_held_item_container.visible = false
 	_sync_stamina_hud()
 	ScoreState.day_changed.connect(_on_day_changed)
+
+func lock_controls() -> void:
+	controls_locked = true
+	velocity.x = 0.0
+	velocity.z = 0.0
+	_reset_action_progress()
+	if _focused_pickup:
+		_focused_pickup.set_focused(false)
+		_focused_pickup = null
+	_focused_target = null
+	_focused_action = null
+	hud.set_interact_hover(false)
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
+func unlock_controls() -> void:
+	controls_locked = false
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _on_day_changed(_day: int) -> void:
 	stamina = MAX_STAMINA
@@ -45,6 +64,8 @@ func clear_held_item() -> void:
 	_held_item_container.visible = false
 
 func _input(event: InputEvent) -> void:
+	if controls_locked:
+		return
 	if event is InputEventMouseMotion:
 		rotate_y(-event.relative.x * MOUSE_SENSITIVITY)
 		pitch -= event.relative.y * MOUSE_SENSITIVITY
@@ -57,6 +78,9 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
+	if controls_locked:
+		return
+
 	_update_item_interaction()
 	_update_interact_focus()
 	_update_action_progress(delta)
@@ -64,6 +88,11 @@ func _physics_process(delta: float) -> void:
 func _update_movement(delta: float) -> void:
 	if not is_on_floor():
 		velocity.y -= GRAVITY * delta
+
+	if controls_locked:
+		velocity.x = 0.0
+		velocity.z = 0.0
+		return
 
 	var look := Input.get_vector("LookLeft", "LookRight", "LookUp", "LookDown")
 	if look != Vector2.ZERO:
