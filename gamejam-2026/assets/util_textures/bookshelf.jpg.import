@@ -3,16 +3,12 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dnthecj4dtvhd"
-path.s3tc="res://.godot/imported/bookshelf.jpg-2874752cc0e9be63623db4bd98559705.s3tc.ctex"
-metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
-}
+valid=false
+generator_parameters={}
 
 [deps]
 
 source_file="res://assets/util_textures/bookshelf.jpg"
-dest_files=["res://.godot/imported/bookshelf.jpg-2874752cc0e9be63623db4bd98559705.s3tc.ctex"]
 
 [params]
 

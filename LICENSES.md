@@ -25,9 +25,9 @@ SOFTWARE.
 
 ## Audio
 
-- Coin drop
-  Vinrax
-  https://opengameart.org/content/coin-drop
+- Varkalandar
+Coin drop from opengameart.org
+https://opengameart.org/content/coin-sounds-0
 
 - DRAGON-STUDIO
 Door sounds effects from pixabay
@@ -35,6 +35,21 @@ Door sounds effects from pixabay
 - spookymodem
 Key jiggle
 https://opengameart.org/content/key-jiggle
+Yawning
+https://opengameart.org/content/yawn
+
+- TinyWorlds
+Chicken cutting
+https://opengameart.org/content/cut-peel-a-pumpkin
+
+- Arthur
+Beer and soup effect
+https://opengameart.org/content/running-water
+
+- PagDev and AntumDeluge
+Fireplace sound effects
+https://opengameart.org/content/fire-crackling
+https://opengameart.org/content/fireplace-sound-loop
 
 ## Textures
 
