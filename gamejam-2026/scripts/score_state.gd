@@ -34,9 +34,9 @@ var tables_left_dirty: int = 0
 var secret_found: bool = false
 
 const INIT_CROWNS: int = 53
-const RUSH_CROWN_THRESHOLD: int = 90
+const RUSH_CROWN_THRESHOLD: int = 54
 const WIN_CROWN_THRESHOLD: int = 100
-const RUSH_CUSTOMER_COUNT: int = 7
+const RUSH_CUSTOMER_COUNT: int = 5
 var total_crowns: int = INIT_CROWNS
 var game_over: bool = false
 var all_customers_arrived: bool = false

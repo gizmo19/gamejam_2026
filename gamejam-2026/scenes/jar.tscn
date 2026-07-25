@@ -66,13 +66,13 @@ mesh = SubResource("CylinderMesh_hrclp")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0)
 
 [node name="Crown" type="Node3D" parent="Top" unique_id=1605357177]
-transform = Transform3D(0.37271234, 0.07140883, -0.019653462, -0.07406387, 0.35955295, -0.09816426, 0.00014911503, 0.10011223, 0.3665754, 0.16246724, 0.12057364, 0.3257023)
+transform = Transform3D(0.37271234, 0.07140883, -0.019653462, -0.07406387, 0.35955295, -0.09816426, 0.00014911503, 0.10011223, 0.3665754, 0.16246724, 0.111314654, 0.3257023)
 
 [node name="crowns" parent="Top/Crown" unique_id=212269538 instance=ExtResource("4_rspsg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.1862048, 0)
 
 [node name="Crown5" type="Node3D" parent="Top" unique_id=2001721790]
-transform = Transform3D(0.20125392, 0.07465811, 0.31356505, -0.0482142, 0.3724802, -0.057740405, -0.318704, -0.00920474, 0.20674393, -0.18764018, 0.003949642, 0.3633157)
+transform = Transform3D(0.20256318, 0.06386277, 0.31510273, -0.042378113, 0.37448215, -0.0486547, -0.318704, -0.009204742, 0.20674391, -0.18764018, 0.025366366, 0.3633157)
 
 [node name="crowns" parent="Top/Crown5" unique_id=26002711 instance=ExtResource("4_rspsg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.1862048, 0)
@@ -84,21 +84,33 @@ transform = Transform3D(-0.3633698, -0.053690586, -0.09736366, -0.04800243, 0.37
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.1862048, 0)
 
 [node name="Crown2" type="Node3D" parent="Top" unique_id=1695917178]
-transform = Transform3D(-0.10985176, -0.133072, -0.33856225, -0.07841905, 0.35400978, -0.113699354, 0.3552225, 0.036999106, -0.12979996, -0.35048634, 0.18086398, 0.11229634)
+transform = Transform3D(-0.11161902, -0.121067695, -0.3424672, -0.0508202, 0.35995287, -0.11068548, 0.35966444, 0.013288549, -0.121921755, -0.35048634, 0.2308144, 0.11229634)
 
 [node name="crowns" parent="Top/Crown2" unique_id=1615015110 instance=ExtResource("4_rspsg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.1862048, 0)
 
 [node name="Crown3" type="Node3D" parent="Top" unique_id=1913328952]
-transform = Transform3D(-0.02591531, 0.054358725, 0.37519795, -0.13018215, 0.35193047, -0.059979588, -0.3560632, -0.13262755, -0.0053785406, -0.007676393, 0.06332016, -0.43657506)
+transform = Transform3D(-0.022370161, 0.002828098, 0.37933037, 0.01650716, 0.37963673, -0.0018569669, -0.37898165, 0.016368717, -0.022471627, 0.15273336, -0.0073684454, -0.42184365)
 
 [node name="crowns" parent="Top/Crown3" unique_id=1944629026 instance=ExtResource("4_rspsg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.1862048, 0)
 
+[node name="Crown7" type="Node3D" parent="Top" unique_id=222539851]
+transform = Transform3D(-0.3598516, -0.048964746, -0.11184446, 0.005300157, 0.34150928, -0.16656321, 0.121978074, -0.15929176, -0.3227188, -0.25325677, 0.16745538, -0.5269394)
+
+[node name="crowns" parent="Top/Crown7" unique_id=1899658032 instance=ExtResource("4_rspsg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.1862048, 0)
+
 [node name="Crown4" type="Node3D" parent="Top" unique_id=1542480076]
-transform = Transform3D(0.29304275, 0.1137558, 0.21350776, -0.070345074, 0.3609454, -0.09576003, -0.23146822, 0.034322534, 0.2994068, 0.39133364, 0.09315157, -0.09620339)
+transform = Transform3D(0.29304275, 0.11375581, 0.21350776, -0.061615933, 0.35940453, -0.10691996, -0.23394324, 0.047833253, 0.2956054, 0.39133364, 0.03709531, -0.09620339)
 
 [node name="crowns" parent="Top/Crown4" unique_id=1276577488 instance=ExtResource("4_rspsg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.1862048, 0)
+
+[node name="Crown8" type="Node3D" parent="Top" unique_id=856445467]
+transform = Transform3D(0.31770962, 0.20662163, 0.02771477, -0.20373604, 0.31844294, -0.038546376, -0.04418442, 0.017368592, 0.37702262, 0.5485446, 0.11221373, 0.1113562)
+
+[node name="crowns" parent="Top/Crown8" unique_id=1318154196 instance=ExtResource("4_rspsg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.1862048, 0)
 
 [node name="jar" parent="." unique_id=1250425792 instance=ExtResource("3_hqnpr")]

@@ -9,13 +9,12 @@ signal spawn_requested
 signal all_customers_spawned
 
 ## Fixed number of customers per day. Index 0 = day 1.
-# @export var customers_per_day: Array[int] = [3, 5, 7, 10, 12]
-@export var customers_per_day: Array[int] = [3, 5, 7, 10, 12] # Debugging
+@export var customers_per_day: Array[int] = [3, 5, 7, 10, 12]
 ## Index 0 = day 1. Days past the last entry reuse the final values.
-@export var interval_min_by_day: Array[float] = [9.0, 6.0, 5.0, 4.0]
-@export var interval_max_by_day: Array[float] = [16.0, 12.0, 10.0, 8.0]
+@export var interval_min_by_day: Array[float] = [9.0, 7.0, 5.0, 4.0]
+@export var interval_max_by_day: Array[float] = [16.0, 13.0, 11.0, 8.0]
 ## Cap how many NPCs may wait at the bar before new spawns are skipped.
-@export var max_in_queue_by_day: Array[int] = [1, 3, 5, 10]
+@export var max_in_queue_by_day: Array[int] = [1, 3, 5, 7]
 @export var initial_delay_seconds: float = 1.3
 
 var _bar_queue: BarQueue

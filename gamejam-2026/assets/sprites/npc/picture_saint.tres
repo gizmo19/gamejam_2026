@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://7q10tgwoa8ol"]
+
+[ext_resource type="Texture2D" uid="uid://bypd7x1vsjns2" path="res://assets/sprites/npc/picture_saint.png" id="1_ph01n"]
+
+[resource]
+albedo_texture = ExtResource("1_ph01n")
+texture_filter = 0

@@ -60,10 +60,11 @@ func _unhandled_input(event: InputEvent) -> void:
 				Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 	if event.is_action_pressed("Escape"):
-		if is_player_controls_locked():
-			get_tree().quit()
+		if _player.hud.is_menu_visible():
+			if _player.hud.has_started_game():
+				_player.hud.hide_main_menu()
 		else:
-			lock_player_controls()
+			_player.hud.show_main_menu()
 
 func _prepare_tutorial() -> void:
 	$Tables/L_3_2.cleaned.connect(_dismiss_tutorial_table_clean, CONNECT_ONE_SHOT)

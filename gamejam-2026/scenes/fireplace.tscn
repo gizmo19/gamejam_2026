@@ -31,16 +31,20 @@ transform = Transform3D(-0.186724, 0.11171687, -0.07452179, 0.08525433, -2.58278
 transform = Transform3D(0.021924693, -0.19942297, 0.1124713, 0.021747824, -0.110660955, -0.20045254, 0.22791746, 0.029742857, 0.008307859, -0.074160814, 0.5470141, 1.6290972)
 
 [node name="Fire" parent="." unique_id=889942811 instance=ExtResource("5_ng1xj")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -0.021485388, 1.2652137, 1.7580624)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -0.01972206, 1.2652137, 1.757888)
 
 [node name="FireplaceSfx" type="AudioStreamPlayer3D" parent="." unique_id=269370050]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.05086696, 1.1927671, 1.2883455)
 stream = ExtResource("6_fireplace_sfx")
-unit_size = 15.0
+volume_db = -2.04
+unit_size = 13.85
 autoplay = true
-max_distance = 15.0
+max_distance = 13.0
 
 [node name="Fire1Sfx" type="AudioStreamPlayer3D" parent="." unique_id=1649255713]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.20732307, 1.396418, 1.5323539)
 stream = ExtResource("7_fire1_sfx")
-volume_db = -20.51
+volume_db = -23.085
+max_db = 0.01
 autoplay = true
-max_distance = 10.2
+max_distance = 18.7

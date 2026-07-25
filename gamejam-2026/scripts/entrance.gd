@@ -47,6 +47,6 @@ func _refresh_sign() -> void:
 	_label_closed.visible = not is_open
 
 	if can_close:
-		_label_closed.text = "ZAMKNIJ"
+		_label_closed.text = "CLOSE TAVERN"
 	else:
-		_label_closed.text = "ZAMKNIĘTE"
+		_label_closed.text = "OPEN TAVERN"

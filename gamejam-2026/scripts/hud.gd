@@ -23,6 +23,7 @@ const STAMINA_RED_FILL: StyleBox = preload("res://resources/ui/stamina_red_fill.
 @onready var _fullscreen_button: Button = %FullscreenButton
 @onready var _dont_fullscreen_button: Button = %DontFullscreenButton
 @onready var _start_game_button: Button = %StartGameButton
+@onready var _resume_button: Button = %ResumeButton
 @onready var _credits_button: Button = %CreditsButton
 @onready var _licenses_button: Button = %LicensesButton
 @onready var _quit_button: Button = %QuitButton
@@ -36,6 +37,7 @@ const STAMINA_RED_FILL: StyleBox = preload("res://resources/ui/stamina_red_fill.
 var _fade_overlay: ColorRect
 var _fade_tween: Tween
 var _stamina_is_low: bool = false
+var _game_started: bool = false
 
 func _ready() -> void:
 	_progress_bar.value = 0.0
@@ -55,6 +57,7 @@ func _ready() -> void:
 	add_child(_fade_overlay)
 
 	_setup_menu()
+	_refresh_start_buttons()
 
 	ScoreState.changed.connect(_refresh_scores)
 	ScoreState.phase_changed.connect(_on_phase_changed)
@@ -75,6 +78,7 @@ func _setup_menu() -> void:
 	_fullscreen_button.pressed.connect(_on_fullscreen_pressed)
 	_dont_fullscreen_button.pressed.connect(func(): _menu_tabs.current_tab = MenuTab.MAIN_MENU)
 	_start_game_button.pressed.connect(func(): _menu_tabs.current_tab = MenuTab.INTRO)
+	_resume_button.pressed.connect(hide_main_menu)
 	_credits_button.pressed.connect(func(): _menu_tabs.current_tab = MenuTab.CREDITS)
 	_licenses_button.pressed.connect(func(): _menu_tabs.current_tab = MenuTab.LICENSES)
 	_quit_button.pressed.connect(func(): get_tree().quit())
@@ -84,15 +88,18 @@ func _setup_menu() -> void:
 	_credits_back_button.pressed.connect(func(): _menu_tabs.current_tab = MenuTab.MAIN_MENU)
 	_licenses_back_button.pressed.connect(func(): _menu_tabs.current_tab = MenuTab.MAIN_MENU)
 
+func _refresh_start_buttons() -> void:
+	_start_game_button.visible = not _game_started
+	_resume_button.visible = _game_started
+
 func _on_fullscreen_pressed() -> void:
 	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 	_menu_tabs.current_tab = MenuTab.MAIN_MENU
 
 func _on_play_pressed() -> void:
-	_menu_overlay.visible = false
-	var player := get_parent() as Player
-	if player:
-		player.unlock_controls()
+	_game_started = true
+	_refresh_start_buttons()
+	hide_main_menu()
 
 func _on_game_ended() -> void:
 	_end_stats.text = "[b]Money raised:[/b] %d\n[b]Days passed:[/b] %d\n[b]Customers served / left unserved:[/b] %d / %d\n[b]Tables cleaned / left dirty:[/b] %d / %d\n[b]Secret found:[/b] %s" % [
@@ -104,11 +111,32 @@ func _on_game_ended() -> void:
 		ScoreState.tables_left_dirty,
 		"YES" if ScoreState.secret_found else "no",
 	]
+	_game_started = false
+	_refresh_start_buttons()
 	_menu_tabs.current_tab = MenuTab.GAME_END
 	_menu_overlay.visible = true
 	var player := get_parent() as Player
 	if player:
 		player.lock_controls()
+
+func is_menu_visible() -> bool:
+	return _menu_overlay.visible
+
+func has_started_game() -> bool:
+	return _game_started
+
+func show_main_menu() -> void:
+	_menu_tabs.current_tab = MenuTab.MAIN_MENU
+	_menu_overlay.visible = true
+	var player := get_parent() as Player
+	if player:
+		player.lock_controls()
+
+func hide_main_menu() -> void:
+	_menu_overlay.visible = false
+	var player := get_parent() as Player
+	if player:
+		player.unlock_controls()
 
 func set_stamina(value: float) -> void:
 	_stamina_bar.value = value

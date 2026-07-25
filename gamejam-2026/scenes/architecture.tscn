@@ -33,11 +33,11 @@
 [ext_resource type="PackedScene" uid="uid://bbmnd74qummdd" path="res://assets/models/architecture/chest_empty.glb" id="35_chest_empty"]
 [ext_resource type="PackedScene" uid="uid://bb7h7hnrxvkbk" path="res://assets/models/architecture/crowns.glb" id="36_crowns"]
 [ext_resource type="PackedScene" uid="uid://bbe71xlhfqjam" path="res://assets/models/architecture/bottle.glb" id="37_bottle"]
+[ext_resource type="Material" uid="uid://7q10tgwoa8ol" path="res://assets/sprites/npc/picture_saint.tres" id="37_eanw5"]
 [ext_resource type="PackedScene" uid="uid://cpo815ke3dh0y" path="res://assets/models/food/bottle-oil.glb" id="38_bottle_oil"]
 [ext_resource type="PackedScene" uid="uid://pfvw0kscsvgu" path="res://assets/models/food/bag.glb" id="40_bag"]
 [ext_resource type="PackedScene" uid="uid://bts27dhfqgvgt" path="res://assets/wood_furniture/table.glb" id="40_h15ao"]
 [ext_resource type="PackedScene" uid="uid://dksy2culkj46l" path="res://assets/models/food/plate-broken.glb" id="41_plate_broken"]
-[ext_resource type="PackedScene" uid="uid://bxutgmx1r3igr" path="res://assets/models/architecture/malysz.glb" id="42_malysz"]
 [ext_resource type="PackedScene" uid="uid://k70jrblj8t8m" path="res://scenes/art_pope.tscn" id="43_papaj"]
 [ext_resource type="PackedScene" uid="uid://ccyua5tywv6ni" path="res://scenes/item.tscn" id="44_eanw5"]
 [ext_resource type="PackedScene" uid="uid://d2eckeh1d725f" path="res://assets/models/architecture/stojak.glb" id="44_stojak"]
@@ -74,6 +74,9 @@ size = Vector3(2, 1, 2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_standing_shelf"]
 size = Vector3(2.4, 3, 0.8)
+
+[sub_resource type="QuadMesh" id="QuadMesh_o8sc0"]
+size = Vector2(2.88, 2.07)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_x36ar"]
 size = Vector3(2.1357422, 0.8164673, 1.1953125)
@@ -781,20 +784,22 @@ transform = Transform3D(0.15621883, -0.0742154, -0.9849304, -0.4724973, 0.870060
 [node name="BrokenPlate" parent="." unique_id=1160100001 instance=ExtResource("41_plate_broken")]
 transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -3.2275739, 3.2762928, -3.0987542)
 
-[node name="Malysz" parent="." unique_id=1170200001 instance=ExtResource("42_malysz")]
-transform = Transform3D(0.5781964, 0, 0, 0, 0.5781964, 0, 0, 0, 1, -5.4999027, 1.5557706, -1.6921355)
+[node name="Log12" parent="." unique_id=428059084 instance=ExtResource("26_log")]
+transform = Transform3D(0.49191198, 2.6226033e-07, -0.00016209374, -0.00039856875, 0.00033468552, -0.20005544, 1.4660124e-08, 0.19999963, 0.00033477906, -5.488377, 1.5318153, -1.7606027)
 
-[node name="Log12" parent="Malysz" unique_id=428059084 instance=ExtResource("26_log")]
-transform = Transform3D(0.8507697, 4.5358348e-07, -0.00028034372, -0.0006893311, 0.000578844, -0.3459991, 1.4660124e-08, 0.19999963, 0.00033477906, 0.0199337, -0.04143119, -0.06846726)
+[node name="Log13" parent="." unique_id=1831676558 instance=ExtResource("26_log")]
+transform = Transform3D(0.48664036, 2.6226033e-07, -0.00016209358, -0.00039429744, 0.00033468552, -0.20005523, 1.45030175e-08, 0.19999963, 0.00033477874, -5.4935417, 2.8562472, -1.7708707)
 
-[node name="Log13" parent="Malysz" unique_id=1831676558 instance=ExtResource("26_log")]
-transform = Transform3D(0.84165233, 4.5358348e-07, -0.00028034346, -0.0006819438, 0.000578844, -0.34599873, 1.45030175e-08, 0.19999963, 0.00033477874, 0.011001587, 2.249195, -0.07873523)
+[node name="Log14" parent="." unique_id=1403708634 instance=ExtResource("26_log")]
+transform = Transform3D(0.0002496184, 0.20005676, -2.6633217e-07, 0.31093505, -0.0001606054, -0.00033178343, -0.00051551603, 0, -0.20011705, -4.6478424, 2.1780546, -1.7306737)
 
-[node name="Log14" parent="Malysz" unique_id=1403708634 instance=ExtResource("26_log")]
-transform = Transform3D(0.00043171906, 0.3460014, -4.6062578e-07, 0.5377672, -0.00027776964, -0.0005738248, -0.00051551603, 0, -0.20011705, 1.4736519, 1.0762501, -0.038538218)
+[node name="Log15" parent="." unique_id=1582454386 instance=ExtResource("26_log")]
+transform = Transform3D(0.00023576818, 0.20006618, -2.6635811e-07, 0.29368263, -0.00016061298, -0.00033181574, -0.00048691232, 0, -0.20013654, -6.462238, 2.2050416, -1.7079586)
 
-[node name="Log15" parent="Malysz" unique_id=1582454386 instance=ExtResource("26_log")]
-transform = Transform3D(0.00040776486, 0.3460177, -4.6067066e-07, 0.50792885, -0.00027778273, -0.0005738807, -0.00048691232, 0, -0.20013654, -1.6643744, 1.1229248, -0.015823126)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=17764827]
+transform = Transform3D(0.5781964, 0, 0, 0, 0.5781964, 0, 0, 0, 1, -5.4999027, 2.1961632, -1.6921355)
+material_override = ExtResource("37_eanw5")
+mesh = SubResource("QuadMesh_o8sc0")
 
 [node name="Papaj" parent="." unique_id=1180200001 instance=ExtResource("43_papaj")]
 transform = Transform3D(0.13626891, 0, -0.99067193, 0, 1, 0, 0.99067193, 0, 0.13626891, 20.635923, 0.39763415, 0.6418776)
