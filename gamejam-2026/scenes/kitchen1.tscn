@@ -5,15 +5,12 @@
 [ext_resource type="PackedScene" uid="uid://dudfrbyefmgrp" path="res://assets/models/food/cabbage.glb" id="3_3eefl"]
 [ext_resource type="PackedScene" uid="uid://df18eltxh6tvl" path="res://assets/models/food/cheese.glb" id="4_cqac3"]
 [ext_resource type="PackedScene" uid="uid://ucpi7x676oyl" path="res://assets/models/food/cooking-knife.glb" id="5_gg8ng"]
-[ext_resource type="PackedScene" uid="uid://b160ldq1oymlq" path="res://assets/models/food/cooking-spatula.glb" id="6_v227x"]
-[ext_resource type="PackedScene" uid="uid://yinedlmxom27" path="res://assets/models/food/cooking-spoon.glb" id="7_c87by"]
 [ext_resource type="PackedScene" uid="uid://c4fx621yopoxx" path="res://assets/models/food/cooking-fork.glb" id="8_gwxxv"]
 [ext_resource type="PackedScene" uid="uid://laslq107bcae" path="res://assets/models/food/eggplant.glb" id="9_xdsra"]
 [ext_resource type="PackedScene" uid="uid://bbew3n4whsmvt" path="res://assets/models/food/fish.glb" id="10_yvl1c"]
 [ext_resource type="PackedScene" uid="uid://g4y7t2s3jkg2" path="res://assets/models/food/frying-pan.glb" id="11_2rwu3"]
 [ext_resource type="PackedScene" uid="uid://gknyb3nwmtf4" path="res://assets/models/food/honey.glb" id="12_4v61m"]
 [ext_resource type="PackedScene" uid="uid://b3v5uko75yyx3" path="res://assets/models/food/leek.glb" id="13_7u5gg"]
-[ext_resource type="PackedScene" uid="uid://bqoyjmtxwvmns" path="res://assets/models/food/meat-sausage.glb" id="14_icra5"]
 [ext_resource type="PackedScene" uid="uid://c1r1b1x7bs70d" path="res://assets/models/food/mushroom.glb" id="15_rer2y"]
 [ext_resource type="PackedScene" uid="uid://c4r4f5gny0pbn" path="res://assets/models/food/mushroom-half.glb" id="16_0q05v"]
 [ext_resource type="PackedScene" uid="uid://rogxcfdmhx5r" path="res://assets/models/food/paprika.glb" id="17_8onbp"]
@@ -22,17 +19,20 @@
 [ext_resource type="PackedScene" uid="uid://cg83a3rpmmgeo" path="res://assets/models/food/sausage-half.glb" id="22_sausage_half"]
 [ext_resource type="PackedScene" uid="uid://cwyw6u3hcyy3f" path="res://assets/models/food/tomato.glb" id="23_tomato"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_3eefl"]
+size = Vector3(6.6418, 0.8261719, 1)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_1"]
-size = Vector3(2, 2.5, 1)
+size = Vector3(3.1049194, 0.9413452, 1.8632813)
 
 [node name="Kitchen1" type="StaticBody3D" unique_id=740000001]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=740000002]
-transform = Transform3D(3, 0, 0, 0, 0.5, 0, 0, 0, 1, 2.6250262, 0.636804, 1.7903163)
-shape = SubResource("BoxShape3D_1")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3205447, 0.48055398, 1.7903163)
+shape = SubResource("BoxShape3D_3eefl")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="." unique_id=630085285]
-transform = Transform3D(-6.556708e-08, 0, 1, 0, 0.5, 0, -1.5, 0, -4.371139e-08, 0.37739205, 0.636804, 0.46474123)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.05424857, 0.5118345, 0.5622449)
 shape = SubResource("BoxShape3D_1")
 
 [node name="Model" parent="." unique_id=740000003 instance=ExtResource("1_kitchen1_model")]
@@ -48,10 +48,6 @@ transform = Transform3D(0.16489495, 0.8885686, 0.42808357, -0.98321354, 0.182458
 
 [node name="CookingKnife" parent="." unique_id=244567287 instance=ExtResource("5_gg8ng")]
 transform = Transform3D(0.9355982, 0, 0.35306665, 0, 1, 0, -0.35306665, 0, 0.9355982, 0.26384783, 1.012553, -0.50477374)
-
-[node name="Spatula" parent="." unique_id=1941510577 instance=ExtResource("6_v227x")]
-
-[node name="Spoon" parent="." unique_id=1069560323 instance=ExtResource("7_c87by")]
 
 [node name="Fork" parent="." unique_id=910745057 instance=ExtResource("8_gwxxv")]
 
@@ -75,8 +71,6 @@ transform = Transform3D(0.5368579, -0.8436727, -3.6878106e-08, 0, -4.371139e-08,
 
 [node name="Leek2" parent="." unique_id=126924730 instance=ExtResource("13_7u5gg")]
 transform = Transform3D(-0.105455026, -0.985953, 0.12952244, 0.01377483, 0.12878789, 0.9915765, -0.99432874, 0.10635088, 4.648746e-09, 5.454714, 1.0435169, 1.5717834)
-
-[node name="MeatSausage" parent="." unique_id=1323510736 instance=ExtResource("14_icra5")]
 
 [node name="Mushroom" parent="." unique_id=1033000400 instance=ExtResource("15_rer2y")]
 transform = Transform3D(0.34655172, -0.67574877, 0.6505887, 0.8888579, 0.45817667, 0.0024242173, -0.2997227, 0.57744056, 0.75942653, 1.0542989, 1.0591956, 1.5060384)

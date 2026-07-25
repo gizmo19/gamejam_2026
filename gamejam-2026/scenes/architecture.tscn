@@ -57,7 +57,7 @@ size = Vector3(1.4959717, 1.9581299, 6.038208)
 size = Vector3(6.351082, 2.0610352, 1.2333984)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_s6fhi"]
-size = Vector3(8.225605, 0.37280273, 4.422119)
+size = Vector3(8.225605, 0.37280273, 4.796509)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_stairs_col"]
 size = Vector3(3, 4, 2.5)
@@ -82,7 +82,7 @@ size = Vector3(2.1357422, 0.8164673, 1.1953125)
 [node name="Decorative" type="Node3D" parent="." unique_id=290057102]
 
 [node name="Floor2" parent="Decorative" unique_id=750100001 instance=ExtResource("23_floor_wood")]
-transform = Transform3D(2.222, 0, 0, 0, 2, 0, 0, 0, 2.5, -1.9023027, -0.4030137, 0)
+transform = Transform3D(1.8104656, 0, 0, 0, 2, 0, 0, 0, 2.2270458, -0.11789131, -0.4030137, -1.3589478)
 
 [node name="Wall" parent="Decorative" unique_id=1253352099 instance=ExtResource("22_wooden_wall_window")]
 transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, -8.52798, 9.536743e-07, 6.631937)
@@ -163,7 +163,7 @@ transform = Transform3D(1.1923478, -0.13530278, 0, 0.13530278, 1.1923478, 0, 0, 
 transform = Transform3D(0.0006743567, 0.0051923566, 0.9999863, 0.0730798, 0.9973124, -0.0052277558, -0.99732584, 0.07308232, 0.00029308794, 5.641764, 5.5888705, -3.479316)
 
 [node name="Wall4" parent="Decorative" unique_id=961728696 instance=ExtResource("21_wooden_wall")]
-transform = Transform3D(-1.2, 0, 1.8119498e-07, 0, 1.5, 0, -1.8119498e-07, 0, -1.2, 8.724407, 9.536743e-07, -5.0264544)
+transform = Transform3D(-1, 0, 1.509958e-07, 0, 1, 0, -1.509958e-07, 0, -1, 8.540901, 2.5663369, -5.0264544)
 
 [node name="Wall21" parent="Decorative" unique_id=1807051245 instance=ExtResource("21_wooden_wall")]
 transform = Transform3D(-0.7400804, -0.9446063, 1.6030427e-07, -0.9446063, 0.7400804, 1.5007546e-07, -2.170002e-07, -3.363039e-08, -1.1999999, 4.89529, 10.637752, -5.77074)
@@ -210,11 +210,8 @@ transform = Transform3D(-1.1982429, -0.07573473, 1.8092965e-07, -0.06491548, 1.3
 [node name="Pillar18" parent="Decorative" unique_id=1310025062 instance=ExtResource("25_pillar")]
 transform = Transform3D(-1.2, 0, 1.8119498e-07, 0, 1.4, 0, -1.8119498e-07, 0, -1.2, 20.646, -0.797, -2.09)
 
-[node name="Pillar12" parent="Decorative" unique_id=1848210447 instance=ExtResource("25_pillar")]
-transform = Transform3D(1, 0, 0, 0, 1.2, 0, 0, 0, 1, 4.4383955, 0, -2.0164342)
-
 [node name="Pillar14" parent="Decorative" unique_id=847389350 instance=ExtResource("25_pillar")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1.2, 0, 1, 0, -4.371139e-08, 1.9308558, 0, -2.0164342)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 1.9308558, 0, -2.0164342)
 
 [node name="Pillar22" parent="Decorative" unique_id=804597335 instance=ExtResource("25_pillar")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1.2, 0, 1, 0, -4.371139e-08, 2.6930683, 5.6534815, -3.0604503)
@@ -586,7 +583,7 @@ transform = Transform3D(-4.371139e-08, 0.4336591, 0.90107703, 0, 0.90107703, -0.
 transform = Transform3D(-4.371139e-08, -0.4336591, -0.90107703, 0, 0.90107703, -0.4336591, 1, -1.8955841e-08, -3.9387327e-08, 3.836827, 1.6404645, -8.969655)
 
 [node name="Torch6" parent="Props" unique_id=203603760 instance=ExtResource("17_torch")]
-transform = Transform3D(-4.5307054e-08, 0.34067488, 0.9401812, -4.403651e-09, 0.9401812, -0.34067488, -1, -1.9575204e-08, -4.1096627e-08, 2.7145839, 7.8535147, -5.575349)
+transform = Transform3D(-4.5307054e-08, 0.34067488, 0.9401812, -4.403651e-09, 0.9401812, -0.34067488, -1, -1.9575204e-08, -4.1096627e-08, 2.7145839, 7.4642725, -5.3645597)
 
 [node name="Torch7" parent="Props" unique_id=1574114278 instance=ExtResource("17_torch")]
 transform = Transform3D(-4.371139e-08, -0.3403796, -0.9402881, 0, 0.9402881, -0.3403796, 1, -1.4878465e-08, -4.11013e-08, 8.522098, 5.096876, -5.575349)
@@ -602,7 +599,7 @@ script = ExtResource("16_stairs_script")
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 4.3122444, 0, 2.2646244)
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Props/Stairs" unique_id=402789627]
-transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 1, -4.371139e-08, 0, 4.371139e-08, 1, -4.371139e-08, 2.8166633, 4.0938206, 3.4694438)
+transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 1, -4.371139e-08, 0, 4.371139e-08, 1, -4.371139e-08, 2.6294684, 4.0938206, 3.4694438)
 shape = SubResource("BoxShape3D_s6fhi")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Props/Stairs" unique_id=692376490]
@@ -633,18 +630,6 @@ transform = Transform3D(1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 13.979566, -0.971725, 2.1
 
 [node name="Log" parent="Props" unique_id=1344336581 instance=ExtResource("26_log")]
 transform = Transform3D(0.44532484, 0.45469016, 0, -0.22734508, 0.8906497, 0, 0, 0, 1, 9.69707, -0.61198044, 4.025325)
-
-[node name="Log12" parent="Props" unique_id=428059084 instance=ExtResource("26_log")]
-transform = Transform3D(0.74999976, 2.6226044e-07, -0.00016204854, -0.00060768286, 0.00033468564, -0.19999966, 2.2351742e-08, 0.19999972, 0.00033468576, -5.509261, 1.2304604, -1.7606027)
-
-[node name="Log13" parent="Props" unique_id=1831676558 instance=ExtResource("26_log")]
-transform = Transform3D(0.74999976, 2.6226044e-07, -0.00016204854, -0.00060768286, 0.00033468564, -0.19999966, 2.2351742e-08, 0.19999972, 0.00033468576, -5.5032554, 3.2945251, -1.7708707)
-
-[node name="Log14" parent="Props" unique_id=1403708634 instance=ExtResource("26_log")]
-transform = Transform3D(0.00040139892, 0.19999993, -2.6617602e-07, 0.49999917, -0.00016055978, -0.00033158888, -0.0008289757, 0, -0.19999972, -4.13758, 2.2461052, -1.7306737)
-
-[node name="Log15" parent="Props" unique_id=1582454386 instance=ExtResource("26_log")]
-transform = Transform3D(0.00040139892, 0.19999993, -2.6617602e-07, 0.49999917, -0.00016055978, -0.00033158888, -0.0008289757, 0, -0.19999972, -7.016831, 2.2920508, -1.7079586)
 
 [node name="Log7" parent="Props" unique_id=1659375868 instance=ExtResource("26_log")]
 transform = Transform3D(0.2, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 10.1473, -0.79250515, -0.3530117)
@@ -797,7 +782,19 @@ transform = Transform3D(0.15621883, -0.0742154, -0.9849304, -0.4724973, 0.870060
 transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -3.2275739, 3.2762928, -3.0987542)
 
 [node name="Malysz" parent="." unique_id=1170200001 instance=ExtResource("42_malysz")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.4999027, 1.1905795, -1.6921355)
+transform = Transform3D(0.5781964, 0, 0, 0, 0.5781964, 0, 0, 0, 1, -5.4999027, 1.5557706, -1.6921355)
+
+[node name="Log12" parent="Malysz" unique_id=428059084 instance=ExtResource("26_log")]
+transform = Transform3D(0.8507697, 4.5358348e-07, -0.00028034372, -0.0006893311, 0.000578844, -0.3459991, 1.4660124e-08, 0.19999963, 0.00033477906, 0.0199337, -0.04143119, -0.06846726)
+
+[node name="Log13" parent="Malysz" unique_id=1831676558 instance=ExtResource("26_log")]
+transform = Transform3D(0.84165233, 4.5358348e-07, -0.00028034346, -0.0006819438, 0.000578844, -0.34599873, 1.45030175e-08, 0.19999963, 0.00033477874, 0.011001587, 2.249195, -0.07873523)
+
+[node name="Log14" parent="Malysz" unique_id=1403708634 instance=ExtResource("26_log")]
+transform = Transform3D(0.00043171906, 0.3460014, -4.6062578e-07, 0.5377672, -0.00027776964, -0.0005738248, -0.00051551603, 0, -0.20011705, 1.4736519, 1.0762501, -0.038538218)
+
+[node name="Log15" parent="Malysz" unique_id=1582454386 instance=ExtResource("26_log")]
+transform = Transform3D(0.00040776486, 0.3460177, -4.6067066e-07, 0.50792885, -0.00027778273, -0.0005738807, -0.00048691232, 0, -0.20013654, -1.6643744, 1.1229248, -0.015823126)
 
 [node name="Papaj" parent="." unique_id=1180200001 instance=ExtResource("43_papaj")]
 transform = Transform3D(0.13668379, 0, -0.99061465, 0, 1, 0, 0.99061465, 0, 0.13668379, 20.582333, 0.39763415, 0.6418776)

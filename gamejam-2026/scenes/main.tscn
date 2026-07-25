@@ -70,6 +70,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 8)
 [node name="Kitchen" parent="." unique_id=1801145263 instance=ExtResource("20_kitchen")]
 
 [node name="Architecture" parent="." unique_id=1426112326 instance=ExtResource("21_architecture")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0022363663, 1.1920929e-07, -0.00021529198)
 
 [node name="Entrance" parent="Architecture" unique_id=683576434 instance=ExtResource("8_choun")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9.486)
@@ -78,7 +79,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9.486)
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 4.3344703, 0.053358793, -7.1432776)
 
 [node name="Tutorial" type="Node3D" parent="." unique_id=1642103367]
-visible = false
 
 [node name="TableClean" parent="Tutorial" unique_id=371318544 instance=ExtResource("9_85g3d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.8415463, 1.7127837, 1.036017)
@@ -106,6 +106,7 @@ text = "See what customer wants"
 
 [node name="Vibe" type="Node3D" parent="." unique_id=433275077]
 script = ExtResource("11_eb6dy")
+phase = 2
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Vibe" unique_id=825138542]
 environment = ExtResource("11_ya4ey")
@@ -121,10 +122,9 @@ shadow_blur = 0.957
 [node name="SunMorning" type="DirectionalLight3D" parent="Vibe" unique_id=1184007777]
 transform = Transform3D(0.30403635, -0.3209622, -0.89696413, 0.9515761, 0.05741307, 0.3020035, -0.045434155, -0.94534993, 0.3228758, 1.6223656, 2.3776271, 1.5929428)
 visible = false
-light_color = Color(0.67270803, 0.66455156, 0.51646894, 1)
-light_energy = 5.554
+light_color = Color(0.6683022, 0.65432596, 0.44192904, 1)
+light_energy = 5.509
 shadow_enabled = true
-shadow_opacity = 0.98
 
 [node name="SunNoon" type="DirectionalLight3D" parent="Vibe" unique_id=1073187788]
 transform = Transform3D(-0.23193488, -0.78256404, 0.57775366, 0.8987241, 0.054843396, 0.43507114, -0.37215713, 0.6201494, 0.690589, 1.8885199, 2.3205516, 1.942518)

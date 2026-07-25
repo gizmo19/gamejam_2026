@@ -9,15 +9,31 @@
 size = Vector3(4.75, 5.6, 0.25)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6ocwb"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.8901961)
 albedo_texture = ExtResource("4_brgei")
-backlight = Color(0.2078627, 0.26180837, 0.40765974, 1)
 texture_filter = 0
 texture_repeat = false
+disable_receive_shadows = true
 grow_amount = 0.35
 proximity_fade_distance = 0.36
 
 [sub_resource type="QuadMesh" id="QuadMesh_d7jm4"]
 size = Vector2(2.77, 3.29)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_brgei"]
+shading_mode = 2
+disable_ambient_light = true
+albedo_color = Color(1, 1, 1, 0.015686275)
+emission_enabled = true
+emission = Color(0.82, 0.5056667, 0, 1)
+emission_energy_multiplier = 23.15
+texture_filter = 0
+disable_receive_shadows = true
+proximity_fade_enabled = true
+proximity_fade_distance = 0.3
+distance_fade_min_distance = 43.34
+distance_fade_max_distance = 0.0
 
 [node name="WoodenWallWindow" type="StaticBody3D" unique_id=740200001]
 
@@ -31,7 +47,7 @@ cast_shadow = 2
 mesh = ExtResource("1_wall_window_mesh")
 
 [node name="Log" parent="." unique_id=740200005 instance=ExtResource("4_log_model")]
-transform = Transform3D(0.078816615, -0.39805403, 0, 0.79610807, 0.039408308, 0, 0, 0, 0.3, -0.22656298, 2.0337098, -0.018554091)
+transform = Transform3D(0.078816615, -0.39805403, 0, 0.79610807, 0.039408308, 0, 0, 0, 0.3, -0.21066391, 2.0337098, -0.018554091)
 
 [node name="Log3" parent="." unique_id=1258374299 instance=ExtResource("4_log_model")]
 transform = Transform3D(0.07624909, -0.6943245, 0, 0.5951354, 0.08895727, 0, 0, 0, 0.29999998, -0.11022532, 1.9025614, -1.2249599)
@@ -52,10 +68,17 @@ transform = Transform3D(-0.00012918698, -0.6973517, -0.02607064, -0.13703816, 0.
 transform = Transform3D(-0.00016090098, -0.69734496, 0.026103264, -0.13395986, 0.047246747, 0.23014577, -0.16172422, -0.038441762, -0.19066088, 0.04861842, 3.298968, -0.926967)
 
 [node name="Log2" parent="." unique_id=900171882 instance=ExtResource("4_log_model")]
-transform = Transform3D(0.0042413957, -0.39998996, 9.801965e-05, 0.0021324502, 0.00014074509, 0.2999981, -0.5999813, -0.0028271116, 0.0010669448, -0.22656298, 2.2329826, -0.018554091)
+transform = Transform3D(0.0042413957, -0.39998996, 9.801965e-05, 0.0021324502, 0.00014074509, 0.2999981, -0.5999813, -0.0028271116, 0.0010669448, -0.19873977, 2.2329826, -0.018554091)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1073868664]
-transform = Transform3D(-4.3550855e-08, 0.0856256, 0.9963274, 3.7428136e-09, 0.9963274, -0.0856256, -1, 0, -4.371139e-08, -0.3335243, 2.1226652, -0.03049171)
+[node name="WindowGlass" type="MeshInstance3D" parent="." unique_id=1073868664]
+transform = Transform3D(-4.751175e-08, 0.09376003, 1.0909785, 4.098381e-09, 1.0909785, -0.09376003, -1.095, 1.510719e-11, -4.768819e-08, -0.46808106, 2.1647584, -0.040081978)
 material_override = SubResource("StandardMaterial3D_6ocwb")
+cast_shadow = 0
+mesh = SubResource("QuadMesh_d7jm4")
+
+[node name="WindowGlow" type="MeshInstance3D" parent="." unique_id=2144146867]
+transform = Transform3D(-4.3479762e-08, 0.1028099, 0.994701, 4.493963e-09, 0.994701, -0.1028099, -1, 0, -4.371139e-08, -0.22072333, 2.1226652, -0.021963477)
+visible = false
+material_override = SubResource("StandardMaterial3D_brgei")
 cast_shadow = 0
 mesh = SubResource("QuadMesh_d7jm4")

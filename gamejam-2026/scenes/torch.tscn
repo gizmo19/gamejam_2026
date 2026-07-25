@@ -10,5 +10,5 @@ transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 
 [node name="FireLight" parent="." unique_id=1840625153 instance=ExtResource("2_fire_light")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9450661, 0)
-light_energy = 1.625
+light_energy = 2.395
 omni_range = 3.2048638

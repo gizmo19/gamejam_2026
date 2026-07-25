@@ -1,3 +1,4 @@
+@tool
 extends Node3D
 
 const ENV_BY_PHASE: Dictionary = {
@@ -6,17 +7,21 @@ const ENV_BY_PHASE: Dictionary = {
 	ScoreState.Phase.NIGHT: preload("res://resources/env/env_night.tres"),
 }
 
-@onready var _world_environment: WorldEnvironment = $WorldEnvironment
-@onready var _sun_morning: DirectionalLight3D = $SunMorning
-@onready var _sun_noon: DirectionalLight3D = $SunNoon
-@onready var _sun_night: DirectionalLight3D = $SunNight
+@export var phase: ScoreState.Phase = ScoreState.Phase.MORNING:
+	set(value):
+		phase = value
+		if is_inside_tree():
+			_apply_phase(value)
 
 func _ready() -> void:
-	ScoreState.phase_changed.connect(_apply_phase)
-	_apply_phase(ScoreState.phase)
+	if Engine.is_editor_hint():
+		_apply_phase(phase)
+		return
+	ScoreState.phase_changed.connect(func(next: ScoreState.Phase) -> void: phase = next)
+	phase = ScoreState.phase
 
-func _apply_phase(phase: ScoreState.Phase) -> void:
-	_sun_morning.visible = phase == ScoreState.Phase.MORNING
-	_sun_noon.visible = phase == ScoreState.Phase.NOON
-	_sun_night.visible = phase == ScoreState.Phase.NIGHT
-	_world_environment.environment = ENV_BY_PHASE[phase]
+func _apply_phase(next_phase: ScoreState.Phase) -> void:
+	$SunMorning.visible = next_phase == ScoreState.Phase.MORNING
+	$SunNoon.visible = next_phase == ScoreState.Phase.NOON
+	$SunNight.visible = next_phase == ScoreState.Phase.NIGHT
+	$WorldEnvironment.environment = ENV_BY_PHASE[next_phase]
