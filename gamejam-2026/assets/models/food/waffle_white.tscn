@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://bsapck37heahv"]
+
+[ext_resource type="PackedScene" uid="uid://ihljo7x5yydh" path="res://assets/models/food/waffle.glb" id="1_vrs4i"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gap1s"]
+
+[node name="waffle2" unique_id=1758480428 instance=ExtResource("1_vrs4i")]
+
+[node name="waffle" parent="." index="0" unique_id=1128800258]
+material_override = SubResource("StandardMaterial3D_gap1s")

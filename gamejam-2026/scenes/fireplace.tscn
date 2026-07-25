@@ -2,19 +2,45 @@
 
 [ext_resource type="PackedScene" uid="uid://u8jdctn8i10c" path="res://assets/models/architecture/fireplace.glb" id="1_fireplace_model"]
 [ext_resource type="PackedScene" uid="uid://uooow8x62aij" path="res://scenes/fire_light.tscn" id="2_fire_light"]
-[ext_resource type="Script" path="res://scripts/fireplace_audio.gd" id="3_fireplace_audio"]
+[ext_resource type="PackedScene" uid="uid://clog20262601" path="res://assets/models/architecture/LOG.glb" id="4_ng1xj"]
+[ext_resource type="PackedScene" uid="uid://b3ft4kbftnjiy" path="res://scenes/fire.tscn" id="5_ng1xj"]
+[ext_resource type="AudioStream" uid="uid://d4f8rya6u1jqd" path="res://assets/audio/fireplace.wav" id="6_fireplace_sfx"]
+[ext_resource type="AudioStream" uid="uid://c4ur7esma4ovb" path="res://assets/audio/fire1.ogg" id="7_fire1_sfx"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1"]
-size = Vector3(2, 2.5, 1)
+size = Vector3(4.897461, 4.6502686, 3.0234375)
 
 [node name="Fireplace" type="StaticBody3D" unique_id=730100001]
-script = ExtResource("3_fireplace_audio")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=730100002]
-transform = Transform3D(2.9, 0, 0, 0, 1, 0, 0, 0, 2.5, 0.011855543, 1.25, 1.7083263)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.011855543, 2.3251343, 1.242506)
 shape = SubResource("BoxShape3D_1")
 
 [node name="Model" parent="." unique_id=730100003 instance=ExtResource("1_fireplace_model")]
 
 [node name="FireLight" parent="." unique_id=730100004 instance=ExtResource("2_fire_light")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 0.8, 1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03831461, 0.9931391, 1.6330609)
+
+[node name="Log9" parent="." unique_id=573824389 instance=ExtResource("4_ng1xj")]
+transform = Transform3D(0.16276842, 0.07202956, 0.14566466, 0.08525431, 0.13766627, -0.16333924, -0.13834071, 0.16958702, 0.0707256, -0.3145665, 0.62419343, 1.70264)
+
+[node name="Log10" parent="." unique_id=1243751648 instance=ExtResource("4_ng1xj")]
+transform = Transform3D(-0.186724, 0.11171687, -0.07452179, 0.08525433, -2.5827829e-08, -0.2136158, -0.10375862, -0.20104565, -0.041410178, -0.02946689, 0.62419343, 1.6831601)
+
+[node name="Log11" parent="." unique_id=1634416970 instance=ExtResource("4_ng1xj")]
+transform = Transform3D(0.021924693, -0.19942297, 0.1124713, 0.021747824, -0.110660955, -0.20045254, 0.22791746, 0.029742857, 0.008307859, -0.074160814, 0.5470141, 1.6290972)
+
+[node name="Fire" parent="." unique_id=889942811 instance=ExtResource("5_ng1xj")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -0.021485388, 1.2652137, 1.7580624)
+
+[node name="FireplaceSfx" type="AudioStreamPlayer3D" parent="." unique_id=269370050]
+stream = ExtResource("6_fireplace_sfx")
+unit_size = 15.0
+autoplay = true
+max_distance = 15.0
+
+[node name="Fire1Sfx" type="AudioStreamPlayer3D" parent="." unique_id=1649255713]
+stream = ExtResource("7_fire1_sfx")
+volume_db = -20.51
+autoplay = true
+max_distance = 10.2

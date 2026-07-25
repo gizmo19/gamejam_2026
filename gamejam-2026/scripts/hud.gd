@@ -2,9 +2,16 @@ extends CanvasLayer
 
 enum MenuTab {GAME_INIT, MAIN_MENU, INTRO, START, GAME_END, LICENSES, CREDITS}
 
+const STAMINA_BLUE_BG: StyleBox = preload("res://resources/ui/stamina_blue_bg.tres")
+const STAMINA_BLUE_FILL: StyleBox = preload("res://resources/ui/stamina_blue_fill.tres")
+const STAMINA_RED_BG: StyleBox = preload("res://resources/ui/stamina_red_bg.tres")
+const STAMINA_RED_FILL: StyleBox = preload("res://resources/ui/stamina_red_fill.tres")
+
 @onready var _progress_bar: ProgressBar = %ProgressBar
-@onready var _game_scores: RichTextLabel = %GameScores
+@onready var _day_label: RichTextLabel = %DayLabel
+@onready var _crowns_label: RichTextLabel = %CrownsLabel
 @onready var _stamina_bar: ProgressBar = %StaminaBar
+@onready var _stamina_popup: NinePatchRect = %StaminaPopup
 @onready var _pointer: AnimatedSprite2D = %Pointer
 @onready var _interaction_hint: TextureRect = %InteractionHint
 @onready var _stamina_cost_popup: NinePatchRect = %StaminaCostPopup
@@ -22,15 +29,18 @@ enum MenuTab {GAME_INIT, MAIN_MENU, INTRO, START, GAME_END, LICENSES, CREDITS}
 @onready var _intro_next_button: Button = %IntroNextButton
 @onready var _play_button: Button = %PlayButton
 @onready var _end_to_credits_button: Button = %EndToCredits
+@onready var _end_stats: RichTextLabel = %End
 @onready var _credits_back_button: Button = %CreditsBack
 @onready var _licenses_back_button: Button = %LicenseBack
 
 var _fade_overlay: ColorRect
 var _fade_tween: Tween
+var _stamina_is_low: bool = false
 
 func _ready() -> void:
 	_progress_bar.value = 0.0
 	_progress_bar.visible = false
+	_stamina_popup.visible = false
 	_stamina_cost_popup.visible = false
 	_notification_popup.visible = false
 	_interaction_hint.visible = false
@@ -51,6 +61,7 @@ func _ready() -> void:
 	ScoreState.day_changed.connect(_on_day_changed)
 	ScoreState.customers_all_arrived.connect(_on_customers_all_arrived)
 	ScoreState.customers_all_done.connect(_on_customers_all_done)
+	ScoreState.game_ended.connect(_on_game_ended)
 	ScoreState.screen_fade_in.connect(_fade_to_black)
 	ScoreState.screen_fade_out.connect(_fade_from_black)
 	_refresh_scores()
@@ -83,8 +94,35 @@ func _on_play_pressed() -> void:
 	if player:
 		player.unlock_controls()
 
+func _on_game_ended() -> void:
+	_end_stats.text = "[b]Money raised:[/b] %d\n[b]Days passed:[/b] %d\n[b]Customers served / left unserved:[/b] %d / %d\n[b]Tables cleaned / left dirty:[/b] %d / %d\n[b]Secret found:[/b] %s" % [
+		ScoreState.total_crowns,
+		ScoreState.day,
+		ScoreState.served,
+		ScoreState.left_unserved,
+		ScoreState.tables_cleaned,
+		ScoreState.tables_left_dirty,
+		"YES" if ScoreState.secret_found else "no",
+	]
+	_menu_tabs.current_tab = MenuTab.GAME_END
+	_menu_overlay.visible = true
+	var player := get_parent() as Player
+	if player:
+		player.lock_controls()
+
 func set_stamina(value: float) -> void:
 	_stamina_bar.value = value
+	var is_low := value < Player.STAMINA_LOW_THRESHOLD
+	_stamina_popup.visible = is_low
+	if is_low == _stamina_is_low:
+		return
+	_stamina_is_low = is_low
+	if is_low:
+		_stamina_bar.add_theme_stylebox_override("background", STAMINA_RED_BG)
+		_stamina_bar.add_theme_stylebox_override("fill", STAMINA_RED_FILL)
+	else:
+		_stamina_bar.add_theme_stylebox_override("background", STAMINA_BLUE_BG)
+		_stamina_bar.add_theme_stylebox_override("fill", STAMINA_BLUE_FILL)
 
 func set_interact_hover(hovering: bool, stamina_cost: float = 0.0) -> void:
 	var anim := &"interaction" if hovering else &"pointer"
@@ -141,13 +179,8 @@ func _fade_from_black() -> void:
 	_fade_tween.tween_property(_fade_overlay, "modulate:a", 0.0, 0.8)
 
 func _refresh_scores() -> void:
-	_game_scores.text = "[b]Day %d / %s[/b]   Dukats: %d / 1000\n[b]Served:[/b] %d\n[b]Left at table:[/b] %d\n[b]Left unserved:[/b] %d\n[b]Cleaned tables:[/b] %d\n[b]Dirty tables:[/b] %d" % [
+	_day_label.text = "[b]Day %d / %s[/b]" % [
 		ScoreState.day,
 		ScoreState.get_phase_name(),
-		ScoreState.total_ducats,
-		ScoreState.served,
-		ScoreState.left_at_table,
-		ScoreState.left_unserved,
-		ScoreState.tables_cleaned,
-		ScoreState.tables_left_dirty,
 	]
+	_crowns_label.text = "Crowns: %d / %d" % [ScoreState.total_crowns, ScoreState.WIN_CROWN_THRESHOLD]

@@ -3,7 +3,9 @@
 [ext_resource type="Script" uid="uid://c8k4nm5u4owta" path="res://scripts/hud.gd" id="1_ahhtf"]
 [ext_resource type="Texture2D" uid="uid://cymp8s3pakibf" path="res://assets/sprites/hud/stamina.png" id="2_5ysmq"]
 [ext_resource type="Texture2D" uid="uid://b2ibtyxlmo0f6" path="res://assets/sprites/hud/pointer.png" id="2_oo0fn"]
+[ext_resource type="StyleBox" uid="uid://cjic0xmv2r4bo" path="res://resources/ui/stamina_blue_bg.tres" id="3_5n1hp"]
 [ext_resource type="Texture2D" uid="uid://butyi0awtpmpt" path="res://assets/sprites/hud/popup_bubble.png" id="4_6fi6k"]
+[ext_resource type="StyleBox" uid="uid://dayatsrlgqjvk" path="res://resources/ui/stamina_blue_fill.tres" id="4_eld54"]
 [ext_resource type="Texture2D" uid="uid://0786kovyxro1" path="res://assets/sprites/npc/controls_interact.png" id="4_mphia"]
 [ext_resource type="Texture2D" uid="uid://bbgcfb7xn1nmm" path="res://assets/sprites/hud/paper.png" id="5_uo2fv"]
 [ext_resource type="StyleBox" uid="uid://chobmj7rdc7hr" path="res://assets/hud/button_background.tres" id="6_047uy"]
@@ -11,15 +13,10 @@
 [ext_resource type="Texture2D" uid="uid://dhhb3loa52a6g" path="res://assets/sprites/npc/controls_keys.png" id="8_0i1j5"]
 [ext_resource type="Texture2D" uid="uid://r0h3wmdparsv" path="res://assets/sprites/npc/controls_pad.png" id="9_mphia"]
 [ext_resource type="Texture2D" uid="uid://dky3t7egjl2ph" path="res://assets/sprites/npc/synek_educated.png" id="11_0m4u7"]
+[ext_resource type="PackedScene" uid="uid://g0gl6jqa1bku" path="res://scenes/crown_hud_icon.tscn" id="13_crownhud"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6fi6k"]
 texture = ExtResource("2_5ysmq")
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ahhtf"]
-bg_color = Color(0.15553045, 0.20647529, 0.3091691, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oo0fn"]
-bg_color = Color(0.21690094, 0.4505924, 0.82868224, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5ysmq"]
 atlas = ExtResource("2_oo0fn")
@@ -96,8 +93,57 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 43
 
-[node name="GameScores" type="RichTextLabel" parent="VBoxContainer/MarginContainer" unique_id=1990576959]
+[node name="ScoresColumn" type="VBoxContainer" parent="VBoxContainer/MarginContainer" unique_id=522153309]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="DayLabel" type="RichTextLabel" parent="VBoxContainer/MarginContainer/ScoresColumn" unique_id=522153311]
 unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/normal_font_size = 32
+theme_override_font_sizes/bold_font_size = 32
+bbcode_enabled = true
+text = "Day [b]1[/b] / Morning"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="ScoresHeader" type="HBoxContainer" parent="VBoxContainer/MarginContainer/ScoresColumn" unique_id=522153310]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="CrownIcon" type="SubViewportContainer" parent="VBoxContainer/MarginContainer/ScoresColumn/ScoresHeader" unique_id=522153312]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="VBoxContainer/MarginContainer/ScoresColumn/ScoresHeader/CrownIcon" unique_id=522153313]
+own_world_3d = true
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(36, 36)
+render_target_update_mode = 4
+
+[node name="CrownHudIcon" parent="VBoxContainer/MarginContainer/ScoresColumn/ScoresHeader/CrownIcon/SubViewport" unique_id=522153316 instance=ExtResource("13_crownhud")]
+
+[node name="CrownsLabel" type="RichTextLabel" parent="VBoxContainer/MarginContainer/ScoresColumn/ScoresHeader" unique_id=522153317]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/normal_font_size = 32
+theme_override_font_sizes/bold_font_size = 32
+bbcode_enabled = true
+text = "Crowns: 0 / 100"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="GameScores" type="RichTextLabel" parent="VBoxContainer/MarginContainer/ScoresColumn" unique_id=1990576959]
+unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -112,11 +158,13 @@ tab_size = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=1260500861]
 layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.13
 
 [node name="BoxContainer2" type="BoxContainer" parent="VBoxContainer/HBoxContainer" unique_id=2143262880]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.2
+size_flags_stretch_ratio = 0.1
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer" unique_id=614198611]
 layout_mode = 2
@@ -147,15 +195,50 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 theme_override_font_sizes/font_size = 30
-theme_override_styles/background = SubResource("StyleBoxFlat_ahhtf")
-theme_override_styles/fill = SubResource("StyleBoxFlat_oo0fn")
+theme_override_styles/background = ExtResource("3_5n1hp")
+theme_override_styles/fill = ExtResource("4_eld54")
 step = 0.1
 value = 79.1
 
 [node name="BoxContainer" type="BoxContainer" parent="VBoxContainer/HBoxContainer" unique_id=2036253012]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 1.85
+size_flags_stretch_ratio = 1.35
+
+[node name="StaminaPopup" type="NinePatchRect" parent="VBoxContainer/HBoxContainer/BoxContainer" unique_id=770230113]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(598.435, 74.755)
+layout_mode = 2
+size_flags_vertical = 0
+texture = ExtResource("4_6fi6k")
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 15
+patch_margin_bottom = 15
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer/BoxContainer/StaminaPopup" unique_id=1201854767]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/BoxContainer/StaminaPopup/MarginContainer" unique_id=285783136]
+layout_mode = 2
+alignment = 1
+
+[node name="NotificationLabel" type="Label" parent="VBoxContainer/HBoxContainer/BoxContainer/StaminaPopup/MarginContainer/HBoxContainer" unique_id=113478057]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(0.15, 0.1, 0.05, 1)
+theme_override_font_sizes/font_size = 18
+text = "You're out of STAMINA, Eat something with your Son!"
+horizontal_alignment = 1
 
 [node name="PointerAnchor" type="Control" parent="." unique_id=1993823263]
 layout_mode = 3
@@ -311,7 +394,7 @@ theme_override_constants/margin_bottom = 64
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_047uy")
-current_tab = 6
+current_tab = 1
 tabs_visible = false
 
 [node name="GameInit" type="TabBar" parent="MenuOverlay/MarginContainer/MenuTabs" unique_id=733724011]
@@ -371,7 +454,6 @@ text = "You can always use ALT+Enter to enable fullscreen again"
 horizontal_alignment = 1
 
 [node name="MainMenu" type="TabBar" parent="MenuOverlay/MarginContainer/MenuTabs" unique_id=585437271]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
@@ -680,6 +762,7 @@ theme_override_font_sizes/font_size = 53
 text = "Stats:"
 
 [node name="End" type="RichTextLabel" parent="MenuOverlay/MarginContainer/MenuTabs/GameEnd/VBoxContainer2/HBoxContainer/VBoxContainer" unique_id=975139054]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -876,6 +959,7 @@ theme_override_styles/pressed = ExtResource("6_047uy")
 text = "Back"
 
 [node name="Credits" type="TabBar" parent="MenuOverlay/MarginContainer/MenuTabs" unique_id=409617785]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 6
 

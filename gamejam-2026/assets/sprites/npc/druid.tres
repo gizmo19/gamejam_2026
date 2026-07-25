@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cj71myrc2yxl2"]
+
+[ext_resource type="Texture2D" uid="uid://div38mkvej7df" path="res://assets/sprites/npc/druid.png" id="1_avryy"]
+
+[resource]
+transparency = 1
+albedo_texture = ExtResource("1_avryy")
+texture_filter = 0
+texture_repeat = false
+billboard_mode = 2

@@ -10,18 +10,13 @@
 [ext_resource type="PackedScene" uid="uid://c552l74egqfpn" path="res://assets/models/food/whipped-cream.glb" id="6_5vp5n"]
 [ext_resource type="PackedScene" uid="uid://cd8r75u4tq4iv" path="res://assets/models/food/whole-ham.glb" id="6_j134a"]
 [ext_resource type="PackedScene" uid="uid://b3yu86odng6y" path="res://assets/models/food/popsicle-stick.glb" id="7_2xo3q"]
+[ext_resource type="PackedScene" uid="uid://kqju7jna3egg" path="res://assets/models/kremowka.tscn" id="11_2xo3q"]
+[ext_resource type="PackedScene" uid="uid://ctwwf77awhbw6" path="res://assets/models/food/plate.glb" id="12_3l6h1"]
+[ext_resource type="PackedScene" uid="uid://chdfvh0w15x3b" path="res://assets/models/food/utensil-fork.glb" id="13_ngcwe"]
 
 [node name="Item" type="Node3D" unique_id=2009337387]
 script = ExtResource("1_item")
 empty = true
-
-[node name="Label3D" type="Label3D" parent="." unique_id=1998130123]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.58785, 0)
-pixel_size = 0.008
-billboard = 1
-text = "Soup"
-font_size = 20
-outline_size = 6
 
 [node name="Mesh" type="Node3D" parent="." unique_id=1409187282]
 
@@ -50,6 +45,7 @@ transform = Transform3D(0.56090444, -0.026190802, -0.44861317, -2.8050605e-16, 0
 transform = Transform3D(-4.231066e-08, 0.96795505, 0.25112343, -1, -4.371139e-08, 0, 1.0976954e-08, -0.25112343, 0.96795505, -0.20941198, 0.08804989, 0.10921693)
 
 [node name="Chicken" type="Node3D" parent="Mesh" unique_id=1804203005]
+visible = false
 
 [node name="plate-rectangle" parent="Mesh/Chicken" unique_id=883399234 instance=ExtResource("3_ro5b8")]
 transform = Transform3D(0.8660254, 0, 0.5, 0, 1, 0, -0.5, 0, 0.8660254, 0, 0, 0)
@@ -73,3 +69,14 @@ visible = false
 
 [node name="whipped-cream2" parent="Mesh/Beer" unique_id=1265984764 instance=ExtResource("6_5vp5n")]
 transform = Transform3D(1.4604175, 0, 0, 0, 0.51181805, 0, 0, 0, 1.3131531, 0.0033446625, 0.22279419, 0.002311319)
+
+[node name="Kremowka" parent="Mesh" unique_id=64867161 instance=ExtResource("11_2xo3q")]
+visible = false
+
+[node name="KremowkaEmpty" type="Node3D" parent="Mesh" unique_id=1773550701]
+
+[node name="plate2" parent="Mesh/KremowkaEmpty" unique_id=975279323 instance=ExtResource("12_3l6h1")]
+transform = Transform3D(0.775, 0, 0, 0, 0.775, 0, 0, 0, 0.775, 0, 0, 0)
+
+[node name="utensil-fork2" parent="Mesh/KremowkaEmpty" unique_id=1198520812 instance=ExtResource("13_ngcwe")]
+transform = Transform3D(0.8737438, -0.09272843, -0.47746548, 0.10553505, 0.9944155, -3.7252903e-09, 0.4747991, -0.05038938, 0.8786504, 0.12188089, 0.06704398, 0.07185373)

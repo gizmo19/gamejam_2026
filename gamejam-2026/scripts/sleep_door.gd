@@ -1,6 +1,7 @@
 extends Node3D
 
 const SLEEP_DURATION: float = 1.0
+const STAMINA_RESTORE: float = 35.0
 const YAWN_SFX: AudioStream = preload("res://assets/audio/Yawn.wav")
 
 @onready var _label: Label3D = %LabelSleep
@@ -22,7 +23,7 @@ func get_look_action(_player: Node) -> LookAction:
 		_used_this_night = true
 		_refresh_label()
 		ScoreState.start_day_transition()
-	, 0.0)
+	, -STAMINA_RESTORE)
 
 func _on_phase_changed(phase: ScoreState.Phase) -> void:
 	if phase == ScoreState.Phase.NIGHT:

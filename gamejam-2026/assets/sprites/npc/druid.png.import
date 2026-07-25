@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ddrxmeopqsk3p"
-path.s3tc="res://.godot/imported/metal_02_metallic_1k.png-9d2465d39c0edfe80bef69d05073a590.s3tc.ctex"
+uid="uid://div38mkvej7df"
+path.s3tc="res://.godot/imported/druid.png-9bdb8ba838d4deb16a49dd30800d21be.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/metal_textures/metal_02_1k/metal_02_metallic_1k.png"
-dest_files=["res://.godot/imported/metal_02_metallic_1k.png-9d2465d39c0edfe80bef69d05073a590.s3tc.ctex"]
+source_file="res://assets/sprites/npc/druid.png"
+dest_files=["res://.godot/imported/druid.png-9bdb8ba838d4deb16a49dd30800d21be.s3tc.ctex"]
 
 [params]
 

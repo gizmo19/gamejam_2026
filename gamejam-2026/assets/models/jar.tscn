@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://g8ycdk3g6sjb"]
+
+[ext_resource type="PackedScene" uid="uid://c4qf5vhkp1dg2" path="res://assets/models/architecture/jar.glb" id="1_b14rq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k2pwk"]
+transparency = 4
+albedo_color = Color(0.53462076, 0.7421376, 0.86990994, 0.41960785)
+disable_receive_shadows = true
+
+[node name="jar" unique_id=1250425792 instance=ExtResource("1_b14rq")]
+
+[node name="Circle" parent="." index="0" unique_id=959104904]
+material_override = SubResource("StandardMaterial3D_k2pwk")

@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://b3ft4kbftnjiy"]
+
+[ext_resource type="Texture2D" uid="uid://mkp85x3thbs8" path="res://assets/sprites/fx/fire.png" id="1_52nqi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ng1xj"]
+atlas = ExtResource("1_52nqi")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2g5uf"]
+atlas = ExtResource("1_52nqi")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ydtw1"]
+atlas = ExtResource("1_52nqi")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2g5uf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ng1xj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2g5uf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ydtw1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_ng1xj"]
+viewport_path = NodePath("SubViewport")
+
+[node name="Node3D" type="Node3D" unique_id=1555575156]
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=658177378]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(128, 128)
+render_target_update_mode = 4
+
+[node name="Sprite" type="AnimatedSprite2D" parent="SubViewport" unique_id=522931029]
+position = Vector2(64, 64)
+sprite_frames = SubResource("SpriteFrames_2g5uf")
+autoplay = "default"
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=889942811]
+pixel_size = 0.01171875
+alpha_cut = 2
+texture_filter = 0
+texture = SubResource("ViewportTexture_ng1xj")

@@ -7,6 +7,8 @@ const GRAVITY: float = 9.8
 const MOUSE_SENSITIVITY: float = 0.002
 const LOOK_SENSITIVITY: float = 2.5
 const MAX_STAMINA: float = 100.0
+const INIT_STAMINA: float = 54.0
+const STAMINA_LOW_THRESHOLD: float = 15.0
 const STEP_WOOD_SFX: AudioStream = preload("res://assets/audio/stepwood_1.wav")
 const STEP_INTERVAL_WALK: float = 0.65
 const STEP_INTERVAL_SPRINT: float = 0.45
@@ -21,7 +23,7 @@ signal item_picked_up(type: int)
 
 var pitch: float = 0.0
 var held_item: int = -1
-var stamina: float = 60.0
+var stamina: float = INIT_STAMINA
 var controls_locked: bool = false
 
 var _focused_pickup: PickupArea = null
@@ -36,7 +38,6 @@ func _ready() -> void:
 	lock_controls()
 	_held_item_container.visible = false
 	_sync_stamina_hud()
-	ScoreState.day_changed.connect(_on_day_changed)
 	_footstep_player = AudioStreamPlayer.new()
 	_footstep_player.stream = STEP_WOOD_SFX
 	_footstep_player.volume_db = linear_to_db(0.12)
@@ -59,10 +60,6 @@ func unlock_controls() -> void:
 	controls_locked = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
-func _on_day_changed(_day: int) -> void:
-	stamina = MAX_STAMINA
-	_sync_stamina_hud()
-
 func pick_up(type: int) -> void:
 	held_item = type
 	_held_item_visual.item_type = type as Item.Type
@@ -72,6 +69,11 @@ func pick_up(type: int) -> void:
 func clear_held_item() -> void:
 	held_item = -1
 	_held_item_container.visible = false
+
+func reset_for_new_game() -> void:
+	clear_held_item()
+	stamina = INIT_STAMINA
+	_sync_stamina_hud()
 
 func _input(event: InputEvent) -> void:
 	if controls_locked:
@@ -113,14 +115,14 @@ func _update_movement(delta: float) -> void:
 		pitch = clamp(pitch, -1.4, 1.4)
 		camera.rotation.x = pitch
 
-	var can_sprint := stamina > 5.0
+	var has_stamina := stamina >= STAMINA_LOW_THRESHOLD
 	var speed: float
-	if can_sprint and Input.is_action_pressed("Sprint"):
+	if has_stamina and Input.is_action_pressed("Sprint"):
 		speed = SPRINT_SPEED
-	elif can_sprint:
+	elif has_stamina:
 		speed = SPEED
 	else:
-		speed = SPEED * 0.5
+		speed = SPEED * 0.85
 
 	var input_dir := Input.get_vector("Left", "Right", "Forward", "Back")
 	var direction := (transform.basis * Vector3(input_dir.x, 0.0, input_dir.y)).normalized()

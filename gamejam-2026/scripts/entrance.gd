@@ -29,7 +29,10 @@ func get_look_action(_player: Node) -> LookAction:
 	if ScoreState.phase == ScoreState.Phase.NOON and ScoreState.all_customers_done:
 		return LookAction.create(CLOSE_DURATION, func() -> void:
 			_key_jiggle_player.play()
-			ScoreState.close_tavern()
+			if ScoreState.total_crowns > ScoreState.WIN_CROWN_THRESHOLD:
+				ScoreState.end_game()
+			else:
+				ScoreState.close_tavern()
 		, 0.0)
 	return null
 

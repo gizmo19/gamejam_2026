@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://g0gl6jqa1bku"]
+
+[ext_resource type="PackedScene" uid="uid://d2dgea2d2fyoe" path="res://scenes/crown_animated.tscn" id="1_crown"]
+
+[node name="CrownHudIcon" type="Node3D" unique_id=1402338260]
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1012813104]
+transform = Transform3D(1, 0, 0, 0, 0.9659259, 0.25881907, 0, -0.25881907, 0.9659258, 0, 0.3386814, 1.2317646)
+current = true
+fov = 31.734556
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1750478735]
+transform = Transform3D(0.8660254, -0.35355338, 0.35355338, 0, 0.70710677, 0.70710677, -0.5, -0.6123724, 0.6123724, 0, 0, 0)
+light_energy = 1.4
+
+[node name="CrownAnim" parent="." unique_id=626081494 instance=ExtResource("1_crown")]
