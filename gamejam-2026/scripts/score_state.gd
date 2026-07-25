@@ -30,7 +30,8 @@ var left_unserved: int = 0
 var tables_cleaned: int = 0
 var tables_left_dirty: int = 0
 
-var total_ducats: int = 0
+const INIT_DUCATS: int = 73
+var total_ducats: int = INIT_DUCATS
 var all_customers_arrived: bool = false
 var all_customers_done: bool = false
 
@@ -129,7 +130,7 @@ func reset() -> void:
 	left_unserved = 0
 	tables_cleaned = 0
 	tables_left_dirty = 0
-	total_ducats = 0
+	total_ducats = INIT_DUCATS
 	all_customers_arrived = false
 	all_customers_done = false
 	_transition_timer = -1.0
@@ -160,8 +161,8 @@ func _advance_phase() -> void:
 		Phase.NIGHT:
 			pass
 
-func _start_phase(next_phase: Phase, emit_signal: bool) -> void:
+func _start_phase(next_phase: Phase, _emit_signal: bool) -> void:
 	phase = next_phase
 	phase_elapsed = 0.0
-	if emit_signal:
+	if _emit_signal:
 		phase_changed.emit(phase)

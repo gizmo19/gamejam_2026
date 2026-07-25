@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-enum MenuTab {GAME_INIT, MAIN_MENU, INTRO, START, CREDITS, LICENSES}
+enum MenuTab {GAME_INIT, MAIN_MENU, INTRO, START, GAME_END, LICENSES, CREDITS}
 
 @onready var _progress_bar: ProgressBar = %ProgressBar
 @onready var _game_scores: RichTextLabel = %GameScores
@@ -21,6 +21,7 @@ enum MenuTab {GAME_INIT, MAIN_MENU, INTRO, START, CREDITS, LICENSES}
 @onready var _quit_button: Button = %QuitButton
 @onready var _intro_next_button: Button = %IntroNextButton
 @onready var _play_button: Button = %PlayButton
+@onready var _end_to_credits_button: Button = %EndToCredits
 @onready var _credits_back_button: Button = %CreditsBack
 @onready var _licenses_back_button: Button = %LicenseBack
 
@@ -68,6 +69,7 @@ func _setup_menu() -> void:
 	_quit_button.pressed.connect(func(): get_tree().quit())
 	_intro_next_button.pressed.connect(func(): _menu_tabs.current_tab = MenuTab.START)
 	_play_button.pressed.connect(_on_play_pressed)
+	_end_to_credits_button.pressed.connect(func(): _menu_tabs.current_tab = MenuTab.CREDITS)
 	_credits_back_button.pressed.connect(func(): _menu_tabs.current_tab = MenuTab.MAIN_MENU)
 	_licenses_back_button.pressed.connect(func(): _menu_tabs.current_tab = MenuTab.MAIN_MENU)
 

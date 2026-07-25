@@ -2,11 +2,22 @@
 
 [ext_resource type="ArrayMesh" uid="uid://be770oc4htylf" path="res://assets/models/architecture/Wall_Window.obj" id="1_wall_window_mesh"]
 [ext_resource type="Material" uid="uid://dgjpr1r37k0pd" path="res://assets/WoodSiding006_1K-PNG/WoodSiding006_1K-PNG.tres" id="2_wood_material"]
-[ext_resource type="PackedScene" uid="uid://7l07tw7yf4qa" path="res://assets/models/architecture/window.glb" id="3_window_model"]
+[ext_resource type="Texture2D" uid="uid://bsvgbvqk52qwj" path="res://assets/models/architecture/window_window_square_pane.png" id="4_brgei"]
 [ext_resource type="PackedScene" uid="uid://clog20262601" path="res://assets/models/architecture/LOG.glb" id="4_log_model"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1"]
 size = Vector3(4.75, 5.6, 0.25)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6ocwb"]
+albedo_texture = ExtResource("4_brgei")
+backlight = Color(0.2078627, 0.26180837, 0.40765974, 1)
+texture_filter = 0
+texture_repeat = false
+grow_amount = 0.35
+proximity_fade_distance = 0.36
+
+[sub_resource type="QuadMesh" id="QuadMesh_d7jm4"]
+size = Vector2(2.77, 3.29)
 
 [node name="WoodenWallWindow" type="StaticBody3D" unique_id=740200001]
 
@@ -16,10 +27,8 @@ shape = SubResource("BoxShape3D_1")
 
 [node name="Mesh" type="MeshInstance3D" parent="." unique_id=740200003]
 material_override = ExtResource("2_wood_material")
+cast_shadow = 2
 mesh = ExtResource("1_wall_window_mesh")
-
-[node name="Window" parent="." unique_id=740200004 instance=ExtResource("3_window_model")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.61118436, 0, -0.04862356)
 
 [node name="Log" parent="." unique_id=740200005 instance=ExtResource("4_log_model")]
 transform = Transform3D(0.078816615, -0.39805403, 0, 0.79610807, 0.039408308, 0, 0, 0, 0.3, -0.22656298, 2.0337098, -0.018554091)
@@ -44,3 +53,9 @@ transform = Transform3D(-0.00016090098, -0.69734496, 0.026103264, -0.13395986, 0
 
 [node name="Log2" parent="." unique_id=900171882 instance=ExtResource("4_log_model")]
 transform = Transform3D(0.0042413957, -0.39998996, 9.801965e-05, 0.0021324502, 0.00014074509, 0.2999981, -0.5999813, -0.0028271116, 0.0010669448, -0.22656298, 2.2329826, -0.018554091)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1073868664]
+transform = Transform3D(-4.3550855e-08, 0.0856256, 0.9963274, 3.7428136e-09, 0.9963274, -0.0856256, -1, 0, -4.371139e-08, -0.3335243, 2.1226652, -0.03049171)
+material_override = SubResource("StandardMaterial3D_6ocwb")
+cast_shadow = 0
+mesh = SubResource("QuadMesh_d7jm4")

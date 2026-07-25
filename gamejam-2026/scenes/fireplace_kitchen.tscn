@@ -30,7 +30,7 @@ shape = SubResource("BoxShape3D_h3qv1")
 transform = Transform3D(1, 0, 0, 0, 1.2, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="FireLight" parent="." unique_id=730000004 instance=ExtResource("2_fire_light")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 0.8, 1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.21680623, 0.006404221, 1.849756)
 
 [node name="SoupPot" parent="." unique_id=2032076156 instance=ExtResource("3_h3qv1")]
 transform = Transform3D(1.6904118, 0, -1.0688818, 0, 2, 0, 1.0688818, 0, 1.6904118, -0.5203552, 0.2119981, 1.8857679)

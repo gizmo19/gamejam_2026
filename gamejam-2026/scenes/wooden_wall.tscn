@@ -14,4 +14,5 @@ shape = SubResource("BoxShape3D_1")
 
 [node name="Mesh" type="MeshInstance3D" parent="." unique_id=740100003]
 material_override = ExtResource("2_wood_material")
+cast_shadow = 2
 mesh = ExtResource("1_wall_mesh")

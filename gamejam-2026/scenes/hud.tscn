@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://dj554bwm0wjn7" path="res://assets/sprites/npc/son_icon.png" id="7_5pdws"]
 [ext_resource type="Texture2D" uid="uid://dhhb3loa52a6g" path="res://assets/sprites/npc/controls_keys.png" id="8_0i1j5"]
 [ext_resource type="Texture2D" uid="uid://r0h3wmdparsv" path="res://assets/sprites/npc/controls_pad.png" id="9_mphia"]
+[ext_resource type="Texture2D" uid="uid://dky3t7egjl2ph" path="res://assets/sprites/npc/synek_educated.png" id="11_0m4u7"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6fi6k"]
 texture = ExtResource("2_5ysmq")
@@ -289,7 +290,6 @@ texture = ExtResource("2_5ysmq")
 
 [node name="MenuOverlay" type="TextureRect" parent="." unique_id=608134163]
 unique_name_in_owner = true
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -311,10 +311,11 @@ theme_override_constants/margin_bottom = 64
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_047uy")
-current_tab = 0
+current_tab = 6
 tabs_visible = false
 
 [node name="GameInit" type="TabBar" parent="MenuOverlay/MarginContainer/MenuTabs" unique_id=733724011]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -627,93 +628,78 @@ theme_override_styles/normal = ExtResource("6_047uy")
 theme_override_styles/pressed = ExtResource("6_047uy")
 text = "Start"
 
-[node name="Credits" type="TabBar" parent="MenuOverlay/MarginContainer/MenuTabs" unique_id=816822636]
+[node name="GameEnd" type="TabBar" parent="MenuOverlay/MarginContainer/MenuTabs" unique_id=816822636]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 4
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="MenuOverlay/MarginContainer/MenuTabs/Credits" unique_id=1834378015]
+[node name="VBoxContainer2" type="VBoxContainer" parent="MenuOverlay/MarginContainer/MenuTabs/GameEnd" unique_id=1834378015]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 27
 
-[node name="Label" type="Label" parent="MenuOverlay/MarginContainer/MenuTabs/Credits/VBoxContainer2" unique_id=972194354]
+[node name="Label" type="Label" parent="MenuOverlay/MarginContainer/MenuTabs/GameEnd/VBoxContainer2" unique_id=972194354]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 62
-text = "Credits"
+theme_override_font_sizes/font_size = 105
+text = "THE END"
 horizontal_alignment = 1
 
-[node name="Label2" type="Label" parent="MenuOverlay/MarginContainer/MenuTabs/Credits/VBoxContainer2" unique_id=806224638]
+[node name="Label2" type="Label" parent="MenuOverlay/MarginContainer/MenuTabs/GameEnd/VBoxContainer2" unique_id=806224638]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 62
+theme_override_constants/line_spacing = -9
+theme_override_font_sizes/font_size = 47
+text = "You raised enough money for
+your son's education"
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MenuOverlay/MarginContainer/MenuTabs/Credits/VBoxContainer2" unique_id=1163582376]
+[node name="HBoxContainer" type="HBoxContainer" parent="MenuOverlay/MarginContainer/MenuTabs/GameEnd/VBoxContainer2" unique_id=142928455]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MenuOverlay/MarginContainer/MenuTabs/Credits/VBoxContainer2/HBoxContainer" unique_id=148269031]
+[node name="TextureRect" type="TextureRect" parent="MenuOverlay/MarginContainer/MenuTabs/GameEnd/VBoxContainer2/HBoxContainer" unique_id=1171698306]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("11_0m4u7")
+stretch_mode = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuOverlay/MarginContainer/MenuTabs/GameEnd/VBoxContainer2/HBoxContainer" unique_id=45239143]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label3" type="Label" parent="MenuOverlay/MarginContainer/MenuTabs/Credits/VBoxContainer2/HBoxContainer/VBoxContainer" unique_id=1738843172]
+[node name="Label2" type="Label" parent="MenuOverlay/MarginContainer/MenuTabs/GameEnd/VBoxContainer2/HBoxContainer/VBoxContainer" unique_id=1955786524]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 50
-text = "Mateusz Hajduczek"
-horizontal_alignment = 1
+theme_override_font_sizes/font_size = 53
+text = "Stats:"
 
-[node name="RichTextLabel" type="RichTextLabel" parent="MenuOverlay/MarginContainer/MenuTabs/Credits/VBoxContainer2/HBoxContainer/VBoxContainer" unique_id=1119164255]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 40
-theme_override_font_sizes/bold_font_size = 40
-theme_override_font_sizes/bold_italics_font_size = 40
-theme_override_font_sizes/italics_font_size = 40
-theme_override_font_sizes/mono_font_size = 40
-text = "Programming
-Environment Design
-3D Modelling"
-horizontal_alignment = 1
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="MenuOverlay/MarginContainer/MenuTabs/Credits/VBoxContainer2/HBoxContainer" unique_id=881535081]
+[node name="End" type="RichTextLabel" parent="MenuOverlay/MarginContainer/MenuTabs/GameEnd/VBoxContainer2/HBoxContainer/VBoxContainer" unique_id=975139054]
 layout_mode = 2
 size_flags_horizontal = 3
-
-[node name="Label4" type="Label" parent="MenuOverlay/MarginContainer/MenuTabs/Credits/VBoxContainer2/HBoxContainer/VBoxContainer2" unique_id=1094320813]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 50
-text = "Darek Greenly"
-horizontal_alignment = 1
-
-[node name="RichTextLabel2" type="RichTextLabel" parent="MenuOverlay/MarginContainer/MenuTabs/Credits/VBoxContainer2/HBoxContainer/VBoxContainer2" unique_id=742568775]
-layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 40
-theme_override_font_sizes/bold_font_size = 40
-theme_override_font_sizes/bold_italics_font_size = 40
-theme_override_font_sizes/italics_font_size = 40
-theme_override_font_sizes/mono_font_size = 40
-text = "Programming
-Sprite Drawing
-Music"
-horizontal_alignment = 1
+theme_override_font_sizes/normal_font_size = 32
+theme_override_font_sizes/bold_font_size = 32
+theme_override_font_sizes/bold_italics_font_size = 32
+theme_override_font_sizes/italics_font_size = 32
+theme_override_font_sizes/mono_font_size = 32
+bbcode_enabled = true
+text = "[b]Money raised:[/b] 100
+[b]Days passed:[/b] DAY"
 
-[node name="CreditsBack" type="Button" parent="MenuOverlay/MarginContainer/MenuTabs/Credits/VBoxContainer2" unique_id=1056470167]
+[node name="EndToCredits" type="Button" parent="MenuOverlay/MarginContainer/MenuTabs/GameEnd/VBoxContainer2" unique_id=1390902565]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
 theme_override_styles/normal = ExtResource("6_047uy")
 theme_override_styles/pressed = ExtResource("6_047uy")
-text = "Back"
+text = "Credits"
 
 [node name="Licenses" type="TabBar" parent="MenuOverlay/MarginContainer/MenuTabs" unique_id=1392940965]
 visible = false
@@ -882,6 +868,93 @@ Kenney's Retro Textures Fantasy (1.0)
     • Mastodon:  mastodon.gamedev.place/@kenney"
 
 [node name="LicenseBack" type="Button" parent="MenuOverlay/MarginContainer/MenuTabs/Licenses/VBoxContainer" unique_id=1116542054]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = ExtResource("6_047uy")
+theme_override_styles/pressed = ExtResource("6_047uy")
+text = "Back"
+
+[node name="Credits" type="TabBar" parent="MenuOverlay/MarginContainer/MenuTabs" unique_id=409617785]
+layout_mode = 2
+metadata/_tab_index = 6
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MenuOverlay/MarginContainer/MenuTabs/Credits" unique_id=1948998785]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="MenuOverlay/MarginContainer/MenuTabs/Credits/VBoxContainer2" unique_id=1541777658]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 62
+text = "Credits"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="MenuOverlay/MarginContainer/MenuTabs/Credits/VBoxContainer2" unique_id=1960052993]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 62
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MenuOverlay/MarginContainer/MenuTabs/Credits/VBoxContainer2" unique_id=1078672633]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuOverlay/MarginContainer/MenuTabs/Credits/VBoxContainer2/HBoxContainer" unique_id=379773782]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label3" type="Label" parent="MenuOverlay/MarginContainer/MenuTabs/Credits/VBoxContainer2/HBoxContainer/VBoxContainer" unique_id=647254887]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "Mateusz Hajduczek"
+horizontal_alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MenuOverlay/MarginContainer/MenuTabs/Credits/VBoxContainer2/HBoxContainer/VBoxContainer" unique_id=3667119]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 40
+theme_override_font_sizes/bold_font_size = 40
+theme_override_font_sizes/bold_italics_font_size = 40
+theme_override_font_sizes/italics_font_size = 40
+theme_override_font_sizes/mono_font_size = 40
+text = "Programming
+Environment Design
+3D Modelling"
+horizontal_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MenuOverlay/MarginContainer/MenuTabs/Credits/VBoxContainer2/HBoxContainer" unique_id=1112068683]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label4" type="Label" parent="MenuOverlay/MarginContainer/MenuTabs/Credits/VBoxContainer2/HBoxContainer/VBoxContainer2" unique_id=1948836479]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "Darek Greenly"
+horizontal_alignment = 1
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="MenuOverlay/MarginContainer/MenuTabs/Credits/VBoxContainer2/HBoxContainer/VBoxContainer2" unique_id=1314968631]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 40
+theme_override_font_sizes/bold_font_size = 40
+theme_override_font_sizes/bold_italics_font_size = 40
+theme_override_font_sizes/italics_font_size = 40
+theme_override_font_sizes/mono_font_size = 40
+text = "Programming
+Sprite Drawing
+Music"
+horizontal_alignment = 1
+
+[node name="CreditsBack" type="Button" parent="MenuOverlay/MarginContainer/MenuTabs/Credits/VBoxContainer2" unique_id=351692670]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
