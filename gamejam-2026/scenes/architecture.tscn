@@ -42,12 +42,20 @@
 [ext_resource type="PackedScene" uid="uid://cd7x80f4omnc4" path="res://assets/models/architecture/papaj.glb" id="43_papaj"]
 [ext_resource type="PackedScene" uid="uid://d2eckeh1d725f" path="res://assets/models/architecture/stojak.glb" id="44_stojak"]
 [ext_resource type="PackedScene" uid="uid://bk5625a6rrkrf" path="res://assets/models/architecture/bookshelf.glb" id="45_bookshelf"]
+[ext_resource type="PackedScene" uid="uid://br50bn7opcl0x" path="res://scenes/pickup_area.tscn" id="46_pickup"]
+[ext_resource type="PackedScene" uid="uid://cti168c3k1u4m" path="res://assets/models/architecture/jar-phase1.glb" id="47_jar_phase1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ams50"]
+size = Vector3(0.4, 3.1921387, 0.41394043)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_uvkd1"]
 size = Vector3(1, 1, 0.9951172)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_eanw5"]
 size = Vector3(1.4959717, 1.9581299, 6.038208)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_o8sc0"]
+size = Vector3(6.351082, 2.0610352, 1.2333984)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_stairs_col"]
 size = Vector3(3, 4, 2.5)
@@ -57,6 +65,9 @@ size = Vector3(0.8, 1, 0.5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_h15ao"]
 size = Vector3(2.8, 1, 1.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_m2hry"]
+size = Vector3(2, 1, 2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_standing_shelf"]
 size = Vector3(2.4, 3, 0.8)
@@ -274,6 +285,14 @@ transform = Transform3D(0.9961947, -0.10458689, 0, 0.08715574, 1.1954337, 0, 0, 
 
 [node name="StoneWall5" parent="Decorative/KitchenWall" unique_id=1584085877 instance=ExtResource("9_stone_wall")]
 transform = Transform3D(0.9961947, -0.10458689, 0, 0.08715574, 1.1954337, 0, 0, 0, 0.5, -1.9173007, 2.8777015, -6.855781)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Decorative/KitchenWall" unique_id=394924159]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1957493, 1.2883176, -6.043997)
+shape = SubResource("BoxShape3D_ams50")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Decorative/KitchenWall" unique_id=443712810]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1957493, 1.2883176, -8.053577)
+shape = SubResource("BoxShape3D_ams50")
 
 [node name="KitchenDoor" parent="Decorative/KitchenWall" unique_id=337445907 instance=ExtResource("10_kitchen_door")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1957493, -0.3033259, -7.032463)
@@ -500,6 +519,10 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -7.1
 [node name="Model10" parent="Props/Barrel" unique_id=2022727548 instance=ExtResource("13_barrel_arch")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -3.931949, -0.3861326, -14.064961)
 
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Props/Barrel" unique_id=1144928232]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.649705, 1.0805203, -12.414417)
+shape = SubResource("BoxShape3D_o8sc0")
+
 [node name="Model12" parent="Props/Barrel" unique_id=2081011279 instance=ExtResource("13_barrel_arch")]
 transform = Transform3D(-4.0189295e-08, -0.39326805, 0.9194239, -1.7190292e-08, 0.9194239, 0.39326805, -1, 0, -4.371139e-08, -5.1250324, -0.19864309, -13.853368)
 
@@ -553,6 +576,12 @@ transform = Transform3D(0.1, 0, 0, 0, 0.0901077, -0.04336591, 0, 0.04336591, 0.0
 
 [node name="Torch4" parent="Props" unique_id=30598367 instance=ExtResource("17_torch")]
 transform = Transform3D(-4.371139e-09, 0.04336591, 0.0901077, 0, 0.0901077, -0.04336591, -0.1, -1.8955841e-09, -3.938733e-09, -1.7365017, 3.1015875, -5.282782)
+
+[node name="Torch15" parent="Props" unique_id=1078263167 instance=ExtResource("17_torch")]
+transform = Transform3D(-4.371139e-09, 0.04336591, 0.0901077, 0, 0.0901077, -0.04336591, -0.1, -1.8955841e-09, -3.938733e-09, -1.4957235, 1.6404645, -8.969655)
+
+[node name="Torch16" parent="Props" unique_id=887430291 instance=ExtResource("17_torch")]
+transform = Transform3D(-4.371139e-09, -0.04336591, -0.0901077, 0, 0.0901077, -0.04336591, 0.1, -1.8955841e-09, -3.938733e-09, 3.836827, 1.6404645, -8.969655)
 
 [node name="Torch6" parent="Props" unique_id=203603760 instance=ExtResource("17_torch")]
 transform = Transform3D(-4.3489e-09, 0.03406749, 0.09401812, -4.4036505e-10, 0.09401812, -0.03406749, -0.099999994, -1.8955841e-09, -3.938733e-09, 2.7145839, 7.8535147, -5.575349)
@@ -711,6 +740,15 @@ transform = Transform3D(0.43222955, 0, -0.25135157, 0, 0.5, 0, 0.25135157, 0, 0.
 
 [node name="Model" parent="Props/Taboret" unique_id=820200003 instance=ExtResource("31_taboret")]
 
+[node name="Taboret2" type="StaticBody3D" parent="Props" unique_id=2115877020]
+transform = Transform3D(0.48377088, 0, -0.12635557, 0, 0.7, 0, 0.12635557, 0, 0.48377088, -0.83626306, 0.04084003, -8.940812)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Props/Taboret2" unique_id=1918515394]
+transform = Transform3D(1.0000004, 0, -4.4703484e-08, 0, 1, 0, 4.4703484e-08, 0, 1.0000004, 0, 0.54999864, 0)
+shape = SubResource("BoxShape3D_m2hry")
+
+[node name="Model" parent="Props/Taboret2" unique_id=481769100 instance=ExtResource("31_taboret")]
+
 [node name="StandingShelf" type="StaticBody3D" parent="Props" unique_id=810200001]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 18.477257, -0.77896523, -1.770514)
 
@@ -727,8 +765,8 @@ shape = SubResource("BoxShape3D_standing_shelf")
 [node name="SleepDoor" parent="Props" unique_id=910100001 instance=ExtResource("33_sleep_door")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2.9171286, 5.6141677, -6.954279)
 
-[node name="Jar" parent="Props" unique_id=920100001 instance=ExtResource("34_jar")]
-transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 2.2410583, 0, 5.93417)
+[node name="Jar" parent="Props" unique_id=1099309161 instance=ExtResource("34_jar")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0.9581871, 0.94751096, -1.8610945)
 
 [node name="EmptyChest" parent="Props" unique_id=930100001 instance=ExtResource("35_chest_empty")]
 transform = Transform3D(-0.28346926, 0, 0.09820987, 0, 0.29999998, 0, -0.09820987, 0, -0.28346926, -3.485905, 0.11244261, -3.9038544)
@@ -793,3 +831,10 @@ transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 10.91541, -0.6628362, -
 
 [node name="Bookshelf" parent="." unique_id=1200200001 instance=ExtResource("45_bookshelf")]
 transform = Transform3D(-3.4969112e-08, 0, -0.8, 0, 0.8, 0, 0.8, 0, -3.4969112e-08, 17.7175, -0.8157289, 8.578944)
+
+[node name="PickupBeer" parent="." unique_id=128243408 instance=ExtResource("46_pickup")]
+transform = Transform3D(0.9187498, 0, -0.3948401, 0, 1, 0, 0.3948401, 0, 0.9187498, -0.81694996, 0.8125244, -8.851033)
+item_type = 2
+
+[node name="JarPhase1" parent="." unique_id=1210200001 instance=ExtResource("47_jar_phase1")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 1, -2)
