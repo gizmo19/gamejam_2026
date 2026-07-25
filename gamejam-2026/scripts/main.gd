@@ -1,6 +1,8 @@
 extends Node3D
 
 const NPC_SCENE: PackedScene = preload("res://scenes/npc.tscn")
+const DOOR_OPEN_SFX: AudioStream = preload("res://assets/audio/door-open.mp3")
+const DOOR_CLOSE_SFX: AudioStream = preload("res://assets/audio/door-close.mp3")
 
 @onready var tables: Node3D = $Tables
 @onready var npc_spawn_point: Marker3D = $NpcSpawnPoint
@@ -16,8 +18,19 @@ const NPC_SCENE: PackedScene = preload("res://scenes/npc.tscn")
 
 var _active_npc_count: int = 0
 var _all_spawned: bool = false
+var _door_open_player: AudioStreamPlayer
+var _door_close_player: AudioStreamPlayer
 
 func _ready() -> void:
+	_door_open_player = AudioStreamPlayer.new()
+	_door_open_player.stream = DOOR_OPEN_SFX
+	_door_open_player.volume_db = linear_to_db(0.4)
+	add_child(_door_open_player)
+	_door_close_player = AudioStreamPlayer.new()
+	_door_close_player.stream = DOOR_CLOSE_SFX
+	_door_close_player.volume_db = linear_to_db(0.4)
+	add_child(_door_close_player)
+
 	_npc_spawn_manager.setup(_bar_queue)
 	_npc_spawn_manager.spawn_requested.connect(_spawn_npc)
 	_npc_spawn_manager.all_customers_spawned.connect(_on_all_customers_spawned)
@@ -93,10 +106,12 @@ func _spawn_npc() -> void:
 	npc.patience_expired.connect(_on_patience_expired)
 	npc.order_given.connect(func(): print("Order collected!"))
 	npc.queue_slot_reached.connect(_on_queue_slot_reached)
+	npc.left_tavern.connect(_on_npc_left_tavern)
 	npc.setup(_bar_queue.slot_position(_bar_queue.size()))
 	_bar_queue.append(npc)
 	_active_npc_count += 1
 	npc.tree_exiting.connect(_on_npc_exiting)
+	_door_open_player.play()
 
 func _on_all_customers_spawned() -> void:
 	ScoreState.mark_all_customers_arrived()
@@ -107,6 +122,9 @@ func _on_npc_exiting() -> void:
 	# Must decrement even if more customers are still scheduled to spawn.
 	_active_npc_count = maxi(0, _active_npc_count - 1)
 	_check_all_done()
+
+func _on_npc_left_tavern() -> void:
+	_door_close_player.play()
 
 func _check_all_done() -> void:
 	if _all_spawned and _active_npc_count <= 0:

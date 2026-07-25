@@ -43,7 +43,6 @@
 [ext_resource type="PackedScene" uid="uid://d2eckeh1d725f" path="res://assets/models/architecture/stojak.glb" id="44_stojak"]
 [ext_resource type="PackedScene" uid="uid://bk5625a6rrkrf" path="res://assets/models/architecture/bookshelf.glb" id="45_bookshelf"]
 [ext_resource type="PackedScene" uid="uid://br50bn7opcl0x" path="res://scenes/pickup_area.tscn" id="46_pickup"]
-[ext_resource type="PackedScene" uid="uid://cti168c3k1u4m" path="res://assets/models/architecture/jar-phase1.glb" id="47_jar_phase1"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ams50"]
 size = Vector3(0.4, 3.1921387, 0.41394043)
@@ -629,6 +628,7 @@ shape = SubResource("BoxShape3D_stairs_col")
 
 [node name="Fireplace" parent="Props" unique_id=730100001 instance=ExtResource("18_fireplace")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.748082, -0.81095624, -4.33137)
+script = null
 
 [node name="Balustrada" parent="Props" unique_id=730200001 instance=ExtResource("19_balustrada")]
 transform = Transform3D(-4.8082526e-08, 0, 1, 0, 1, 0, -1.1, 0, -4.371139e-08, 9.032469, -0.20426047, 0.8049792)
@@ -835,6 +835,3 @@ transform = Transform3D(-3.4969112e-08, 0, -0.8, 0, 0.8, 0, 0.8, 0, -3.4969112e-
 [node name="PickupBeer" parent="." unique_id=128243408 instance=ExtResource("46_pickup")]
 transform = Transform3D(0.9187498, 0, -0.3948401, 0, 1, 0, 0.3948401, 0, 0.9187498, -0.81694996, 0.8125244, -8.851033)
 item_type = 2
-
-[node name="JarPhase1" parent="." unique_id=1210200001 instance=ExtResource("47_jar_phase1")]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 1, -2)

@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://b3vqoq3i386al" path="res://assets/models/architecture/fireplace_kitchen.glb" id="1_fireplace_model"]
 [ext_resource type="PackedScene" uid="uid://uooow8x62aij" path="res://scenes/fire_light.tscn" id="2_fire_light"]
+[ext_resource type="Script" path="res://scripts/fireplace_kitchen_audio.gd" id="3_fireplace_audio"]
 [ext_resource type="PackedScene" uid="uid://bmdflr1adjsbv" path="res://assets/models/food/pot-stew.glb" id="3_h3qv1"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1"]
@@ -11,6 +12,7 @@ size = Vector3(2, 2.5, 1)
 size = Vector3(1, 1, 1.4057617)
 
 [node name="FireplaceKitchen" type="StaticBody3D" unique_id=730000001]
+script = ExtResource("3_fireplace_audio")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=730000002]
 transform = Transform3D(2.5, 0, 0, 0, 1, 0, 0, 0, 2, 0.32267702, 1.25, 0.021715999)

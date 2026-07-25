@@ -12,6 +12,8 @@ const TAKE_ORDER_TIME: float = 0.5
 const WALK_SPEED: float = 1.5
 const WALK_TO_BAR_SPEED: float = 1.0
 
+const COIN_DROP_SFX: AudioStream = preload("res://assets/audio/hjm-coindrop_v1.wav")
+
 const SPRITE_MATERIALS: Array[Material] = [
 	preload("res://assets/sprites/npc/noblesse.tres"),
 	preload("res://assets/sprites/npc/noble.tres"),
@@ -25,6 +27,7 @@ const SPRITE_MATERIALS: Array[Material] = [
 @onready var countdown_label: Label3D = $CountdownLabel
 @onready var state_label: Label3D = $StateLabel
 @onready var sprite: MeshInstance3D = $Sprite
+var _coin_player: AudioStreamPlayer
 
 var _time_left: float = 0.0
 var _order_taken: bool = false
@@ -36,6 +39,7 @@ signal order_given
 signal needs_table(npc: Npc)
 signal patience_expired(npc: Npc)
 signal queue_slot_reached(npc: Npc)
+signal left_tavern
 
 var state: State
 var order: Order
@@ -112,6 +116,9 @@ func _ready() -> void:
 	mover.navigation_finished.connect(_on_arrived)
 	interaction.interaction_requested.connect(_on_order_taken)
 	state_timer.timeout.connect(_on_timer_timeout)
+	_coin_player = AudioStreamPlayer.new()
+	_coin_player.stream = COIN_DROP_SFX
+	add_child(_coin_player)
 
 func _process(delta: float) -> void:
 	match state:
@@ -181,6 +188,7 @@ func _on_arrived() -> void:
 			target_table.is_occupied = true
 			target_table.assign_customer(self)
 	elif state == State.LEAVING:
+		left_tavern.emit()
 		queue_free()
 
 func accept_delivery() -> void:
@@ -223,6 +231,7 @@ func _on_timer_timeout() -> void:
 	elif state == State.SEATED:
 		if was_served and not _eating_finished:
 			_eating_finished = true
+			_coin_player.play()
 			ScoreState.record_ducats(_pending_ducats)
 			countdown_label.text = "+%d dukatów" % _pending_ducats
 			countdown_label.visible = true

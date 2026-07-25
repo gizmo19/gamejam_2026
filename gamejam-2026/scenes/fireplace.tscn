@@ -2,11 +2,13 @@
 
 [ext_resource type="PackedScene" uid="uid://u8jdctn8i10c" path="res://assets/models/architecture/fireplace.glb" id="1_fireplace_model"]
 [ext_resource type="PackedScene" uid="uid://uooow8x62aij" path="res://scenes/fire_light.tscn" id="2_fire_light"]
+[ext_resource type="Script" path="res://scripts/fireplace_audio.gd" id="3_fireplace_audio"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1"]
 size = Vector3(2, 2.5, 1)
 
 [node name="Fireplace" type="StaticBody3D" unique_id=730100001]
+script = ExtResource("3_fireplace_audio")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=730100002]
 transform = Transform3D(2.9, 0, 0, 0, 1, 0, 0, 0, 2.5, 0.011855543, 1.25, 1.7083263)

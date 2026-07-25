@@ -7,6 +7,10 @@ const GRAVITY: float = 9.8
 const MOUSE_SENSITIVITY: float = 0.002
 const LOOK_SENSITIVITY: float = 2.5
 const MAX_STAMINA: float = 100.0
+const STEP_WOOD_SFX: AudioStream = preload("res://assets/audio/stepwood_1.wav")
+const STEP_INTERVAL_WALK: float = 0.65
+const STEP_INTERVAL_SPRINT: float = 0.45
+const STEP_INTERVAL_SLOW: float = 0.85
 @onready var camera: Camera3D = $Camera3D
 @onready var hud: CanvasLayer = $HUD
 @onready var interact_ray: RayCast3D = $Camera3D/InteractRay
@@ -24,6 +28,8 @@ var _focused_pickup: PickupArea = null
 var _focused_target: Node = null
 var _focused_action: LookAction = null
 var _action_progress: float = 0.0
+var _footstep_player: AudioStreamPlayer
+var _footstep_timer: float = 0.0
 
 func _ready() -> void:
 	add_to_group("player")
@@ -31,6 +37,10 @@ func _ready() -> void:
 	_held_item_container.visible = false
 	_sync_stamina_hud()
 	ScoreState.day_changed.connect(_on_day_changed)
+	_footstep_player = AudioStreamPlayer.new()
+	_footstep_player.stream = STEP_WOOD_SFX
+	_footstep_player.volume_db = linear_to_db(0.12)
+	add_child(_footstep_player)
 
 func lock_controls() -> void:
 	controls_locked = true
@@ -78,6 +88,8 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
+	_update_footsteps(delta)
+
 	if controls_locked:
 		return
 
@@ -115,6 +127,25 @@ func _update_movement(delta: float) -> void:
 
 	velocity.x = direction.x * speed
 	velocity.z = direction.z * speed
+
+func _update_footsteps(delta: float) -> void:
+	var horizontal_speed := Vector2(velocity.x, velocity.z).length()
+	if not is_on_floor() or horizontal_speed < 0.1:
+		_footstep_timer = 0.0
+		return
+
+	var interval: float
+	if horizontal_speed >= SPRINT_SPEED * 0.8:
+		interval = STEP_INTERVAL_SPRINT
+	elif horizontal_speed >= SPEED * 0.8:
+		interval = STEP_INTERVAL_WALK
+	else:
+		interval = STEP_INTERVAL_SLOW
+
+	_footstep_timer += delta
+	if _footstep_timer >= interval:
+		_footstep_timer = 0.0
+		_footstep_player.play()
 
 func _update_item_interaction() -> void:
 	if held_item != -1:
