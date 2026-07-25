@@ -20,6 +20,7 @@ const SPRITE_MATERIALS: Array[Material] = [
 	preload("res://assets/sprites/npc/knight.tres"),
 	preload("res://assets/sprites/npc/knight_gal.tres"),
 	preload("res://assets/sprites/npc/rogue.tres"),
+	preload("res://assets/sprites/npc/druid.tres"),
 ]
 
 @onready var mover: NpcMover = $Mover
@@ -48,6 +49,7 @@ var order: Order
 var target_table: Table
 var was_served: bool = false
 
+# just for debugging
 func order_label() -> String:
 	match order:
 		Order.CHICKEN: return "Kurczak"

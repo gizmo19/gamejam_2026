@@ -48,6 +48,12 @@ func vacate() -> void:
 		set_dirty(true)
 		ScoreState.record_table_left_dirty()
 
+func reset_state() -> void:
+	is_occupied = false
+	customer = null
+	has_food = false
+	set_dirty(false)
+
 func get_look_action(player: Node) -> LookAction:
 	if is_dirty:
 		return LookAction.create(CLEAN_DURATION, func() -> void:

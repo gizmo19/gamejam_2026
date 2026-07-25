@@ -2,9 +2,9 @@
 class_name Item
 extends Node3D
 
-enum Type {CHICKEN = 0, SOUP = 1, BEER = 2}
+enum Type {CHICKEN = 0, SOUP = 1, BEER = 2, KREMOWKA = 3}
 
-const NAMES: Array[String] = ["Chicken", "Soup", "Beer"]
+const NAMES: Array[String] = ["Chicken", "Soup", "Beer", "Kremowka"]
 
 @export var item_type: Type = Type.SOUP:
 	set(value):
@@ -30,7 +30,7 @@ static func prepare_duration(type: Type) -> float:
 		Type.SOUP:
 			return 1.0
 		Type.CHICKEN:
-			return 2.0
+			return 1.7
 	return 1.0
 
 

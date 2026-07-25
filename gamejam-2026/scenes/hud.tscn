@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://dhhb3loa52a6g" path="res://assets/sprites/npc/controls_keys.png" id="8_0i1j5"]
 [ext_resource type="Texture2D" uid="uid://r0h3wmdparsv" path="res://assets/sprites/npc/controls_pad.png" id="9_mphia"]
 [ext_resource type="Texture2D" uid="uid://dky3t7egjl2ph" path="res://assets/sprites/npc/synek_educated.png" id="11_0m4u7"]
-[ext_resource type="PackedScene" uid="uid://b8crownhudicon1" path="res://scenes/crown_hud_icon.tscn" id="13_crownhud"]
+[ext_resource type="PackedScene" uid="uid://g0gl6jqa1bku" path="res://scenes/crown_hud_icon.tscn" id="13_crownhud"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6fi6k"]
 texture = ExtResource("2_5ysmq")
@@ -373,7 +373,6 @@ texture = ExtResource("2_5ysmq")
 
 [node name="MenuOverlay" type="TextureRect" parent="." unique_id=608134163]
 unique_name_in_owner = true
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -395,7 +394,7 @@ theme_override_constants/margin_bottom = 64
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_047uy")
-current_tab = 6
+current_tab = 1
 tabs_visible = false
 
 [node name="GameInit" type="TabBar" parent="MenuOverlay/MarginContainer/MenuTabs" unique_id=733724011]
@@ -455,7 +454,6 @@ text = "You can always use ALT+Enter to enable fullscreen again"
 horizontal_alignment = 1
 
 [node name="MainMenu" type="TabBar" parent="MenuOverlay/MarginContainer/MenuTabs" unique_id=585437271]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
@@ -764,6 +762,7 @@ theme_override_font_sizes/font_size = 53
 text = "Stats:"
 
 [node name="End" type="RichTextLabel" parent="MenuOverlay/MarginContainer/MenuTabs/GameEnd/VBoxContainer2/HBoxContainer/VBoxContainer" unique_id=975139054]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -960,6 +959,7 @@ theme_override_styles/pressed = ExtResource("6_047uy")
 text = "Back"
 
 [node name="Credits" type="TabBar" parent="MenuOverlay/MarginContainer/MenuTabs" unique_id=409617785]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 6
 

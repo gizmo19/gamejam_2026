@@ -6,6 +6,7 @@ const ALL_MUSIC: Array[AudioStream] = [
 ]
 
 var _player: AudioStreamPlayer
+var _music_index: int = 0
 
 func _ready() -> void:
 	_player = AudioStreamPlayer.new()
@@ -27,7 +28,9 @@ func stop_all() -> void:
 	_player.stream = null
 
 func _on_customers_all_done() -> void:
-	play(ALL_MUSIC.pick_random())
+	play(ALL_MUSIC[_music_index])
+	_music_index = (_music_index + 1) % ALL_MUSIC.size()
+
 
 func _on_day_changed(_day: int) -> void:
 	stop_all()

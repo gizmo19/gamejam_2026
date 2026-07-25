@@ -7,11 +7,11 @@
 [ext_resource type="PackedScene" uid="uid://ccf6c7kofvnno" path="res://scenes/item_bubble.tscn" id="5_4wlns"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_body"]
-radius = 0.35
+radius = 0.27001953
 height = 1.7
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_interaction"]
-radius = 1.5
+radius = 1.7374208
 
 [sub_resource type="QuadMesh" id="QuadMesh_4wlns"]
 size = Vector2(2, 2)

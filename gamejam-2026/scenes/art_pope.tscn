@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://k70jrblj8t8m"]
+
+[ext_resource type="PackedScene" uid="uid://cd7x80f4omnc4" path="res://assets/models/architecture/papaj.glb" id="1_bm86m"]
+[ext_resource type="Script" uid="uid://b7hkahchrb5el" path="res://scenes/art_pope.gd" id="1_djajv"]
+[ext_resource type="PackedScene" uid="uid://clog20262601" path="res://assets/models/architecture/LOG.glb" id="2_djajv"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bm86m"]
+size = Vector3(1.9991455, 2.7740479, 0.18267822)
+
+[node name="Papaj" type="Node3D" unique_id=1814749090]
+transform = Transform3D(0.13668379, 0, -0.99061465, 0, 1, 0, 0.99061465, 0, 0.13668379, 0, 0, 0)
+script = ExtResource("1_djajv")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1828627004]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1473636676]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0048217727, 1.3391724, 0.017913837)
+shape = SubResource("BoxShape3D_bm86m")
+
+[node name="Papaj" parent="." unique_id=372781893 instance=ExtResource("1_bm86m")]
+
+[node name="Log8" parent="." unique_id=573824389 instance=ExtResource("2_djajv")]
+transform = Transform3D(1.3322676e-15, 9.313226e-09, 0.2, 0.7, -8.742278e-09, 0, 3.059797e-08, 0.2, -9.313226e-09, 0.9299666, 1.3460044, -0.05217932)
+
+[node name="Log9" parent="." unique_id=1653883356 instance=ExtResource("2_djajv")]
+transform = Transform3D(1.3322676e-15, 9.313226e-09, 0.2, 0.7, -8.742278e-09, 0, 3.059797e-08, 0.2, -9.313226e-09, -0.94811875, 1.3460044, -0.052179314)
+
+[node name="Log10" parent="." unique_id=494760936 instance=ExtResource("2_djajv")]
+transform = Transform3D(-0.5, 0, -1.6763806e-08, 0, 0.2, 0, 4.4703484e-08, 0, -0.2, -0.017544866, 2.640275, 0.022903442)
+
+[node name="Log11" parent="." unique_id=503120804 instance=ExtResource("2_djajv")]
+transform = Transform3D(-0.5, 0, -1.6763806e-08, 0, 0.2, 0, 4.4703484e-08, 0, -0.2, -0.017544866, -0.06661022, 0.022903442)

@@ -7,6 +7,7 @@ const GRAVITY: float = 9.8
 const MOUSE_SENSITIVITY: float = 0.002
 const LOOK_SENSITIVITY: float = 2.5
 const MAX_STAMINA: float = 100.0
+const INIT_STAMINA: float = 54.0
 const STAMINA_LOW_THRESHOLD: float = 15.0
 const STEP_WOOD_SFX: AudioStream = preload("res://assets/audio/stepwood_1.wav")
 const STEP_INTERVAL_WALK: float = 0.65
@@ -22,7 +23,7 @@ signal item_picked_up(type: int)
 
 var pitch: float = 0.0
 var held_item: int = -1
-var stamina: float = 54.0
+var stamina: float = INIT_STAMINA
 var controls_locked: bool = false
 
 var _focused_pickup: PickupArea = null
@@ -68,6 +69,11 @@ func pick_up(type: int) -> void:
 func clear_held_item() -> void:
 	held_item = -1
 	_held_item_container.visible = false
+
+func reset_for_new_game() -> void:
+	clear_held_item()
+	stamina = INIT_STAMINA
+	_sync_stamina_hud()
 
 func _input(event: InputEvent) -> void:
 	if controls_locked:

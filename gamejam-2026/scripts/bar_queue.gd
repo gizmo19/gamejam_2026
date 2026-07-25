@@ -1,7 +1,7 @@
 class_name BarQueue
 extends Node
 
-const BAR_QUEUE_SPACING: float = 0.8
+const BAR_QUEUE_SPACING: float = 1.4
 
 var _queue: Array[Npc] = []
 

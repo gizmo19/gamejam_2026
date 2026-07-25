@@ -35,6 +35,7 @@ func _ready() -> void:
 	_npc_spawn_manager.spawn_requested.connect(_spawn_npc)
 	_npc_spawn_manager.all_customers_spawned.connect(_on_all_customers_spawned)
 	ScoreState.tavern_closed.connect(_clear_all_npcs)
+	ScoreState.game_ended.connect(_on_game_ended)
 
 	_prepare_tutorial()
 
@@ -129,6 +130,28 @@ func _on_npc_left_tavern() -> void:
 func _check_all_done() -> void:
 	if _all_spawned and _active_npc_count <= 0:
 		ScoreState.mark_all_customers_done()
+
+func _on_game_ended() -> void:
+	_reset_world()
+
+func _reset_world() -> void:
+	_all_spawned = false
+	_active_npc_count = 0
+	var npcs: Array = []
+	for child in get_children():
+		if child is Npc:
+			npcs.append(child)
+	while not _bar_queue.is_empty():
+		_bar_queue.erase(_bar_queue.get_npc(0))
+	for npc in npcs:
+		npc.target_table = null
+		npc.queue_free()
+	for table_node in tables.get_children():
+		var table := table_node as Table
+		if table == null:
+			continue
+		table.reset_state()
+	_player.reset_for_new_game()
 
 func _clear_all_npcs() -> void:
 	_all_spawned = false

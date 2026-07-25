@@ -18,9 +18,11 @@ signal changed
 signal phase_changed(phase: Phase)
 signal day_changed(day: int)
 signal crowns_changed(total: int)
+signal customer_rush_requested(count: int)
 signal customers_all_arrived
 signal customers_all_done
 signal tavern_closed
+signal game_ended
 signal screen_fade_in
 signal screen_fade_out
 
@@ -29,11 +31,18 @@ var left_at_table: int = 0
 var left_unserved: int = 0
 var tables_cleaned: int = 0
 var tables_left_dirty: int = 0
+var secret_found: bool = false
 
-const INIT_CROWNS: int = 73
+const INIT_CROWNS: int = 53
+const RUSH_CROWN_THRESHOLD: int = 90
+const WIN_CROWN_THRESHOLD: int = 100
+const RUSH_CUSTOMER_COUNT: int = 7
 var total_crowns: int = INIT_CROWNS
+var game_over: bool = false
 var all_customers_arrived: bool = false
 var all_customers_done: bool = false
+var _customer_rush_triggered: bool = false
+var _customer_rush_pending: bool = false
 
 var day: int = 1
 var phase: Phase = Phase.MORNING
@@ -99,10 +108,26 @@ func record_table_left_dirty() -> void:
 	tables_left_dirty += 1
 	changed.emit()
 
+func record_secret_found() -> void:
+	if secret_found:
+		return
+	secret_found = true
+	changed.emit()
+
 func record_crowns(amount: int) -> void:
+	var previous := total_crowns
 	total_crowns += amount
 	crowns_changed.emit(total_crowns)
 	changed.emit()
+	if not _customer_rush_triggered \
+			and previous <= RUSH_CROWN_THRESHOLD \
+			and total_crowns > RUSH_CROWN_THRESHOLD:
+		_customer_rush_triggered = true
+		# Too late today once the last scheduled customer has arrived — do it first thing tomorrow.
+		if all_customers_arrived or phase != Phase.NOON:
+			_customer_rush_pending = true
+		else:
+			customer_rush_requested.emit(RUSH_CUSTOMER_COUNT)
 
 func mark_all_customers_arrived() -> void:
 	all_customers_arrived = true
@@ -130,9 +155,13 @@ func reset() -> void:
 	left_unserved = 0
 	tables_cleaned = 0
 	tables_left_dirty = 0
+	secret_found = false
 	total_crowns = INIT_CROWNS
 	all_customers_arrived = false
 	all_customers_done = false
+	_customer_rush_triggered = false
+	_customer_rush_pending = false
+	game_over = false
 	_transition_timer = -1.0
 	day = 1
 	_start_phase(Phase.MORNING, true)
@@ -148,9 +177,23 @@ func advance_day() -> void:
 	changed.emit()
 
 func open_for_business() -> void:
-	if phase != Phase.MORNING:
+	if phase != Phase.MORNING or game_over:
 		return
 	_start_phase(Phase.NOON, true)
+	_flush_pending_customer_rush()
+
+func end_game() -> void:
+	if game_over:
+		return
+	game_over = true
+	game_ended.emit()
+	reset()
+
+func _flush_pending_customer_rush() -> void:
+	if not _customer_rush_pending:
+		return
+	_customer_rush_pending = false
+	customer_rush_requested.emit(RUSH_CUSTOMER_COUNT)
 
 func _advance_phase() -> void:
 	match phase:

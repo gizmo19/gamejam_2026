@@ -14,6 +14,7 @@ script = ExtResource("1_gqv1c")
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
 cast_shadow = 0
 billboard = 1
+double_sided = false
 alpha_cut = 2
 texture_filter = 0
 texture = SubResource("ViewportTexture_gqv1c")
@@ -37,9 +38,9 @@ texture = ExtResource("2_wtbt0")
 stretch_mode = 5
 
 [node name="ItemOrigin" type="Node3D" parent="." unique_id=326719831]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.08149904, 0)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0.08149904, 0)
 
 [node name="Item" parent="ItemOrigin" unique_id=2009337387 instance=ExtResource("3_gqv1c")]
 unique_name_in_owner = true
-transform = Transform3D(0.785, 0, 0, 0, 0.62500256, -0.47497037, 0, 0.47497037, 0.62500256, 0, -0.13317487, 0)
+transform = Transform3D(0.78499997, -1.4606602e-08, 1.515415e-08, 2.0798648e-08, 0.45165932, -0.64205045, 3.2276049e-09, 0.64205045, 0.45165932, -1.5428773e-08, -0.13317487, 0.17648458)
 empty = false

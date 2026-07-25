@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://kqju7jna3egg"]
+
+[ext_resource type="PackedScene" uid="uid://boqjkub0qiu7i" path="res://assets/models/food/cutting-board-japanese.glb" id="1_qllsj"]
+[ext_resource type="PackedScene" uid="uid://bsapck37heahv" path="res://assets/models/food/waffle_white.tscn" id="2_7da8i"]
+[ext_resource type="PackedScene" uid="uid://ctwwf77awhbw6" path="res://assets/models/food/plate.glb" id="3_buxds"]
+[ext_resource type="PackedScene" uid="uid://chdfvh0w15x3b" path="res://assets/models/food/utensil-fork.glb" id="4_s7rv4"]
+
+[node name="Kremowka" type="Node3D" unique_id=64867161]
+
+[node name="cutting-board-japanese3" parent="." unique_id=1328938101 instance=ExtResource("1_qllsj")]
+transform = Transform3D(2.8579707e-08, -3.636962e-08, -0.38450345, -2.4985179e-15, -0.41602, 3.3614363e-08, -0.65382755, 0, -1.6807181e-08, 0, 0.08421071, 0)
+
+[node name="cutting-board-japanese2" parent="." unique_id=579903139 instance=ExtResource("1_qllsj")]
+transform = Transform3D(-2.920066e-08, 0, 0.3845035, 0, 0.4628859, 0, -0.66803324, 0, -1.6807183e-08, 0, 0.12795165, 0)
+
+[node name="waffle3" parent="." unique_id=1758480428 instance=ExtResource("2_7da8i")]
+transform = Transform3D(1, 0, 0, 0, 2.0720112, 0, 0, 0, 1, 0, 0.067194164, 0)
+
+[node name="plate2" parent="." unique_id=975279323 instance=ExtResource("3_buxds")]
+transform = Transform3D(0.775, 0, 0, 0, 0.775, 0, 0, 0, 0.775, 0, 0, 0)
+
+[node name="utensil-fork2" parent="." unique_id=1198520812 instance=ExtResource("4_s7rv4")]
+transform = Transform3D(-0.91102034, 0.061304726, 0.40777928, 0.028313369, 0.9958528, -0.08645965, -0.4113885, -0.06722082, -0.90897787, -0.18720967, 0.07756399, 0.19404559)
