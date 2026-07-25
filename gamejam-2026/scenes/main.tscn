@@ -8,26 +8,10 @@
 [ext_resource type="PackedScene" uid="uid://c8i3y7r8bmb4j" path="res://scenes/synek.tscn" id="8_tipki"]
 [ext_resource type="PackedScene" uid="uid://bxeo33e5v6il7" path="res://scenes/popup_bubble.tscn" id="9_85g3d"]
 [ext_resource type="Script" uid="uid://dj184uc8v2ioi" path="res://scripts/npc_spawn_manager.gd" id="9_npc_spawn"]
+[ext_resource type="Script" uid="uid://dro8ykd5jgmrn" path="res://scripts/vibe.gd" id="11_eb6dy"]
+[ext_resource type="Environment" uid="uid://ccqrkly7rm8h3" path="res://resources/env/env_night.tres" id="11_ya4ey"]
 [ext_resource type="PackedScene" uid="uid://8hu4nwcn16tt" path="res://scenes/kitchen.tscn" id="20_kitchen"]
 [ext_resource type="PackedScene" uid="uid://be2ftevuw33p" path="res://scenes/architecture.tscn" id="21_architecture"]
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_choun"]
-ground_bottom_color = Color(0.19539669, 0.12227354, 0.0583736, 1)
-ground_horizon_color = Color(0.760901, 0.62453, 0.49766552, 1)
-sun_angle_max = 11.8
-
-[sub_resource type="Sky" id="Sky_ya4ey"]
-sky_material = SubResource("ProceduralSkyMaterial_choun")
-radiance_size = 0
-
-[sub_resource type="Environment" id="Env_1"]
-background_mode = 2
-sky = SubResource("Sky_ya4ey")
-ambient_light_source = 3
-ambient_light_color = Color(0.3303325, 0.30767792, 0.2721296, 1)
-ambient_light_sky_contribution = 0.0
-ambient_light_energy = 0.38
-glow_enabled = true
 
 [node name="Main" type="Node3D" unique_id=231097996]
 script = ExtResource("3_main_script")
@@ -121,14 +105,31 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.08554059, 2.6557739, -0.596
 text = "See what customer wants"
 
 [node name="Vibe" type="Node3D" parent="." unique_id=433275077]
+script = ExtResource("11_eb6dy")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Vibe" unique_id=825138542]
-environment = SubResource("Env_1")
+environment = ExtResource("11_ya4ey")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Vibe" unique_id=1791518035]
-transform = Transform3D(0.7755515, -0.45599103, 0.43656826, 0.2909096, 0.8719024, 0.3939002, -0.5602599, -0.17848805, 0.80885756, 1.6223656, 2.3776271, 1.5929428)
+[node name="SunNight" type="DirectionalLight3D" parent="Vibe" unique_id=1791518035]
+transform = Transform3D(0.69342154, -0.5415383, 0.475292, 0.33942857, 0.8273719, 0.4474858, -0.6355741, -0.1489686, 0.7575312, 1.6235694, 2.3761766, 1.5934815)
 light_color = Color(0.6, 0.65, 0.8, 1)
 light_energy = 2.432
 shadow_enabled = true
 shadow_opacity = 0.96
 shadow_blur = 0.957
+
+[node name="SunMorning" type="DirectionalLight3D" parent="Vibe" unique_id=1184007777]
+transform = Transform3D(0.30403635, -0.3209622, -0.89696413, 0.9515761, 0.05741307, 0.3020035, -0.045434155, -0.94534993, 0.3228758, 1.6223656, 2.3776271, 1.5929428)
+visible = false
+light_color = Color(0.67270803, 0.66455156, 0.51646894, 1)
+light_energy = 5.554
+shadow_enabled = true
+shadow_opacity = 0.98
+
+[node name="SunNoon" type="DirectionalLight3D" parent="Vibe" unique_id=1073187788]
+transform = Transform3D(-0.23193488, -0.78256404, 0.57775366, 0.8987241, 0.054843396, 0.43507114, -0.37215713, 0.6201494, 0.690589, 1.8885199, 2.3205516, 1.942518)
+visible = false
+light_color = Color(0.9366489, 0.5304921, 0.38342652, 1)
+light_energy = 5.331
+shadow_enabled = true
+shadow_opacity = 0.98
