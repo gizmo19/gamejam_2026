@@ -8,26 +8,6 @@
 [node name="Model" parent="." unique_id=1476359151 instance=ExtResource("1_chandelier_model")]
 
 [node name="FireLight" parent="." unique_id=634224518 instance=ExtResource("2_fire_light")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.799218, 1.4515493, 0.36609474)
-light_energy = 3.5
-omni_range = 8.0
-
-[node name="FireLight2" parent="." unique_id=644120473 instance=ExtResource("2_fire_light")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5793942, 1.4377799, -0.91175294)
-light_energy = 3.5
-omni_range = 8.0
-
-[node name="FireLight3" parent="." unique_id=993604340 instance=ExtResource("2_fire_light")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.026012808, 1.5919894, -1.9251122)
-light_energy = 3.5
-omni_range = 8.0
-
-[node name="FireLight4" parent="." unique_id=764471319 instance=ExtResource("2_fire_light")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6755178, 1.4435939, 0.7777249)
-light_energy = 3.5
-omni_range = 8.0
-
-[node name="FireLight5" parent="." unique_id=791223862 instance=ExtResource("2_fire_light")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.23528154, 1.3313273, 1.7895381)
-light_energy = 3.5
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17674339, 1.3811662, 0.36609474)
+light_energy = 4.13
 omni_range = 8.0

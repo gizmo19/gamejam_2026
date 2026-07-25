@@ -28,6 +28,7 @@ const SPRITE_MATERIALS: Array[Material] = [
 @onready var state_label: Label3D = $StateLabel
 @onready var sprite: MeshInstance3D = $Sprite
 var _coin_player: AudioStreamPlayer
+@onready var item_bubble: ItemBubble = %ItemBubble
 
 var _time_left: float = 0.0
 var _order_taken: bool = false
@@ -111,8 +112,8 @@ func _take_order() -> void:
 	_order_taken = true
 	_time_left = -1.0
 	order_given.emit()
-	countdown_label.text = order_label()
-	countdown_label.visible = true
+	_set_countdown_visible(false)
+	item_bubble.show_item(order as Item.Type)
 	state_timer.start(3.0)
 
 func _ready() -> void:
@@ -136,34 +137,39 @@ func _process(delta: float) -> void:
 				if _time_left == 0.0:
 					patience_expired.emit(self)
 				_set_countdown_visible(true)
+				item_bubble.hide_item()
 				var n := ceili(_time_left)
 				if n != _last_countdown:
 					_last_countdown = n
 					countdown_label.text = "%d" % n
 			else:
 				_set_countdown_visible(false)
+				item_bubble.hide_item()
 		State.SEATED:
 			if was_served:
-				# Leave tip reveal from _on_timer_timeout alone while eating finishes / pays.
 				if not _eating_finished:
 					_set_countdown_visible(false)
+					item_bubble.hide_item()
 			elif _time_left > 0.0:
 				_time_left = maxf(_time_left - delta, 0.0)
 				if _time_left == 0.0:
 					patience_expired.emit(self)
 				_set_countdown_visible(true)
+				item_bubble.show_item(order as Item.Type)
 				var n := ceili(_time_left)
 				if n != _last_countdown:
 					_last_countdown = n
-					countdown_label.text = "%s\n%d" % [order_label(), n]
+					countdown_label.text = "%d" % n
 			else:
 				_set_countdown_visible(false)
+				item_bubble.hide_item()
 		_:
 			_set_countdown_visible(false)
+			item_bubble.hide_item()
 
-func _set_countdown_visible(visible: bool) -> void:
-	if countdown_label.visible != visible:
-		countdown_label.visible = visible
+func _set_countdown_visible(_visible: bool) -> void:
+	if countdown_label.visible != _visible:
+		countdown_label.visible = _visible
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
@@ -199,7 +205,8 @@ func _on_arrived() -> void:
 func accept_delivery() -> void:
 	var wait_time := TABLE_WAIT_TIME - _time_left
 	_pending_ducats = 3 if wait_time < 15.0 else (2 if wait_time < 30.0 else 1)
-	countdown_label.visible = false
+	_set_countdown_visible(false)
+	item_bubble.hide_item()
 	was_served = true
 	_time_left = -1.0
 	state_timer.start(_eating_duration())

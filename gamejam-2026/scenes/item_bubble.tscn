@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://ccf6c7kofvnno"]
+
+[ext_resource type="Script" uid="uid://cq36o00ohhesk" path="res://scripts/item_bubble.gd" id="1_gqv1c"]
+[ext_resource type="Texture2D" uid="uid://d34wftswa8ggy" path="res://assets/sprites/hud/bubble.png" id="2_wtbt0"]
+[ext_resource type="PackedScene" uid="uid://ccyua5tywv6ni" path="res://scenes/item.tscn" id="3_gqv1c"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_gqv1c"]
+viewport_path = NodePath("SubViewport")
+
+[node name="ItemBubble" type="Node3D" unique_id=815741127]
+script = ExtResource("1_gqv1c")
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=1154761341]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
+cast_shadow = 0
+billboard = 1
+alpha_cut = 2
+texture_filter = 0
+texture = SubResource("ViewportTexture_gqv1c")
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=857144824]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(85, 66)
+render_target_update_mode = 4
+
+[node name="TextureRect" type="TextureRect" parent="SubViewport" unique_id=675484091]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("2_wtbt0")
+stretch_mode = 5
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=2021391666]
+light_energy = 3.933
+omni_range = 2.2342863
+
+[node name="ItemOrigin" type="Node3D" parent="." unique_id=326719831]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.08149904, 0)
+
+[node name="Item" parent="ItemOrigin" unique_id=2009337387 instance=ExtResource("3_gqv1c")]
+unique_name_in_owner = true
+transform = Transform3D(0.785, 0, 0, 0, 0.62500256, -0.47497037, 0, 0.47497037, 0.62500256, 0, -0.13317487, 0)
+empty = false

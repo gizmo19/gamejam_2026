@@ -6,8 +6,9 @@
 [node name="Torch" type="Node3D" unique_id=656511982]
 
 [node name="Model" parent="." unique_id=1099853971 instance=ExtResource("1_torch_model")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 
 [node name="FireLight" parent="." unique_id=1840625153 instance=ExtResource("2_fire_light")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.42772, 0)
-light_energy = 3.5
-omni_range = 5.0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9450661, 0)
+light_energy = 2.395
+omni_range = 3.2048638

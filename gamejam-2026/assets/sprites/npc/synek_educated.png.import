@@ -2,21 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://yy0681kglh5s"
-path.s3tc="res://.godot/imported/WoodSiding006_1K-PNG_NormalDX.png-8d3b9f95da72cb0ef26eea729c76a7ba.s3tc.ctex"
+uid="uid://dky3t7egjl2ph"
+path="res://.godot/imported/synek_educated.png-ab678cbcaf94bfcdea257f7189beb6cf.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/WoodSiding006_1K-PNG/WoodSiding006_1K-PNG_NormalDX.png"
-dest_files=["res://.godot/imported/WoodSiding006_1K-PNG_NormalDX.png-8d3b9f95da72cb0ef26eea729c76a7ba.s3tc.ctex"]
+source_file="res://assets/sprites/npc/synek_educated.png"
+dest_files=["res://.godot/imported/synek_educated.png-ab678cbcaf94bfcdea257f7189beb6cf.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
@@ -38,4 +37,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1

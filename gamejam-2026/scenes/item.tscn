@@ -16,7 +16,7 @@ script = ExtResource("1_item")
 empty = true
 
 [node name="Label3D" type="Label3D" parent="." unique_id=1998130123]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.28, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.58785, 0)
 pixel_size = 0.008
 billboard = 1
 text = "Soup"
@@ -29,6 +29,7 @@ outline_size = 6
 visible = false
 
 [node name="SoupEmpty" type="Node3D" parent="Mesh" unique_id=78883707]
+visible = false
 
 [node name="bowl2" parent="Mesh/SoupEmpty" unique_id=1930174442 instance=ExtResource("3_xr48l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0018670559, 0, 0.0028985739)
@@ -49,13 +50,12 @@ transform = Transform3D(0.56090444, -0.026190802, -0.44861317, -2.8050605e-16, 0
 transform = Transform3D(-4.231066e-08, 0.96795505, 0.25112343, -1, -4.371139e-08, 0, 1.0976954e-08, -0.25112343, 0.96795505, -0.20941198, 0.08804989, 0.10921693)
 
 [node name="Chicken" type="Node3D" parent="Mesh" unique_id=1804203005]
-visible = false
 
 [node name="plate-rectangle" parent="Mesh/Chicken" unique_id=883399234 instance=ExtResource("3_ro5b8")]
 transform = Transform3D(0.8660254, 0, 0.5, 0, 1, 0, -0.5, 0, 0.8660254, 0, 0, 0)
 
 [node name="turkey2" parent="Mesh/Chicken" unique_id=623267418 instance=ExtResource("4_d265e")]
-transform = Transform3D(0.99798715, 0.06341758, 0, -0.06341758, 0.99798715, 0, 0, 0, 1, 0, 0.05534476, 0)
+transform = Transform3D(0.77343994, 0.04914862, 0, -0.04914862, 0.77343994, 0, 0, 0, 0.775, 0, 0.05534476, 0)
 
 [node name="BeerEmpty" type="Node3D" parent="Mesh" unique_id=503199878]
 visible = false
