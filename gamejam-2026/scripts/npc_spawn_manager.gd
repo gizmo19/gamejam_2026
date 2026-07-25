@@ -8,7 +8,7 @@ signal all_customers_spawned
 
 ## Fixed number of customers per day. Index 0 = day 1.
 # @export var customers_per_day: Array[int] = [3, 5, 7, 10, 12]
-@export var customers_per_day: Array[int] = [1, 5, 7, 10, 12] # Debugging
+@export var customers_per_day: Array[int] = [3, 5, 7, 10, 12] # Debugging
 ## Index 0 = day 1. Days past the last entry reuse the final values.
 @export var interval_min_by_day: Array[float] = [6.0, 6.0, 5.0, 4.0]
 @export var interval_max_by_day: Array[float] = [16.0, 12.0, 10.0, 8.0]

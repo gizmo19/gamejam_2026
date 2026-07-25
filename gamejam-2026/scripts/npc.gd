@@ -56,6 +56,11 @@ func order_label() -> String:
 func set_state(new_state: State) -> void:
 	state = new_state
 	state_label.text = State.find_key(new_state)
+	match new_state:
+		State.WALKING_TO_BAR, State.WAITING_IN_QUEUE, State.WAITING_AT_BAR:
+			collision_mask = 5
+		_:
+			collision_mask = 1
 
 func setup(bar_pos: Vector3) -> void:
 	set_state(State.WALKING_TO_BAR)
