@@ -39,7 +39,7 @@ func _ready() -> void:
 	ScoreState.day_changed.connect(_on_day_changed)
 	_footstep_player = AudioStreamPlayer.new()
 	_footstep_player.stream = STEP_WOOD_SFX
-	_footstep_player.volume_db = linear_to_db(0.25)
+	_footstep_player.volume_db = linear_to_db(0.12)
 	add_child(_footstep_player)
 
 func lock_controls() -> void:

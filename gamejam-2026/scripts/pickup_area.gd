@@ -20,7 +20,7 @@ func _ready() -> void:
 	if not Engine.is_editor_hint():
 		_cut_player = AudioStreamPlayer.new()
 		_cut_player.stream = CUT_PUMPKIN_SFX
-		_cut_player.volume_db = linear_to_db(0.5)
+		_cut_player.volume_db = linear_to_db(0.25)
 		add_child(_cut_player)
 		_water_player = AudioStreamPlayer.new()
 		_water_player.stream = WATER_SFX
