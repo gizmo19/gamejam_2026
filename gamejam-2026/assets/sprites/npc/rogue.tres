@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cvn4gfh8t2ydw"]
+
+[ext_resource type="Texture2D" uid="uid://bpx7tqjwnk3ms" path="res://assets/sprites/npc/rogue.png" id="1_r7k2x"]
+
+[resource]
+transparency = 1
+albedo_texture = ExtResource("1_r7k2x")
+texture_filter = 0
+texture_repeat = false
+billboard_mode = 2
