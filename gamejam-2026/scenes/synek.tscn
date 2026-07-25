@@ -9,7 +9,7 @@
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1"]
-size = Vector3(2.1357422, 0.8164673, 1.1953125)
+size = Vector3(2.1357422, 1.5243225, 1.1953125)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j5efx"]
 atlas = ExtResource("5_18fkf")
@@ -90,7 +90,7 @@ unique_name_in_owner = true
 transform = Transform3D(0.081434056, 0, 0.9966787, 0, 1, 0, -0.9966787, 0, 0.081434056, 0.33614284, 0.73263264, -0.22963297)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1848786650]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.002, 0.39073902, -0.13705999)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.002, 0.74466664, -0.13705999)
 shape = SubResource("BoxShape3D_1")
 
 [node name="SubViewport" type="SubViewport" parent="." unique_id=1762542672]

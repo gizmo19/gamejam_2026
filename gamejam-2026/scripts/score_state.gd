@@ -17,7 +17,7 @@ const PHASE_NAMES: Dictionary = {
 signal changed
 signal phase_changed(phase: Phase)
 signal day_changed(day: int)
-signal ducats_changed(total: int)
+signal crowns_changed(total: int)
 signal customers_all_arrived
 signal customers_all_done
 signal tavern_closed
@@ -30,8 +30,8 @@ var left_unserved: int = 0
 var tables_cleaned: int = 0
 var tables_left_dirty: int = 0
 
-const INIT_DUCATS: int = 73
-var total_ducats: int = INIT_DUCATS
+const INIT_CROWNS: int = 73
+var total_crowns: int = INIT_CROWNS
 var all_customers_arrived: bool = false
 var all_customers_done: bool = false
 
@@ -99,9 +99,9 @@ func record_table_left_dirty() -> void:
 	tables_left_dirty += 1
 	changed.emit()
 
-func record_ducats(amount: int) -> void:
-	total_ducats += amount
-	ducats_changed.emit(total_ducats)
+func record_crowns(amount: int) -> void:
+	total_crowns += amount
+	crowns_changed.emit(total_crowns)
 	changed.emit()
 
 func mark_all_customers_arrived() -> void:
@@ -130,7 +130,7 @@ func reset() -> void:
 	left_unserved = 0
 	tables_cleaned = 0
 	tables_left_dirty = 0
-	total_ducats = INIT_DUCATS
+	total_crowns = INIT_CROWNS
 	all_customers_arrived = false
 	all_customers_done = false
 	_transition_timer = -1.0

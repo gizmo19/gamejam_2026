@@ -36,10 +36,6 @@ size_flags_vertical = 3
 texture = ExtResource("2_wtbt0")
 stretch_mode = 5
 
-[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=2021391666]
-light_energy = 3.933
-omni_range = 2.2342863
-
 [node name="ItemOrigin" type="Node3D" parent="." unique_id=326719831]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.08149904, 0)
 

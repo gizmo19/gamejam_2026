@@ -2,9 +2,17 @@ extends CanvasLayer
 
 enum MenuTab {GAME_INIT, MAIN_MENU, INTRO, START, GAME_END, LICENSES, CREDITS}
 
+const STAMINA_BLUE_BG: StyleBox = preload("res://resources/ui/stamina_blue_bg.tres")
+const STAMINA_BLUE_FILL: StyleBox = preload("res://resources/ui/stamina_blue_fill.tres")
+const STAMINA_RED_BG: StyleBox = preload("res://resources/ui/stamina_red_bg.tres")
+const STAMINA_RED_FILL: StyleBox = preload("res://resources/ui/stamina_red_fill.tres")
+
 @onready var _progress_bar: ProgressBar = %ProgressBar
+@onready var _day_label: RichTextLabel = %DayLabel
+@onready var _crowns_label: RichTextLabel = %CrownsLabel
 @onready var _game_scores: RichTextLabel = %GameScores
 @onready var _stamina_bar: ProgressBar = %StaminaBar
+@onready var _stamina_popup: NinePatchRect = %StaminaPopup
 @onready var _pointer: AnimatedSprite2D = %Pointer
 @onready var _interaction_hint: TextureRect = %InteractionHint
 @onready var _stamina_cost_popup: NinePatchRect = %StaminaCostPopup
@@ -27,10 +35,12 @@ enum MenuTab {GAME_INIT, MAIN_MENU, INTRO, START, GAME_END, LICENSES, CREDITS}
 
 var _fade_overlay: ColorRect
 var _fade_tween: Tween
+var _stamina_is_low: bool = false
 
 func _ready() -> void:
 	_progress_bar.value = 0.0
 	_progress_bar.visible = false
+	_stamina_popup.visible = false
 	_stamina_cost_popup.visible = false
 	_notification_popup.visible = false
 	_interaction_hint.visible = false
@@ -85,6 +95,17 @@ func _on_play_pressed() -> void:
 
 func set_stamina(value: float) -> void:
 	_stamina_bar.value = value
+	var is_low := value < Player.STAMINA_LOW_THRESHOLD
+	_stamina_popup.visible = is_low
+	if is_low == _stamina_is_low:
+		return
+	_stamina_is_low = is_low
+	if is_low:
+		_stamina_bar.add_theme_stylebox_override("background", STAMINA_RED_BG)
+		_stamina_bar.add_theme_stylebox_override("fill", STAMINA_RED_FILL)
+	else:
+		_stamina_bar.add_theme_stylebox_override("background", STAMINA_BLUE_BG)
+		_stamina_bar.add_theme_stylebox_override("fill", STAMINA_BLUE_FILL)
 
 func set_interact_hover(hovering: bool, stamina_cost: float = 0.0) -> void:
 	var anim := &"interaction" if hovering else &"pointer"
@@ -141,10 +162,12 @@ func _fade_from_black() -> void:
 	_fade_tween.tween_property(_fade_overlay, "modulate:a", 0.0, 0.8)
 
 func _refresh_scores() -> void:
-	_game_scores.text = "[b]Day %d / %s[/b]   Dukats: %d / 1000\n[b]Served:[/b] %d\n[b]Left at table:[/b] %d\n[b]Left unserved:[/b] %d\n[b]Cleaned tables:[/b] %d\n[b]Dirty tables:[/b] %d" % [
+	_day_label.text = "[b]Day %d / %s[/b]" % [
 		ScoreState.day,
 		ScoreState.get_phase_name(),
-		ScoreState.total_ducats,
+	]
+	_crowns_label.text = "Crowns: %d / 100" % ScoreState.total_crowns
+	_game_scores.text = "[b]Served:[/b] %d\n[b]Left at table:[/b] %d\n[b]Left unserved:[/b] %d\n[b]Cleaned tables:[/b] %d\n[b]Dirty tables:[/b] %d" % [
 		ScoreState.served,
 		ScoreState.left_at_table,
 		ScoreState.left_unserved,

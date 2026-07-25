@@ -33,7 +33,7 @@ var _coin_player: AudioStreamPlayer
 
 var _time_left: float = 0.0
 var _order_taken: bool = false
-var _pending_ducats: int = 0
+var _pending_crowns: int = 0
 var _eating_finished: bool = false
 var _last_countdown: int = -1
 
@@ -205,7 +205,7 @@ func _on_arrived() -> void:
 
 func accept_delivery() -> void:
 	var wait_time := TABLE_WAIT_TIME - _time_left
-	_pending_ducats = 3 if wait_time < 15.0 else (2 if wait_time < 30.0 else 1)
+	_pending_crowns = 3 if wait_time < 15.0 else (2 if wait_time < 30.0 else 1)
 	_set_countdown_visible(false)
 	item_bubble.hide_item()
 	was_served = true
@@ -245,8 +245,8 @@ func _on_timer_timeout() -> void:
 		if was_served and not _eating_finished:
 			_eating_finished = true
 			_coin_player.play()
-			ScoreState.record_ducats(_pending_ducats)
-			countdown_label.text = "+%d dukatów" % _pending_ducats
+			ScoreState.record_crowns(_pending_crowns)
+			countdown_label.text = "+%d Crowns" % _pending_crowns
 			countdown_label.visible = true
 			# Free the seat immediately on pay; NPC still walks out after the tip display.
 			if target_table:

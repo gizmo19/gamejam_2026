@@ -1,0 +1,104 @@
+[gd_scene format=3 uid="uid://bc2wr5b7sojxl"]
+
+[ext_resource type="Script" uid="uid://c5wduxt5fe77v" path="res://scripts/jar.gd" id="1_hrclp"]
+[ext_resource type="Texture2D" uid="uid://dkh5c35l8r6ef" path="res://assets/models/architecture/crowns_metal_02_color_1k.png" id="1_kwyeq"]
+[ext_resource type="PackedScene" uid="uid://d2dgea2d2fyoe" path="res://scenes/crown_animated.tscn" id="2_hqnpr"]
+[ext_resource type="Texture2D" uid="uid://834apan0olul" path="res://assets/metal_textures/metal_02_1k/metal_02_roughness_1k.png" id="2_hrclp"]
+[ext_resource type="PackedScene" uid="uid://g8ycdk3g6sjb" path="res://assets/models/jar.tscn" id="3_hqnpr"]
+[ext_resource type="PackedScene" uid="uid://bb7h7hnrxvkbk" path="res://assets/models/architecture/crowns.glb" id="4_rspsg"]
+
+[sub_resource type="ExternalTexture" id="ExternalTexture_hqnpr"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1ap65"]
+albedo_color = Color(0.8830958, 0.7223013, 1.540184e-06, 1)
+albedo_texture = ExtResource("1_kwyeq")
+metallic = 1.0
+metallic_texture = SubResource("ExternalTexture_hqnpr")
+roughness = 0.28
+roughness_texture = ExtResource("2_hrclp")
+roughness_texture_channel = 4
+emission = Color(0.65968263, 0.4105523, 0, 1)
+emission_energy_multiplier = 5.2
+disable_receive_shadows = true
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_h2q6q"]
+top_radius = 0.865
+bottom_radius = 0.865
+height = 1.565
+radial_segments = 11
+rings = 0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_hrclp"]
+top_radius = 0.645
+bottom_radius = 0.865
+height = 1.17
+radial_segments = 11
+rings = 0
+
+[node name="Jar" type="Node3D" unique_id=1655779347]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+script = ExtResource("1_hrclp")
+
+[node name="CrownAnim" parent="." unique_id=327390421 instance=ExtResource("2_hqnpr")]
+transform = Transform3D(-1.6610326e-08, -1.6610326e-08, -0.38, -0.37999997, -1.6610326e-08, 1.661033e-08, -1.6610327e-08, 0.37999994, -1.6610327e-08, 0, 5.10219, 0)
+
+[node name="CylinderOrigin" type="Node3D" parent="." unique_id=1894801062]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.108831406, 0)
+visible = false
+
+[node name="Cylinder" type="MeshInstance3D" parent="CylinderOrigin" unique_id=77424016]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+material_override = SubResource("StandardMaterial3D_1ap65")
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_h2q6q")
+
+[node name="Cylinder2Origin" type="Node3D" parent="." unique_id=956661591]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6712686, 0)
+visible = false
+
+[node name="Cylinder" type="MeshInstance3D" parent="Cylinder2Origin" unique_id=368724194]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.60507596, 0)
+material_override = SubResource("StandardMaterial3D_1ap65")
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_hrclp")
+
+[node name="Top" type="Node3D" parent="." unique_id=1062619899]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0)
+
+[node name="Crown" type="Node3D" parent="Top" unique_id=1605357177]
+transform = Transform3D(0.37271234, 0.07140883, -0.019653462, -0.07406387, 0.35955295, -0.09816426, 0.00014911503, 0.10011223, 0.3665754, 0.16246724, 0.12057364, 0.3257023)
+
+[node name="crowns" parent="Top/Crown" unique_id=212269538 instance=ExtResource("4_rspsg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.1862048, 0)
+
+[node name="Crown5" type="Node3D" parent="Top" unique_id=2001721790]
+transform = Transform3D(0.20125392, 0.07465811, 0.31356505, -0.0482142, 0.3724802, -0.057740405, -0.318704, -0.00920474, 0.20674393, -0.18764018, 0.003949642, 0.3633157)
+
+[node name="crowns" parent="Top/Crown5" unique_id=26002711 instance=ExtResource("4_rspsg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.1862048, 0)
+
+[node name="Crown6" type="Node3D" parent="Top" unique_id=1074773457]
+transform = Transform3D(-0.3633698, -0.053690586, -0.09736366, -0.04800243, 0.37590402, -0.028140748, 0.10029021, -0.014610011, -0.36623546, -0.31851876, 0.08232427, -0.20019257)
+
+[node name="crowns" parent="Top/Crown6" unique_id=930212654 instance=ExtResource("4_rspsg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.1862048, 0)
+
+[node name="Crown2" type="Node3D" parent="Top" unique_id=1695917178]
+transform = Transform3D(-0.10985176, -0.133072, -0.33856225, -0.07841905, 0.35400978, -0.113699354, 0.3552225, 0.036999106, -0.12979996, -0.35048634, 0.18086398, 0.11229634)
+
+[node name="crowns" parent="Top/Crown2" unique_id=1615015110 instance=ExtResource("4_rspsg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.1862048, 0)
+
+[node name="Crown3" type="Node3D" parent="Top" unique_id=1913328952]
+transform = Transform3D(-0.02591531, 0.054358725, 0.37519795, -0.13018215, 0.35193047, -0.059979588, -0.3560632, -0.13262755, -0.0053785406, -0.007676393, 0.06332016, -0.43657506)
+
+[node name="crowns" parent="Top/Crown3" unique_id=1944629026 instance=ExtResource("4_rspsg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.1862048, 0)
+
+[node name="Crown4" type="Node3D" parent="Top" unique_id=1542480076]
+transform = Transform3D(0.29304275, 0.1137558, 0.21350776, -0.070345074, 0.3609454, -0.09576003, -0.23146822, 0.034322534, 0.2994068, 0.39133364, 0.09315157, -0.09620339)
+
+[node name="crowns" parent="Top/Crown4" unique_id=1276577488 instance=ExtResource("4_rspsg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.1862048, 0)
+
+[node name="jar" parent="." unique_id=1250425792 instance=ExtResource("3_hqnpr")]
