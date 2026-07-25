@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dnfeckinxfln0" path="res://assets/models/architecture/bar.blend" id="1_bar_model"]
 [ext_resource type="Script" uid="uid://wgmsyyp6uwhh" path="res://scripts/bar_queue.gd" id="2_bar_queue"]
+[ext_resource type="PackedScene" uid="uid://ctwwf77awhbw6" path="res://assets/models/food/plate.glb" id="3_plate"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1"]
 size = Vector3(10, 2.5, 2)
@@ -16,3 +17,15 @@ shape = SubResource("BoxShape3D_1")
 
 [node name="BarQueue" type="Node" parent="." unique_id=1752456753]
 script = ExtResource("2_bar_queue")
+
+[node name="Plate" parent="." unique_id=1170100001 instance=ExtResource("3_plate")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.43531, 2.5864577, 0)
+
+[node name="Plate2" parent="." unique_id=964730812 instance=ExtResource("3_plate")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.43531, 2.6864576, 0)
+
+[node name="Plate3" parent="." unique_id=46891270 instance=ExtResource("3_plate")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.43531, 2.7886763, 0)
+
+[node name="Plate4" parent="." unique_id=1264076239 instance=ExtResource("3_plate")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.43531, 2.8886762, 0)

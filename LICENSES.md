@@ -42,6 +42,10 @@ https://ambientcg.com
 Creative Commons CC0 1.0 Universal License
 https://docs.ambientcg.com/license/
 
+Books in bookshelf
+Image by rawpixel.com on Magnific
+https://www.magnific.com/free-photo/antique-book-shelf-vintage-background_21631166.htm#fromView=search&page=1&position=0&uuid=83434508-ee3e-457d-97e8-64f198a790ce&query=Bookshelf+texture
+
 Wooden Beam:
 You are free to use this image:
 
