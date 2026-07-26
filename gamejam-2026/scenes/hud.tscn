@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://r0h3wmdparsv" path="res://assets/sprites/npc/controls_pad.png" id="9_mphia"]
 [ext_resource type="Texture2D" uid="uid://dky3t7egjl2ph" path="res://assets/sprites/npc/synek_educated.png" id="11_0m4u7"]
 [ext_resource type="PackedScene" uid="uid://g0gl6jqa1bku" path="res://scenes/crown_hud_icon.tscn" id="13_crownhud"]
+[ext_resource type="Texture2D" uid="uid://d06bja3rdudc2" path="res://assets/darek_greenly.png" id="15_3swnk"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6fi6k"]
 texture = ExtResource("2_5ysmq")
@@ -373,7 +374,6 @@ texture = ExtResource("2_5ysmq")
 
 [node name="MenuOverlay" type="TextureRect" parent="." unique_id=608134163]
 unique_name_in_owner = true
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -395,7 +395,7 @@ theme_override_constants/margin_bottom = 64
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_047uy")
-current_tab = 1
+current_tab = 6
 tabs_visible = false
 
 [node name="GameInit" type="TabBar" parent="MenuOverlay/MarginContainer/MenuTabs" unique_id=733724011]
@@ -455,6 +455,7 @@ text = "You can always use ALT+Enter to enable fullscreen again"
 horizontal_alignment = 1
 
 [node name="MainMenu" type="TabBar" parent="MenuOverlay/MarginContainer/MenuTabs" unique_id=585437271]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
@@ -969,7 +970,6 @@ theme_override_styles/pressed = ExtResource("6_047uy")
 text = "Back"
 
 [node name="Credits" type="TabBar" parent="MenuOverlay/MarginContainer/MenuTabs" unique_id=409617785]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 6
 
@@ -1001,6 +1001,7 @@ size_flags_vertical = 3
 [node name="VBoxContainer" type="VBoxContainer" parent="MenuOverlay/MarginContainer/MenuTabs/Credits/VBoxContainer2/HBoxContainer" unique_id=379773782]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/separation = 42
 
 [node name="Label3" type="Label" parent="MenuOverlay/MarginContainer/MenuTabs/Credits/VBoxContainer2/HBoxContainer/VBoxContainer" unique_id=647254887]
 layout_mode = 2
@@ -1018,17 +1019,37 @@ theme_override_font_sizes/bold_font_size = 40
 theme_override_font_sizes/bold_italics_font_size = 40
 theme_override_font_sizes/italics_font_size = 40
 theme_override_font_sizes/mono_font_size = 40
+bbcode_enabled = true
 text = "Programming
 Environment Design
-3D Modelling"
+3D Modelling
+
+
+[url=https://github.com/gizmo19]github.com/gizmo19[/url]"
 horizontal_alignment = 1
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MenuOverlay/MarginContainer/MenuTabs/Credits/VBoxContainer2/HBoxContainer" unique_id=1112068683]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/separation = 42
 
-[node name="Label4" type="Label" parent="MenuOverlay/MarginContainer/MenuTabs/Credits/VBoxContainer2/HBoxContainer/VBoxContainer2" unique_id=1948836479]
+[node name="HBoxContainer" type="HBoxContainer" parent="MenuOverlay/MarginContainer/MenuTabs/Credits/VBoxContainer2/HBoxContainer/VBoxContainer2" unique_id=520295980]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="TextureRect" type="TextureRect" parent="MenuOverlay/MarginContainer/MenuTabs/Credits/VBoxContainer2/HBoxContainer/VBoxContainer2/HBoxContainer" unique_id=1805522342]
+custom_minimum_size = Vector2(89.55, 12.73)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.15
+texture = ExtResource("15_3swnk")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Label4" type="Label" parent="MenuOverlay/MarginContainer/MenuTabs/Credits/VBoxContainer2/HBoxContainer/VBoxContainer2/HBoxContainer" unique_id=1948836479]
+layout_mode = 2
+size_flags_horizontal = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 50
 text = "Darek Greenly"
@@ -1043,9 +1064,13 @@ theme_override_font_sizes/bold_font_size = 40
 theme_override_font_sizes/bold_italics_font_size = 40
 theme_override_font_sizes/italics_font_size = 40
 theme_override_font_sizes/mono_font_size = 40
+bbcode_enabled = true
 text = "Programming
 Sprite Drawing
-Music"
+Music
+
+[url=https://darekgreenly.com]darekgreenly.com[/url]
+[url=https://github.com/zielak]github.com/zielak[/url]"
 horizontal_alignment = 1
 
 [node name="CreditsBack" type="Button" parent="MenuOverlay/MarginContainer/MenuTabs/Credits/VBoxContainer2" unique_id=351692670]
