@@ -33,6 +33,8 @@ const STAMINA_RED_FILL: StyleBox = preload("res://resources/ui/stamina_red_fill.
 @onready var _end_stats: RichTextLabel = %End
 @onready var _credits_back_button: Button = %CreditsBack
 @onready var _licenses_back_button: Button = %LicenseBack
+@onready var _mateusz_credits: RichTextLabel = %MateuszCredits
+@onready var _darek_credits: RichTextLabel = %DarekCredits
 
 var _fade_overlay: ColorRect
 var _fade_tween: Tween
@@ -87,6 +89,11 @@ func _setup_menu() -> void:
 	_end_to_credits_button.pressed.connect(func(): _menu_tabs.current_tab = MenuTab.CREDITS)
 	_credits_back_button.pressed.connect(func(): _menu_tabs.current_tab = MenuTab.MAIN_MENU)
 	_licenses_back_button.pressed.connect(func(): _menu_tabs.current_tab = MenuTab.MAIN_MENU)
+	_mateusz_credits.meta_clicked.connect(_on_credit_link_clicked)
+	_darek_credits.meta_clicked.connect(_on_credit_link_clicked)
+
+func _on_credit_link_clicked(meta: Variant) -> void:
+	OS.shell_open(str(meta))
 
 func _refresh_start_buttons() -> void:
 	_start_game_button.visible = not _game_started
