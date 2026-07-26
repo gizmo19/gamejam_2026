@@ -45,9 +45,6 @@
 [ext_resource type="PackedScene" uid="uid://by7y5lc71rtff" path="res://assets/models/food/mug.glb" id="45_o8sc0"]
 [ext_resource type="PackedScene" uid="uid://br50bn7opcl0x" path="res://scenes/pickup_area.tscn" id="46_pickup"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_ams50"]
-size = Vector3(0.4, 3.1921387, 0.41394043)
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_uvkd1"]
 size = Vector3(1, 1, 0.9951172)
 
@@ -74,6 +71,9 @@ size = Vector3(2, 1, 2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_standing_shelf"]
 size = Vector3(2.4, 3, 0.8)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fe6e4"]
+size = Vector3(2.501892, 2.371582, 7.423828)
 
 [sub_resource type="QuadMesh" id="QuadMesh_o8sc0"]
 size = Vector2(2.88, 2.07)
@@ -291,14 +291,6 @@ transform = Transform3D(0.9961947, -0.10458689, 0, 0.08715574, 1.1954337, 0, 0, 
 
 [node name="StoneWall5" parent="Decorative/KitchenWall" unique_id=1584085877 instance=ExtResource("9_stone_wall")]
 transform = Transform3D(0.9961947, -0.10458689, 0, 0.08715574, 1.1954337, 0, 0, 0, 0.5, -1.9173007, 2.8777015, -6.855781)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Decorative/KitchenWall" unique_id=394924159]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1957493, 1.2883176, -6.043997)
-shape = SubResource("BoxShape3D_ams50")
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="Decorative/KitchenWall" unique_id=443712810]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1957493, 1.2883176, -8.053577)
-shape = SubResource("BoxShape3D_ams50")
 
 [node name="KitchenDoor" parent="Decorative/KitchenWall" unique_id=337445907 instance=ExtResource("10_kitchen_door")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1957493, -0.3033259, -7.032463)
@@ -742,6 +734,13 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2.91
 [node name="EmptyChest" parent="Props" unique_id=930100001 instance=ExtResource("35_chest_empty")]
 transform = Transform3D(-0.28346926, 0, 0.09820987, 0, 0.29999998, 0, -0.09820987, 0, -0.28346926, -3.485905, 0.11244261, -3.9038544)
 
+[node name="StaticBody3D" type="StaticBody3D" parent="Props/EmptyChest" unique_id=555079829]
+transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Props/EmptyChest/StaticBody3D" unique_id=1953039812]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.16610336, 0.685791, 1.3369141)
+shape = SubResource("BoxShape3D_fe6e4")
+
 [node name="Cheese" parent="Props/EmptyChest" unique_id=1700855127 instance=ExtResource("30_mloej")]
 transform = Transform3D(2.9999998, 0, -1.1920929e-07, 0, 2.9999998, 0, 1.1920929e-07, 0, 2.9999998, 14.111393, 10.436408, -3.7059479)
 
@@ -753,6 +752,30 @@ transform = Transform3D(2.9999998, 0, -1.1920929e-07, 0, 2.9999998, 0, 1.1920929
 
 [node name="Crowns" parent="Props" unique_id=940100001 instance=ExtResource("36_crowns")]
 transform = Transform3D(-0.07827061, 0, 0.06223916, 0, 0.1, 0, -0.06223916, 0, -0.07827061, -3.4256055, 0.0788911, -3.5823624)
+
+[node name="Crowns2" parent="Props" unique_id=1113275565 instance=ExtResource("36_crowns")]
+transform = Transform3D(-0.047219682, 0, -0.0881493, 0, 0.099999994, 0, 0.0881493, 0, -0.047219682, -3.4577982, 0.0788911, -4.0476685)
+
+[node name="Crowns3" parent="Props" unique_id=459135643 instance=ExtResource("36_crowns")]
+transform = Transform3D(-0.04966257, 0, 0.08679649, 0, 0.099999994, 0, -0.08679649, 0, -0.04966257, -3.3476083, 0.0788911, -3.8317697)
+
+[node name="Crowns4" parent="Props" unique_id=848831518 instance=ExtResource("36_crowns")]
+transform = Transform3D(0.08067438, 0, 0.05909016, 0, 0.099999994, 0, -0.05909016, 0, 0.08067438, -3.2147763, 0.0788911, -4.2712865)
+
+[node name="Crowns5" parent="Props" unique_id=1417488968 instance=ExtResource("36_crowns")]
+transform = Transform3D(-0.03741375, 0, 0.09273733, 0, 0.099999994, 0, -0.09273733, 0, -0.03741375, -3.2725694, 0.0788911, -4.0810556)
+
+[node name="Crowns6" parent="Props" unique_id=1615979459 instance=ExtResource("36_crowns")]
+transform = Transform3D(-0.09885519, 0, -0.015088154, 0, 0.09999999, 0, 0.015088154, 0, -0.09885519, -3.624469, 0.0788911, -3.4923604)
+
+[node name="Crowns7" parent="Props" unique_id=1127208030 instance=ExtResource("36_crowns")]
+transform = Transform3D(-0.001598631, 0, -0.09998722, 0, 0.09999997, 0, 0.09998722, 0, -0.001598631, -3.624469, 0.0788911, -3.8326194)
+
+[node name="Crowns8" parent="Props" unique_id=477409285 instance=ExtResource("36_crowns")]
+transform = Transform3D(-0.087705396, 0, 0.048039164, 0, 0.09999997, 0, -0.048039164, 0, -0.087705396, -3.3856633, 0.12258512, -4.0815153)
+
+[node name="Crowns9" parent="Props" unique_id=1923557319 instance=ExtResource("36_crowns")]
+transform = Transform3D(-0.087705396, 0, 0.048039164, 0, 0.09999997, 0, -0.048039164, 0, -0.087705396, -3.4362743, 0.07968968, -4.3496027)
 
 [node name="Bottle" parent="Props" unique_id=950100001 instance=ExtResource("37_bottle")]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 16.248003, 1.9171666, -1.6375567)
