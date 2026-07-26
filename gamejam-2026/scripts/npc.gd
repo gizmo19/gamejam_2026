@@ -21,6 +21,7 @@ const SPRITE_MATERIALS: Array[Material] = [
 	preload("res://assets/sprites/npc/knight_gal.tres"),
 	preload("res://assets/sprites/npc/rogue.tres"),
 	preload("res://assets/sprites/npc/druid.tres"),
+	preload("res://assets/sprites/npc/goblin.tres"),
 ]
 
 @onready var mover: NpcMover = $Mover

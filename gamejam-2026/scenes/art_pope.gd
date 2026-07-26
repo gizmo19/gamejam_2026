@@ -2,6 +2,11 @@ extends Node3D
 
 const PICKUP_DURATION: float = 0.5
 
+@onready var _trophy: Node3D = $KremowkaTrophy
+
+func _ready() -> void:
+	_trophy.visible = ScoreState.secret_found
+
 func get_look_action(player: Node) -> LookAction:
 	if player == null or player.held_item != -1:
 		return null
@@ -10,4 +15,5 @@ func get_look_action(player: Node) -> LookAction:
 			return
 		player.pick_up(Item.Type.KREMOWKA)
 		ScoreState.record_secret_found()
+		_trophy.visible = true
 	, 0.0)

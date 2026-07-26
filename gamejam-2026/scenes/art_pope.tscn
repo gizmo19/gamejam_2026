@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://b7hkahchrb5el" path="res://scenes/art_pope.gd" id="1_djajv"]
 [ext_resource type="Texture2D" uid="uid://dfid35xchqrq0" path="res://assets/sprites/npc/picture_pope.png" id="2_76ehk"]
 [ext_resource type="PackedScene" uid="uid://clog20262601" path="res://assets/models/architecture/LOG.glb" id="2_djajv"]
+[ext_resource type="PackedScene" path="res://scenes/kremowka_trophy.tscn" id="3_kremtrophy"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bm86m"]
 size = Vector3(1.9991455, 2.7740479, 0.18267822)
@@ -40,3 +41,7 @@ transform = Transform3D(-0.5, 0, -1.6763806e-08, 0, 0.2, 0, 4.4703484e-08, 0, -0
 
 [node name="Log11" parent="." unique_id=503120804 instance=ExtResource("2_djajv")]
 transform = Transform3D(-0.5, 0, -1.6763806e-08, 0, 0.2, 0, 4.4703484e-08, 0, -0.2, -0.017544866, -0.06661022, 0.022903442)
+
+[node name="KremowkaTrophy" parent="." unique_id=1234500001 instance=ExtResource("3_kremtrophy")]
+transform = Transform3D(0.592876, 0, -0.09218474, 0, 0.6, 0, 0.09218474, 0, 0.592876, -2.6074212, 0.2931012, 1.8158646)
+visible = false
