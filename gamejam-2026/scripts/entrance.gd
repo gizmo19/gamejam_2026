@@ -48,5 +48,7 @@ func _refresh_sign() -> void:
 
 	if can_close:
 		_label_closed.text = "CLOSE TAVERN"
-	else:
+	elif ScoreState.phase == ScoreState.Phase.MORNING:
 		_label_closed.text = "OPEN TAVERN"
+	else:
+		_label_closed.text = "TAVERN CLOSED"
