@@ -35,6 +35,8 @@ const STAMINA_RED_FILL: StyleBox = preload("res://resources/ui/stamina_red_fill.
 @onready var _licenses_back_button: Button = %LicenseBack
 @onready var _mateusz_credits: RichTextLabel = %MateuszCredits
 @onready var _darek_credits: RichTextLabel = %DarekCredits
+@onready var _web_comment: Label = %WebComment
+@onready var _fs_comment: Label = %AltEnterComment
 
 var _fade_overlay: ColorRect
 var _fade_tween: Tween
@@ -48,6 +50,8 @@ func _ready() -> void:
 	_stamina_cost_popup.visible = false
 	_notification_popup.visible = false
 	_interaction_hint.visible = false
+	_web_comment.visible = OS.has_feature("web")
+	_fs_comment.visible = !OS.has_feature("web")
 	_pointer.play("pointer")
 	_menu_overlay.visible = true
 
